@@ -111,6 +111,96 @@ html {
 }
 
 /*
+ * Mobile navigation (Phase 2D).
+ * Core overlay breakpoint is 600px and the default overlay is white.
+ * These rules restyle the existing overlay and move the cutoff to 768px.
+ */
+.np-site-header .wp-block-navigation__responsive-container-open,
+.np-site-header .wp-block-navigation__responsive-container-close {
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	min-height: 44px;
+	padding: 0;
+	border-radius: 0;
+	color: var(--wp--preset--color--on-surface-variant);
+}
+
+@media (min-width: 600px) and (max-width: 767px) {
+	.np-site-header .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: inline-flex;
+	}
+
+	.np-site-header .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+	}
+}
+
+@media (min-width: 768px) {
+	.np-site-header .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: none;
+	}
+
+	.np-site-header .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: block;
+		position: relative;
+		z-index: auto;
+		width: 100%;
+		background-color: inherit;
+	}
+
+	.np-site-header .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) .wp-block-navigation__responsive-container-close {
+		display: none;
+	}
+}
+
+.np-site-header .wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open:not(.disable-default-overlay),
+.np-site-header .wp-block-navigation__responsive-container.is-menu-open {
+	top: var(--wp--custom--header--height);
+	border-radius: 0;
+	background-color: color-mix(in srgb, var(--wp--preset--color--background) 80%, transparent);
+	backdrop-filter: blur(24px);
+	-webkit-backdrop-filter: blur(24px);
+	color: var(--wp--preset--color--on-surface-variant);
+}
+
+.np-site-header .wp-block-navigation:not(.has-text-color) .wp-block-navigation__responsive-container.is-menu-open:not(.disable-default-overlay) {
+	color: var(--wp--preset--color--on-surface-variant);
+}
+
+.np-site-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content,
+.np-site-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container,
+.np-site-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item {
+	align-items: stretch;
+	justify-content: flex-start;
+}
+
+.np-site-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item > .wp-block-navigation-item__content {
+	justify-content: flex-start;
+	min-height: 44px;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--on-surface-variant);
+}
+
+.np-site-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item:not(.current-menu-item) > .wp-block-navigation-item__content:hover,
+.np-site-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item > .wp-block-navigation-item__content:focus {
+	color: var(--wp--preset--color--secondary);
+	background-color: var(--wp--preset--color--surface-container-highest);
+}
+
+.np-site-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-buttons {
+	margin-top: var(--wp--preset--spacing--24);
+}
+
+.np-site-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-button__link {
+	min-height: 44px;
+	border-radius: 0;
+}
+
+/*
  * Footer template part.
  * Ghost top edge, stacked/centered mobile layout, and link hover color
  * cannot be expressed in theme.json.
