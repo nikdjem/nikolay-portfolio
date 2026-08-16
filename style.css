@@ -228,3 +228,68 @@ html {
 		text-align: center;
 	}
 }
+
+/*
+ * Homepage Hero.
+ * Cover cannot express grayscale/opacity/contrast, gradient text, chip glow,
+ * ghost body border, or the 768px min-height split.
+ */
+.np-hero {
+	overflow: hidden;
+	border-radius: 0;
+	min-height: calc(100svh - var(--wp--custom--header--height));
+}
+
+@media (min-width: 768px) {
+	.np-hero {
+		min-height: 921px;
+	}
+}
+
+.np-hero .wp-block-cover__image-background {
+	object-fit: cover;
+	opacity: 0.2;
+	filter: grayscale(1) contrast(150%);
+}
+
+.np-hero .wp-block-cover__background {
+	background: var(--wp--preset--gradient--hero-overlay);
+	opacity: 1;
+}
+
+.np-hero-chip {
+	display: inline-flex;
+	box-shadow: var(--wp--preset--shadow--chip);
+	border-left: 2px solid var(--wp--preset--color--primary-container);
+	border-radius: 0;
+}
+
+.np-hero-heading {
+	font-weight: 700;
+}
+
+.np-hero-intelligent {
+	background-image: var(--wp--preset--gradient--hero-word);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	filter: drop-shadow(0 0 15px rgba(222, 183, 255, 0.4));
+}
+
+.np-hero-body {
+	max-width: 640px;
+}
+
+.np-hero .wp-block-button__link:active {
+	transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.np-hero .wp-block-button__link:active {
+		transform: none;
+	}
+
+	.np-hero .wp-block-cover__image-background {
+		filter: grayscale(1) contrast(150%);
+	}
+}
