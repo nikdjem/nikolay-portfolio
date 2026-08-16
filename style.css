@@ -293,3 +293,87 @@ html {
 		filter: grayscale(1) contrast(150%);
 	}
 }
+
+/*
+ * About section.
+ * Overlay badge, image filters, behind-image wash, and 768px column split
+ * cannot be expressed through core Columns or theme.json.
+ */
+.np-about {
+	border-radius: 0;
+}
+
+.np-about-media {
+	position: relative;
+}
+
+.np-about-media::before {
+	content: "";
+	position: absolute;
+	inset: -16px;
+	z-index: 0;
+	pointer-events: none;
+	border-radius: 0;
+	background-color: color-mix(in srgb, var(--wp--preset--color--primary-container) 5%, transparent);
+}
+
+.np-about-media:hover::before,
+.np-about-media:focus-within::before {
+	background-color: color-mix(in srgb, var(--wp--preset--color--primary-container) 10%, transparent);
+}
+
+.np-about-media .wp-block-image {
+	position: relative;
+	z-index: 1;
+	margin: 0;
+	border-radius: 0;
+}
+
+.np-about-media .wp-block-image img {
+	display: block;
+	width: 100%;
+	height: 500px;
+	object-fit: cover;
+	border-radius: 0;
+	filter: grayscale(1) brightness(0.75);
+	transition: filter 700ms ease;
+}
+
+.np-about-media:hover .wp-block-image img,
+.np-about-media:focus-within .wp-block-image img {
+	filter: grayscale(0) brightness(1);
+}
+
+.np-about-stat {
+	position: absolute;
+	right: -16px;
+	bottom: -16px;
+	z-index: 2;
+	border-radius: 0;
+}
+
+@media (min-width: 768px) and (max-width: 781px) {
+	.np-about .wp-block-columns:not(.is-not-stacked-on-mobile) {
+		flex-wrap: nowrap;
+	}
+
+	.np-about .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column {
+		flex-basis: 0 !important;
+		flex-grow: 1;
+	}
+
+	.np-about .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column:first-child {
+		flex-grow: 7;
+	}
+
+	.np-about .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column:last-child {
+		flex-grow: 5;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.np-about-media .wp-block-image img,
+	.np-about-media::before {
+		transition: none;
+	}
+}
