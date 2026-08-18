@@ -11,8 +11,8 @@
 
 $np_hero_image = esc_url( get_theme_file_uri( 'assets/images/hero.jpg' ) );
 ?>
-<!-- wp:cover {"url":"<?php echo $np_hero_image; ?>","alt":"","dimRatio":0,"isUserOverlayColor":true,"contentPosition":"center left","isDark":true,"tagName":"section","align":"full","className":"np-hero","style":{"border":{"radius":"0px"},"spacing":{"padding":{"top":"var:preset|spacing|48","bottom":"var:preset|spacing|48","left":"var:preset|spacing|32","right":"var:preset|spacing|32"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1152px","justifyContent":"left"}} -->
-<section class="wp-block-cover alignfull has-custom-content-position is-position-center-left np-hero" style="border-radius:0px;margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--48);padding-right:var(--wp--preset--spacing--32);padding-bottom:var(--wp--preset--spacing--48);padding-left:var(--wp--preset--spacing--32)">
+<!-- wp:cover {"url":"<?php echo $np_hero_image; ?>","alt":"","dimRatio":0,"isUserOverlayColor":true,"contentPosition":"center center","isDark":true,"tagName":"section","align":"full","className":"np-hero","style":{"border":{"radius":"0px"},"spacing":{"padding":{"top":"var:preset|spacing|48","bottom":"var:preset|spacing|48","left":"var:preset|spacing|32","right":"var:preset|spacing|32"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1152px","justifyContent":"center"}} -->
+<section class="wp-block-cover alignfull has-custom-content-position is-position-center-center np-hero" style="border-radius:0px;margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--48);padding-right:var(--wp--preset--spacing--32);padding-bottom:var(--wp--preset--spacing--48);padding-left:var(--wp--preset--spacing--32)">
 	<span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span>
 	<img class="wp-block-cover__image-background" alt="" src="<?php echo $np_hero_image; ?>" data-object-fit="cover" aria-hidden="true"/>
 	<div class="wp-block-cover__inner-container">
@@ -20,6 +20,10 @@ $np_hero_image = esc_url( get_theme_file_uri( 'assets/images/hero.jpg' ) );
 		<div class="wp-block-group np-hero__content">
 			<!-- wp:group {"className":"np-hero-chip","backgroundColor":"surface-container","style":{"border":{"radius":"0px"},"spacing":{"padding":{"top":"4px","bottom":"4px","left":"12px","right":"12px"},"blockGap":"8px","margin":{"bottom":"var:preset|spacing|32"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left","verticalAlignment":"center"}} -->
 			<div class="wp-block-group np-hero-chip has-surface-container-background-color has-background" style="border-radius:0px;margin-bottom:var(--wp--preset--spacing--32);padding-top:4px;padding-right:12px;padding-bottom:4px;padding-left:12px">
+				<!-- wp:html -->
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="1.75" y="2.75" width="12.5" height="10.5"/><path d="M4.25 6.25L6.5 8l-2.25 1.75"/><path d="M7.75 10.25h3.5"/></svg>
+				<!-- /wp:html -->
+
 				<!-- wp:paragraph {"textColor":"on-surface-variant","fontSize":"meta","style":{"typography":{"fontWeight":"700","letterSpacing":"0.2em","textTransform":"uppercase"}}} -->
 				<p class="has-on-surface-variant-color has-text-color has-meta-font-size" style="font-weight:700;letter-spacing:0.2em;text-transform:uppercase">System Protocol: Active</p>
 				<!-- /wp:paragraph -->

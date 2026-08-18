@@ -35,8 +35,8 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:query {"queryId":51,"query":{"perPage":3,"pages":0,"offset":0,"postType":"project","order":"asc","orderBy":"menu_order","author":"","search":"","exclude":[],"sticky":"","inherit":false},"align":"wide","className":"np-projects-query","layout":{"type":"default"}} -->
-	<div class="wp-block-query alignwide np-projects-query">
+	<!-- wp:query {"queryId":51,"query":{"perPage":3,"pages":0,"offset":0,"postType":"project","order":"asc","orderBy":"menu_order","author":"","search":"","exclude":[],"sticky":"","inherit":false},"className":"np-projects-query","layout":{"type":"default"}} -->
+	<div class="wp-block-query np-projects-query">
 		<!-- wp:post-template {"className":"np-projects-grid","style":{"spacing":{"blockGap":"var:preset|spacing|8"}},"layout":{"type":"grid","columnCount":3}} -->
 			<!-- wp:group {"className":"np-project-card","backgroundColor":"surface-container","style":{"border":{"radius":"0px"},"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"default"}} -->
 			<div class="wp-block-group np-project-card has-surface-container-background-color has-background" style="border-radius:0px;margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">

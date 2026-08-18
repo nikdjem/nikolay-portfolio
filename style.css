@@ -240,6 +240,12 @@ html {
 	min-height: calc(100svh - var(--wp--custom--header--height));
 }
 
+.np-hero.has-custom-content-position .wp-block-cover__inner-container {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: var(--wp--style--global--content-size);
+}
+
 @media (min-width: 768px) {
 	.np-hero {
 		min-height: 921px;
@@ -259,9 +265,18 @@ html {
 
 .np-hero-chip {
 	display: inline-flex;
+	align-items: center;
 	box-shadow: var(--wp--preset--shadow--chip);
 	border-left: 2px solid var(--wp--preset--color--primary-container);
 	border-radius: 0;
+}
+
+.np-hero-chip svg {
+	display: block;
+	width: 16px;
+	height: 16px;
+	flex-shrink: 0;
+	color: var(--wp--preset--color--secondary);
 }
 
 .np-hero-heading {
@@ -277,7 +292,9 @@ html {
 }
 
 .np-hero-body {
-	max-width: 640px;
+	max-width: 576px;
+	padding-left: var(--wp--preset--spacing--24);
+	border-left: 1px solid color-mix(in srgb, var(--wp--preset--color--outline-variant) 30%, transparent);
 }
 
 .np-hero .wp-block-button__link:active {
@@ -350,6 +367,8 @@ html {
 	bottom: -16px;
 	z-index: 2;
 	border-radius: 0;
+	outline: 1px solid color-mix(in srgb, var(--wp--preset--color--outline-variant) 10%, transparent);
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 }
 
 @media (min-width: 768px) and (max-width: 781px) {
@@ -527,5 +546,51 @@ html {
 	.np-project-card .wp-block-post-excerpt {
 		opacity: 1;
 		transform: none;
+	}
+}
+
+/*
+ * Homepage Tech Stack.
+ * Five-column desktop / two-column mobile grid, card outlines, and SVG
+ * sizing cannot be expressed through Group grid attributes or theme.json.
+ */
+.np-stack .np-stack-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	gap: var(--wp--preset--spacing--16) !important;
+}
+
+@media (min-width: 768px) {
+	.np-stack .np-stack-grid {
+		grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+		gap: var(--wp--preset--spacing--32) !important;
+	}
+}
+
+.np-stack .np-stack-card {
+	min-width: 0;
+	box-sizing: border-box;
+	border-radius: 0;
+	outline: 1px solid color-mix(in srgb, var(--wp--preset--color--outline-variant) 10%, transparent);
+	transition: background-color 300ms ease, outline-color 300ms ease;
+}
+
+.np-stack .np-stack-card:hover,
+.np-stack .np-stack-card:focus-within {
+	background-color: var(--wp--preset--color--surface-bright) !important;
+	outline-color: color-mix(in srgb, var(--wp--preset--color--primary) 40%, transparent);
+}
+
+.np-stack .np-stack-card svg {
+	display: block;
+	width: 36px;
+	height: 36px;
+	flex-shrink: 0;
+	margin: 0 auto var(--wp--preset--spacing--16);
+	color: var(--wp--preset--color--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.np-stack .np-stack-card {
+		transition: none;
 	}
 }
