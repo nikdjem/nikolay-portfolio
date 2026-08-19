@@ -64,7 +64,7 @@ html {
  */
 .np-site-header {
 	position: fixed;
-	top: 0;
+	top: 32px;
 	right: 0;
 	left: 0;
 	z-index: 50;
@@ -249,6 +249,10 @@ html {
 @media (min-width: 768px) {
 	.np-hero {
 		min-height: 921px;
+	}
+
+	.np-hero h1 {
+		font-size: 49px;
 	}
 }
 
