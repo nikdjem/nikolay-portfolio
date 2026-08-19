@@ -6,7 +6,7 @@ Description: Custom WordPress 7.0 Full Site Editing block theme. Dark amethyst p
 Requires at least: 7.0
 Tested up to: 7.0
 Requires PHP: 8.1
-Version: 0.1.0
+Version: 0.1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: nikolay-portfolio
@@ -254,13 +254,14 @@ html {
 
 .np-hero .wp-block-cover__image-background {
 	object-fit: cover;
-	opacity: 0.2;
-	filter: grayscale(1) contrast(150%);
+	opacity: 0.30;
+	filter: grayscale(1) brightness(0.50) contrast(125%);
 }
 
-.np-hero .wp-block-cover__background {
-	background: var(--wp--preset--gradient--hero-overlay);
+.np-hero .wp-block-cover__background.has-background-dim.has-background-dim-0 {
 	opacity: 1;
+	background-color: color-mix(in srgb, var(--wp--preset--color--background) 78%, transparent);
+	background-image: var(--wp--preset--gradient--hero-overlay);
 }
 
 .np-hero-chip {
@@ -307,7 +308,7 @@ html {
 	}
 
 	.np-hero .wp-block-cover__image-background {
-		filter: grayscale(1) contrast(150%);
+		filter: grayscale(1) brightness(0.50) contrast(125%);
 	}
 }
 
@@ -343,7 +344,23 @@ html {
 	position: relative;
 	z-index: 1;
 	margin: 0;
+	overflow: hidden;
 	border-radius: 0;
+}
+
+.np-about-media .wp-block-image::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+	background-color: color-mix(in srgb, var(--wp--preset--color--surface-container-lowest) 48%, transparent);
+	transition: background-color 700ms ease;
+}
+
+.np-about-media:hover .wp-block-image::after,
+.np-about-media:focus-within .wp-block-image::after {
+	background-color: color-mix(in srgb, var(--wp--preset--color--surface-container-lowest) 38%, transparent);
 }
 
 .np-about-media .wp-block-image img {
@@ -352,13 +369,13 @@ html {
 	height: 500px;
 	object-fit: cover;
 	border-radius: 0;
-	filter: grayscale(1) brightness(0.75);
+	filter: grayscale(1) brightness(0.48);
 	transition: filter 700ms ease;
 }
 
 .np-about-media:hover .wp-block-image img,
 .np-about-media:focus-within .wp-block-image img {
-	filter: grayscale(0) brightness(1);
+	filter: grayscale(0.55) brightness(0.56);
 }
 
 .np-about-stat {
@@ -392,6 +409,7 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
 	.np-about-media .wp-block-image img,
+	.np-about-media .wp-block-image::after,
 	.np-about-media::before {
 		transition: none;
 	}
@@ -438,20 +456,34 @@ html {
 	height: 100%;
 }
 
+.np-project-card .wp-block-post-featured-image::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background-color: color-mix(in srgb, var(--wp--preset--color--surface) 52%, transparent);
+	transition: background-color 700ms ease;
+}
+
+.np-project-card:hover .wp-block-post-featured-image::after,
+.np-project-card:focus-within .wp-block-post-featured-image::after {
+	background-color: color-mix(in srgb, var(--wp--preset--color--surface) 48%, transparent);
+}
+
 .np-project-card .wp-block-post-featured-image img {
 	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	border-radius: 0;
-	opacity: 0.4;
-	filter: grayscale(1);
+	opacity: 1;
+	filter: grayscale(1) brightness(0.40) contrast(110%);
 	transition: filter 700ms ease, transform 700ms ease;
 }
 
 .np-project-card:hover .wp-block-post-featured-image img,
 .np-project-card:focus-within .wp-block-post-featured-image img {
-	filter: grayscale(0);
+	filter: grayscale(0.4) brightness(0.42) contrast(110%);
 	transform: scale(1.05);
 }
 
@@ -532,6 +564,7 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
 	.np-project-card .wp-block-post-featured-image img,
+	.np-project-card .wp-block-post-featured-image::after,
 	.np-project-card .wp-block-post-title::after,
 	.np-project-card .wp-block-post-excerpt {
 		transition: none;
@@ -540,7 +573,7 @@ html {
 	.np-project-card:hover .wp-block-post-featured-image img,
 	.np-project-card:focus-within .wp-block-post-featured-image img {
 		transform: none;
-		filter: grayscale(1);
+		filter: grayscale(1) brightness(0.40) contrast(110%);
 	}
 
 	.np-project-card .wp-block-post-excerpt {
