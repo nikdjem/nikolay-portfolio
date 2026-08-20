@@ -64,7 +64,7 @@ html {
  */
 .np-site-header {
 	position: fixed;
-	top: 32px;
+	top: 35px;
 	right: 0;
 	left: 0;
 	z-index: 50;
@@ -205,6 +205,10 @@ html {
  * Ghost top edge, stacked/centered mobile layout, paragraph margin reset,
  * and link hover color cannot be expressed in theme.json.
  */
+.wp-site-blocks > .np-front-main + .wp-block-template-part {
+	margin-block-start: 0;
+}
+
 .np-site-footer {
 	box-sizing: border-box;
 	width: 100%;
@@ -258,13 +262,20 @@ html {
 	max-width: var(--wp--style--global--content-size);
 }
 
+.np-hero h1.np-hero-heading {
+	color: var(--wp--preset--color--on-surface);
+	font-size: 48px !important;
+	line-height: 0.9;
+	letter-spacing: -0.05em;
+}
+
 @media (min-width: 768px) {
 	.np-hero {
 		min-height: 921px;
 	}
 
-	.np-hero h1 {
-		font-size: 49px;
+	.np-hero h1.np-hero-heading {
+		font-size: 96px !important;
 	}
 }
 
@@ -335,6 +346,17 @@ html {
  */
 .np-about {
 	border-radius: 0;
+}
+
+.np-about h2 {
+	letter-spacing: 0;
+}
+
+@media (min-width: 768px) {
+	.np-about h2 {
+		font-size: 60px !important;
+		line-height: 1;
+	}
 }
 
 .np-about-media {
