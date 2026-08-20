@@ -6,7 +6,7 @@ Description: Custom WordPress 7.0 Full Site Editing block theme. Dark amethyst p
 Requires at least: 7.0
 Tested up to: 7.0
 Requires PHP: 8.1
-Version: 0.1.2
+Version: 0.1.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: nikolay-portfolio
@@ -698,4 +698,161 @@ html {
 	background-color: var(--wp--preset--color--primary-container);
 	color: var(--wp--preset--color--on-primary-container);
 	box-shadow: var(--wp--preset--shadow--initials);
+}
+
+/*
+ * Homepage Contact.
+ * 896px spine, 768px field grid, input chrome, and submit states
+ * cannot be expressed through core Group attributes or theme.json.
+ */
+.np-contact {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.np-contact-inner {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 896px;
+	margin-inline: auto;
+}
+
+.np-contact h2 {
+	letter-spacing: 0;
+}
+
+.np-contact-form {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--24);
+	margin: 0;
+}
+
+.np-contact-fields {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--wp--preset--spacing--24);
+}
+
+@media (min-width: 768px) {
+	.np-contact-fields {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.np-contact-form label {
+	display: block;
+	margin: 0 0 var(--wp--preset--spacing--8);
+	font-size: var(--wp--preset--font-size--meta);
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--on-surface-variant);
+}
+
+.np-contact-form input[type="text"],
+.np-contact-form input[type="email"],
+.np-contact-form textarea {
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: var(--wp--preset--spacing--16);
+	border: 0;
+	border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--outline-variant) 20%, transparent);
+	border-radius: 0;
+	background-color: var(--wp--preset--color--surface-container);
+	color: var(--wp--preset--color--on-surface);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--medium);
+	line-height: 1.5;
+	transition: all 150ms ease;
+}
+
+.np-contact-form input::placeholder,
+.np-contact-form textarea::placeholder {
+	color: var(--wp--preset--color--outline-variant);
+	opacity: 1;
+}
+
+.np-contact-form input:focus-visible,
+.np-contact-form textarea:focus-visible {
+	outline: 1px solid var(--wp--preset--color--primary-container);
+	outline-offset: 0;
+	background-color: var(--wp--preset--color--surface-container-high);
+	box-shadow: 0 0 0 1px var(--wp--preset--color--primary-container);
+}
+
+.np-contact-form button[type="submit"] {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
+	padding: 20px var(--wp--preset--spacing--16);
+	border: 0;
+	border-radius: 0;
+	background-color: var(--wp--preset--color--primary-container);
+	color: var(--wp--preset--color--on-primary-container);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 700;
+	letter-spacing: 0.4em;
+	line-height: 1.3;
+	text-transform: uppercase;
+	cursor: pointer;
+	box-shadow: var(--wp--preset--shadow--submit);
+	transition: all 150ms ease;
+}
+
+.np-contact-form button[type="submit"]:hover {
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+}
+
+.np-contact-form button[type="submit"]:focus-visible {
+	outline: 1px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+.np-contact-form button[type="submit"]:active {
+	transform: scale(0.98);
+}
+
+.np-contact-status {
+	margin: 0;
+	min-height: 0;
+	font-size: var(--wp--preset--font-size--meta);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--on-surface-variant);
+}
+
+.np-contact-status:not(:empty) {
+	margin-top: 0;
+}
+
+.np-contact-honeypot {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.np-contact-form input[type="text"],
+	.np-contact-form input[type="email"],
+	.np-contact-form textarea,
+	.np-contact-form button[type="submit"] {
+		transition: none;
+	}
+
+	.np-contact-form button[type="submit"]:active {
+		transform: none;
+	}
 }
