@@ -319,6 +319,12 @@ html {
 	filter: drop-shadow(0 0 15px rgba(222, 183, 255, 0.4));
 }
 
+@media (min-width: 1280px) {
+	.np-hero-lockup {
+		white-space: nowrap;
+	}
+}
+
 .np-hero-body {
 	max-width: 576px;
 	padding-left: var(--wp--preset--spacing--24);

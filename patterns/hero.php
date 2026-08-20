@@ -31,7 +31,7 @@ $np_hero_image = esc_url( get_theme_file_uri( 'assets/images/hero.jpg' ) );
 			<!-- /wp:group -->
 
 			<!-- wp:heading {"level":1,"className":"np-hero-heading","fontSize":"hero","style":{"typography":{"fontWeight":"700","letterSpacing":"-0.05em","lineHeight":"0.9","textTransform":"uppercase"},"spacing":{"margin":{"bottom":"var:preset|spacing|32"}}}} -->
-			<h1 class="wp-block-heading np-hero-heading has-hero-font-size" style="margin-bottom:var(--wp--preset--spacing--32);font-weight:700;letter-spacing:-0.05em;line-height:0.9;text-transform:uppercase">ARCHITECTING<br><span class="np-hero-intelligent">INTELLIGENT</span><br>WORDPRESS ECOSYSTEMS</h1>
+			<h1 class="wp-block-heading np-hero-heading has-hero-font-size" style="margin-bottom:var(--wp--preset--spacing--32);font-weight:700;letter-spacing:-0.05em;line-height:0.9;text-transform:uppercase">ARCHITECTING<br><span class="np-hero-intelligent">INTELLIGENT</span><br><span class="np-hero-lockup">WORDPRESS ECOSYSTEMS</span></h1>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"className":"np-hero-body","textColor":"on-surface-variant","fontSize":"large","style":{"typography":{"fontWeight":"300","lineHeight":"1.625"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
