@@ -16,6 +16,13 @@
 			return;
 		}
 
+		const syncScrollState = function () {
+			header.classList.toggle('is-scrolled', window.scrollY > 0);
+		};
+
+		syncScrollState();
+		window.addEventListener('scroll', syncScrollState, { passive: true });
+
 		const openBtn = header.querySelector('.wp-block-navigation__responsive-container-open');
 		const overlay = header.querySelector('.wp-block-navigation__responsive-container');
 		if (!openBtn || !overlay) {
@@ -30,13 +37,28 @@
 		};
 
 		const syncExpanded = function () {
-			openBtn.setAttribute(
-				'aria-expanded',
-				overlay.classList.contains('is-menu-open') ? 'true' : 'false'
-			);
+			const isOpen = overlay.classList.contains('is-menu-open');
+			openBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+			openBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
 		};
 
 		openBtn.setAttribute('aria-expanded', 'false');
+		if (!openBtn.getAttribute('aria-label')) {
+			openBtn.setAttribute('aria-label', 'Open menu');
+		}
+
+		openBtn.addEventListener(
+			'click',
+			function (event) {
+				if (!overlay.classList.contains('is-menu-open')) {
+					return;
+				}
+				event.preventDefault();
+				event.stopImmediatePropagation();
+				closeOverlay();
+			},
+			true
+		);
 		new MutationObserver(syncExpanded).observe(overlay, {
 			attributes: true,
 			attributeFilter: ['class'],

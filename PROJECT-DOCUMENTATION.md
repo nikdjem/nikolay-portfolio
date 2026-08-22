@@ -4,14 +4,21 @@
 **Brand:** NIKWEB.EU  
 **Repository:** [nikdjem/nikolay-portfolio](https://github.com/nikdjem/nikolay-portfolio)  
 **Theme path:** `wp-content/themes/nikolay-portfolio`  
-**Current theme version:** 0.1.3  
+**Theme version:** 0.1.3
 **Last updated:** August 2026
 
 ---
 
 ## Document Purpose
 
-This file is the long-form project record for the NIKWEB.EU portfolio website. It tracks decisions, phases, architecture, and evolution over time. For a short public overview, see [README.md](./README.md). For release-level changes, see [CHANGELOG.md](./CHANGELOG.md).
+This file is the long-form project record for the NIKWEB.EU portfolio website. It documents verified development history, architectural decisions, and phase boundaries. For a short public overview, see [README.md](./README.md). For release-level changes, see [CHANGELOG.md](./CHANGELOG.md).
+
+**Legend used throughout this document:**
+
+| Label | Meaning |
+|-------|---------|
+| **Verified** | Supported by Git history, committed files, or repository artifacts |
+| **[REQUIRES VERIFICATION]** | Not reliably reconstructable from the repository alone |
 
 ---
 
@@ -19,378 +26,560 @@ This file is the long-form project record for the NIKWEB.EU portfolio website. I
 
 | Phase | Title | Status |
 |-------|-------|--------|
-| **01** | [Project Foundation & Discovery](#phase-01--project-foundation--discovery) | **Documented** |
-| 02 | UX & Information Architecture | Planned |
-| 03 | Visual Design & Design System | Planned |
-| 04 | Stitch → Cursor Workflow | Planned |
-| 05 | WordPress / FSE Architecture | Planned |
-| 06 | Initial Implementation | Planned |
-| 07 | Navigation & Responsive Development | Planned |
-| 08 | Visual QA | Planned |
-| 09 | Real Project Integration | Planned |
-| 10 | WORK Section Redesign | Planned |
-| 11 | Single Project Case Study System | Planned |
-| 12 | Final QA | Planned |
-| 13 | Deployment | Planned |
-| 14 | Lessons Learned | Planned |
-| 15 | Future Improvements | Planned |
+| **01** | [Project Foundation & Discovery](#phase-01--project-foundation--discovery) | **Complete — documented** |
+| **02** | [UX & Information Architecture](#phase-02--ux--information-architecture) | **Complete — documented** |
+| **03** | [Visual Design & Design System](#phase-03--visual-design--design-system) | **Complete — documented** |
+| **04** | [Stitch → Cursor Workflow](#phase-04--stitch--cursor-workflow) | **Complete — documented** |
+| **05** | [WordPress / FSE / Gutenberg Architecture](#phase-05--wordpress--fse--gutenberg-architecture) | **Complete — documented** |
+| **06** | [Initial Implementation & Visual QA](#phase-06--initial-implementation--visual-qa) | **Complete — documented** |
+| **07** | [Real Projects & Case Study Architecture](#phase-07--real-projects--case-study-architecture) | **NOT STARTED** |
+
+---
+
+## Repository State After Phase 06
+
+This section records the Git state at the end of Phase 06 documentation. **Phase 07 will continue from the local working tree, not from the last code commit alone.**
+
+### Remote / committed state (GitHub)
+
+| Commit | Message | Role |
+|--------|---------|------|
+| `36624f2` | `docs: add project documentation foundation` | Latest pushed commit — documentation only |
+| `53e66a1` | `fix(home): refine hero heading layout` | Last **code** commit on `origin/main` |
+
+Everything in Phases 01–06 **implementation** through responsive refinements is represented in Git up to `53e66a1`, plus the documentation commit `36624f2`.
+
+### Current local working tree (uncommitted)
+
+The following files contain **uncommitted changes** performed after `53e66a1`. These changes are **not on GitHub** and must not be treated as the remote baseline:
+
+| File | Nature of changes |
+|------|-------------------|
+| `assets/js/navigation.js` | Scroll header state, hamburger ↔ X toggle, aria-label updates |
+| `functions.php` | NIKWEB.EU site title filter |
+| `parts/header.html` | Navigation order: About before Work |
+| `patterns/about.php` | GitHub Repository button; experience stat badge removed |
+| `style.css` | Header glass pseudo-element fix, mobile nav styling, image treatments |
+
+These uncommitted refinements represent the **current local development state** from which Phase 07 should proceed. They have **not** been staged or committed.
 
 ---
 
 ## Phase 01 — Project Foundation & Discovery
 
-### Project Overview
+**Status:** Complete
+**Timeline:** 15 August 2026 — project genesis (`f6f16f5`)
 
-NIKWEB.EU is a custom WordPress Full Site Editing (FSE) block theme built as a professional portfolio for Nikolay. The site presents a dark, editorial, tech-forward visual identity — **"The Amethyst Monolith"** — and showcases WordPress engineering capability through a structured homepage: Hero, About, Work (Projects), Stack, Testimonials, and Contact.
+### Verified
 
-The project is developed locally (Local WP environment) and version-controlled on GitHub. A companion plugin (`nikolay-portfolio-projects`) provides the `project` custom post type for the Work section Query Loop.
+**Project purpose:** Custom WordPress 7.0 Full Site Editing (FSE) block theme for a personal developer portfolio. The site showcases WordPress engineering capability through a single-page homepage with anchored sections. Theme description in `style.css`: *"Dark amethyst portfolio visual system."*
 
-### Primary Objectives
+**WordPress direction:** Block theme architecture — `theme.json` tokens, block patterns, template parts, core Gutenberg blocks. No page builder. No classic PHP templates for homepage sections.
 
-1. **Establish a distinctive portfolio brand** under NIKWEB.EU that communicates high-performance WordPress development.
-2. **Build a maintainable FSE block theme** using WordPress 7.0, `theme.json` design tokens, and block patterns — not page builders.
-3. **Create a design-to-code pipeline** from wireframe → Stitch/final design → Cursor implementation.
-4. **Deliver a production-ready single-page portfolio** with responsive navigation, accessible interactions, and real project content integration.
-5. **Document the process** so future phases (WORK redesign, case studies, deployment) can proceed without losing context.
+**Repository structure:**
 
-### Portfolio Positioning
+- **Git root:** `wp-content/themes/nikolay-portfolio/` (the theme directory **is** the repository root)
+- **Remote:** `https://github.com/nikdjem/nikolay-portfolio`
+- **Branch:** `main`
+- **Author (Git):** `nikdjem`
 
-| Dimension | Direction |
-|-----------|-----------|
-| **Audience** | Potential clients, agencies, and technical collaborators evaluating WordPress/FSE capability |
-| **Tone** | Authoritative, precise, "technical editorial" — not generic agency template |
-| **Visual identity** | Dark amethyst / synth-cyber; zero border-radius; Space Grotesk; uppercase display type |
-| **Differentiator** | Custom FSE architecture, design-system discipline, neural/tech narrative without cliché neon cyberpunk |
-| **Primary CTA** | Hire Me → Contact section |
-| **Secondary CTA** | Initialize Project (Hero), GitHub Repository (About) |
+**Development timeline (Git):**
 
-### Project Scope
+| Date | Commit | Event |
+|------|--------|-------|
+| 15 Aug 2026 | `f6f16f5` | Initial portfolio theme (empty `style.css`, `theme.json`) |
+| 15 Aug 2026 | `c082057` | Stitch design references added |
+| 16 Aug 2026 | `7f619f5` | FSE foundation baseline |
+| 16–20 Aug 2026 | `c3b3d0e` … `53e66a1` | Section implementation and refinements |
+| 22 Aug 2026 | `36624f2` | Documentation foundation committed and pushed |
 
-**In scope (theme):**
-
-- Custom FSE block theme (`nikolay-portfolio`)
-- Homepage template with registered block patterns
-- Header, footer template parts
-- Global design tokens in `theme.json`
-- Section-specific CSS in `style.css`
-- Mobile/tablet responsive navigation
-- Contact form (REST API with nonce, honeypot, rate limiting)
-- Project archive via Query Loop + companion plugin CPT
-
-**Out of scope (Phase 01):**
-
-- E-commerce, blog, multi-language
-- CMS-managed navigation menus (hardcoded Navigation block in header)
-- Third-party page builders
-- Production hosting and CI/CD (deferred to Phase 13)
-
-### Development Philosophy
-
-1. **Tokens first** — Colors, typography, spacing, and shadows live in `theme.json`. CSS handles only what blocks cannot express (filters, pseudo-elements, complex hover states).
-2. **Minimal diffs** — Each change should be scoped. No unrelated refactors.
-3. **Reuse Gutenberg** — Prefer core Navigation, Query Loop, Cover, and Group blocks over custom PHP templates.
-4. **Preserve the visual language** — Sharp corners, tonal layering, grayscale imagery with hover reveal, amethyst accent (`#7b2cbf`).
-5. **Document as we go** — Phases, decisions, and deviations are recorded here and in `CHANGELOG.md`.
-6. **No commits unless requested** — Development may proceed with unstaged local changes during active iteration.
-
-### Primary Development Tools
+**Tools (evidenced):**
 
 | Tool | Role |
 |------|------|
-| **Local WP** | Local development environment (`nikolay-portfolio.local`) |
-| **WordPress 7.0** | CMS + FSE block editor |
-| **Cursor** | AI-assisted IDE for theme development |
-| **Git / GitHub** | Version control (`nikdjem/nikolay-portfolio`) |
-| **Stitch (Google)** | Design reference → `design/final/` |
-| **Edge DevTools** | Responsive QA and accessibility checks |
-| **PHP 8.1+** | Theme and plugin runtime |
+| **Google Stitch** | Wireframe and final visual design; exports in `design/` |
+| **Cursor IDE + Cursor Agent** | Design analysis, architecture spec, phased implementation (`Co-authored-by: Cursor` on commit `eb312ae`) |
+| **Git / GitHub** | Version control |
+| **WordPress 7.0** | CMS and FSE runtime |
+| **PHP 8.1+** | Theme runtime (`style.css` header) |
+| **Local WP** | Local development [REQUIRES VERIFICATION for exact site configuration] |
 
-### Repository
+**Companion plugin:** Separate repository `https://github.com/nikdjem/nikolay-portfolio-projects.git`, commit `54c163e` — registers `project` CPT and `project_category` taxonomy for the Work section Query Loop.
 
-- **Remote:** `https://github.com/nikdjem/nikolay-portfolio`
-- **Theme URI (style.css):** `https://github.com/ndjhe/nikolay-portfolio`
-- **Branch:** `main`
-- **Structure (high level):**
+**Original scope (implemented through Phase 06):**
 
-```
-nikolay-portfolio/
-├── assets/          # Fonts, images, JS
-├── design/          # Wireframe + final Stitch exports
-├── parts/           # header.html, footer.html
-├── patterns/        # Homepage section patterns
-├── templates/       # front-page.html, index.html
-├── functions.php
-├── theme.json
-├── style.css
-├── PROJECT-DOCUMENTATION.md
-├── CHANGELOG.md
-└── README.md
-```
+- Single-page portfolio homepage
+- Header, footer, six content sections
+- Responsive navigation
+- Contact form via REST API
+- Project cards via Query Loop + companion plugin
+- Design reference files preserved in `design/`
 
-### Initial Technical Direction
+**Out of scope (deferred):**
 
-- **Architecture:** WordPress 7.0 FSE block theme — no classic PHP templates for homepage sections.
-- **Design tokens:** Material You–inspired amethyst palette defined in `theme.json` (`settings.color.palette`, `spacing`, `typography`, `shadow`, `gradients`).
-- **Layout:** Content width 1152px, wide 1280px, 8px spacing unit, 32px gutter.
-- **Header:** Fixed glass bar (`80px` height, `top: 35px`), scroll transparency, core Navigation block with custom breakpoint at 768px.
-- **Patterns:** PHP-registered block patterns (`patterns/*.php`) composed in `templates/front-page.html`.
-- **Projects:** Query Loop on `project` CPT (companion plugin), 3-column grid desktop / 1-column mobile.
-- **Contact:** Custom REST route in `functions.php` with client-side fetch in inline script.
-- **Assets:** Self-hosted Space Grotesk (300–700), hero/about images in `assets/images/`.
+- Blog, e-commerce, multi-language
+- CMS-managed navigation (hardcoded Navigation block)
+- Production deployment
+- Single-project case study pages (deferred to Phase 07)
 
-### Initial Design Direction
+### Requires Verification
 
-Reference: `design/final/DESIGN.md` and `design/final/index.html`
+- Exact Local WP site name and configuration beyond workspace path pattern
+- Original audience/brief before Stitch export
+- Whether NIKWEB.EU was the intended brand from project inception (brand filter is uncommitted; committed code uses core Site Title block)
+- Production hosting and domain plan
+- Exact WordPress patch version (7.0.4 cited in development notes, not stored in Git)
 
-| Principle | Implementation |
-|-----------|----------------|
-| **Creative north star** | "The Amethyst Monolith" — disciplined synth-cyber, not neon chaos |
-| **Color** | Dark void `#030008` base; violet accents `#7b2cbf` (primary-container) |
-| **Typography** | Space Grotesk; uppercase display; wide letter-spacing on eyebrows/meta |
-| **Geometry** | `border-radius: 0` globally — brutalist sharp edges |
-| **Depth** | Tonal layering via surface tokens; `color-mix` translucency; no hard 1px section borders |
-| **Imagery** | Grayscale + reduced brightness default; partial color + scale on hover |
-| **Glass** | Header/overlay: 80% background mix + `blur(24px)` |
-| **Motion** | 700ms image transitions; 75–150ms UI; `prefers-reduced-motion` respected |
+### Known Documentation Gaps
 
-**Homepage section order:**
-
-Header → Hero → About → Projects (`#work`) → Stack (`#stack`) → Testimonials → Contact → Footer
-
-### Project Evolution
-
-Phase 01 establishes the foundation. Subsequent work (documented in future phases) includes:
-
-- Stitch design export and wireframe baseline in `design/`
-- Full FSE theme scaffold with `theme.json` token system
-- Homepage pattern implementation (Hero through Contact)
-- Branding update: site title filtered to **NIKWEB.EU**
-- Navigation order: About → Work → Stack → Contact + Hire Me CTA
-- Scroll-based header transparency
-- Mobile/tablet hamburger menu fix (backdrop-filter containing-block issue)
-- Hire Me hidden from mobile overlay; hamburger ↔ X toggle
-- Enlarged centered mobile nav links (28px / 2× small)
-- GitHub Repository button in About section
-- Ongoing preparation for **Phase 10: WORK Section Redesign**
+- Pre-Git planning notes
+- WordPress admin configuration (static front page assignment)
+- Database content for placeholder projects
+- Formal QA sign-off documents (audit verdicts exist in development session notes only)
 
 ---
 
 ## Phase 02 — UX & Information Architecture
 
-> **Status:** Planned  
-> **Goal:** Document user flows, section hierarchy, anchor strategy, and content model.
+**Status:** Complete
 
-### Planned contents
+### Verified — Implemented Homepage Structure
 
-- [ ] Sitemap and single-page anchor map
-- [ ] User journeys (recruiter, client, peer developer)
-- [ ] Content inventory per section
-- [ ] CPT and taxonomy structure for projects
-- [ ] Navigation IA decisions (desktop vs mobile)
-- [ ] Accessibility and keyboard flow notes
+Single-page portfolio composed in `templates/front-page.html`:
+
+| Order | Section | Anchor | Pattern slug |
+|-------|---------|--------|--------------|
+| 1 | Hero | _(none)_ | `nikolay-portfolio/hero` |
+| 2 | About | `#about` | `nikolay-portfolio/about` |
+| 3 | Work (Projects) | `#work` | `nikolay-portfolio/projects` |
+| 4 | Stack | `#stack` | `nikolay-portfolio/stack` |
+| 5 | Testimonials | _(none)_ | `nikolay-portfolio/testimonials` |
+| 6 | Contact | `#contact` | `nikolay-portfolio/contact` |
+
+Header and footer are template parts (`parts/header.html`, `parts/footer.html`).
+
+**CTA hierarchy:**
+
+| CTA | Location | Target |
+|-----|----------|--------|
+| Hire Me | Header (desktop nav) | `#contact` |
+| Initialize Project | Hero primary button | `#contact` |
+| View Matrix | Hero secondary button | `#work` |
+| GitHub Repository | About section | `https://github.com/nikdjem` (uncommitted) |
+
+**Mobile navigation:** Core Navigation block with `overlayMenu: mobile`, hamburger toggle, overlay below header. Theme overrides core 600px breakpoint to **768px** in CSS.
+
+**Work ↔ project CPT:** Section id `#work`; Query Loop queries `project` post type; companion plugin rewrite slug is `work`. **No single-project theme template exists** — only `front-page.html` and `index.html` are in `templates/`. Plugin sets `publicly_queryable: true` but theme does not yet render individual case studies.
+
+**No "Services" section** — the fourth nav item is **Stack**, not Services.
+
+### Original Wireframe UX
+
+Source: `design/wireframe/index.html`, `design/wireframe/DESIGN.md`
+
+**Section order:** Hero → Bio → Project Archive → Capabilities → Testimonials → Contact
+
+**Navigation labels:** Hero / Philosophy / Projects / Stack (placeholder `#` hrefs; no Contact in desktop nav)
+
+**Brand:** "Amethyst Portfolio"
+
+**CTA:** "Hire" button
+
+Wireframe uses 1px section dividers — **not implemented** in final theme (aligned with final design "no-line" rule).
+
+### Final Stitch UX
+
+Source: `design/final/index.html`
+
+**Section order:** Hero → About → Work (projects) → Stack → Testimonials → Contact
+
+**Navigation:** Work / About / Stack / Contact + Hire Me
+
+**Anchors:** `#work`, `#about`, `#stack`, `#contact`
+
+Work nav item shown as active (border-left accent) in final HTML.
+
+### Navigation Evolution
+
+| Stage | Order | Notes |
+|-------|-------|-------|
+| **Wireframe** | Hero / Philosophy / Projects / Stack | No Contact link; brand "Amethyst Portfolio" |
+| **Stitch final** | Work / About / Stack / Contact + Hire Me | Work first, active state |
+| **Committed (`53e66a1`)** | Work / About / Stack / Contact + Hire Me | Matches Stitch final order |
+| **Local uncommitted** | About / Work / Stack / Contact + Hire Me | About and Work swapped in `parts/header.html` |
+
+This history is intentional — do not collapse versions.
+
+### Requires Verification
+
+- Whether About-before-Work in uncommitted state is the intended final nav order
+- Original plan for single-project pages before Phase 07
 
 ---
 
 ## Phase 03 — Visual Design & Design System
 
-> **Status:** Planned  
-> **Goal:** Formalize the Amethyst Monolith system in `theme.json` and design reference files.
+**Status:** Complete
+**Creative direction:** **The Amethyst Monolith** (`design/final/DESIGN.md`) — disciplined synth-cyber, tonal depth, brutalist geometry, technical editorial typography.
 
-### Planned contents
+### Verified — Design Evolution
 
-- [ ] Token catalog (colors, type scale, spacing, shadows, gradients)
-- [ ] Component specs (buttons, chips, cards, inputs)
-- [ ] Stitch → token mapping
-- [ ] Do's and don'ts (from `design/final/DESIGN.md`)
-- [ ] Responsive breakpoint matrix
+| Stage | Palette | Notes |
+|-------|---------|-------|
+| Wireframe (`design/wireframe/DESIGN.md`) | Light "Amethyst Blueprint" | Superseded |
+| Final Stitch (`design/final/index.html`) | Dark `#030008` base | **Visual source of truth for implementation** |
+| `theme.json` (commit `7f619f5`) | Dark amethyst tokens matching final HTML | Implemented token system |
+
+Implementation follows **`design/final/index.html`** over conflicting hex values in `design/final/DESIGN.md` where they differ.
+
+### Color Tokens (theme.json)
+
+| Token slug | Hex | Typical use |
+|------------|-----|-------------|
+| `background` / `surface` | `#030008` | Page base |
+| `surface-container` | `#0b0812` | Cards, chips, inputs |
+| `surface-container-highest` | `#1a1625` | Nav hover background |
+| `on-surface` | `#ecdcff` | Primary text |
+| `on-surface-variant` | `#cfc2d5` | Secondary text, nav |
+| `primary-container` | `#7b2cbf` | Primary accent, CTAs, glows |
+| `secondary` | `#e1b6ff` | Hover text, category labels |
+| `outline-variant` | `#2d2636` | Ghost outlines via `color-mix` |
+
+### Typography Tokens
+
+| Slug | Size | Use |
+|------|------|-----|
+| `meta` | 10px | Status chips, form labels |
+| `eyebrow` | 12px | Section labels, categories |
+| `small` | 14px | Nav, buttons, excerpts |
+| `medium` | 16px | Body default |
+| `card` | 24px | Project titles, logo |
+| `section` | 36px | h2 section headings |
+| `hero` | 48–96px fluid | Hero h1 |
+
+**Font family:** Space Grotesk only — weights 300–700, self-hosted WOFF2 in `assets/fonts/`.
+
+**Patterns:** Headings weight 700, negative letter-spacing; labels/meta uppercase with wide tracking (0.2em–0.4em).
+
+### Spacing & Layout
+
+| Token / setting | Value |
+|-----------------|-------|
+| Spacing unit | 8px base |
+| Preset steps | 8, 16, 24, 32, 40, 48, 64, 96 |
+| Content width | 1152px (`settings.layout.contentSize`) |
+| Wide width | 1280px |
+| Global horizontal padding | 32px |
+| Header height | 80px (`--wp--custom--header--height`) |
+| **Responsive breakpoint** | **768px** (theme override; core Navigation default is 600px) |
+
+### Geometry & Borders
+
+- **Border radius: 0 globally** — `settings.border.radius: false`; enforced in patterns and CSS
+- Section boundaries via **tonal surface shifts**, not 1px dividers
+- Card/chip edges via `outline` + `color-mix(in srgb, var(--wp--preset--color--outline-variant) N%, transparent)`
+
+### Gradients & Shadows
+
+| Slug | Use |
+|------|-----|
+| `hero-word` | Hero gradient text |
+| `hero-overlay` | Hero cover overlay |
+| `cta-crystal` | CTA backgrounds |
+| `project-fade` | Project card text overlay |
+| `logo`, `chip`, `button`, `submit` | Glow shadows |
+
+### Button System (theme.json)
+
+- Background: `primary-container`; text: `on-primary-container`
+- Uppercase, `small` (14px), weight 700, letter-spacing 0.1em
+- Hover/focus/active: background → `primary`, text → `on-primary`
+- Outline variant: `surface-container-high` bg, 1px outline at 20% opacity
+
+### Image Treatment
+
+- Default: `grayscale(1)` + reduced brightness + contrast boost
+- Hover: partial color restore + `scale(1.05)` on project cards (700ms transition)
+- Hero/about/project images each have section-specific filter values in `style.css`
+
+### Project Cards
+
+- Aspect ratio **4/5**
+- Featured image absolute fill + `project-fade` gradient overlay
+- Category (eyebrow), title (card size), excerpt (small)
+- Desktop hover: title underline bar expands (`primary-container` + glow); excerpt slides up from hidden
+- Mobile: excerpt always visible; single-column grid
+
+### Glass Header
+
+- 80% background color mix + `backdrop-filter: blur(24px)`
+- Committed: applied directly to `.np-site-header`
+- Uncommitted: moved to `::before` pseudo-element to fix mobile overlay containing-block issue
+
+### Motion & Accessibility
+
+- UI transitions: 75–150ms
+- Image/card transitions: 300–700ms
+- `prefers-reduced-motion: reduce` disables transitions globally in `style.css`
+- Focus: `outline: 2px solid var(--wp--preset--color--primary)`
+
+### Known Intentional Deviations from Stitch Final
+
+| Element | Stitch | Implementation |
+|---------|--------|----------------|
+| Header position | `top: 0` | `top: 35px` |
+| DESIGN.md surface hex | `#1a0935` (doc) | `#030008` (HTML + theme.json) |
+
+### Requires Verification
+
+- Formal sign-off on all Phase 6 visual deltas
+- Exact Stitch export session parameters
 
 ---
 
 ## Phase 04 — Stitch → Cursor Workflow
 
-> **Status:** Planned  
-> **Goal:** Document the design handoff pipeline from Stitch export to theme implementation.
+**Status:** Complete
 
-### Planned contents
+### Verified Workflow
 
-- [ ] Export process from Stitch
-- [ ] Reference file locations (`design/final/`, `design/wireframe/`)
-- [ ] Cursor agent prompts and verification checklist
-- [ ] Known intentional deviations from design comp
+```
+1. Wireframe creation (Stitch)
+      ↓
+2. Final visual design (Stitch)
+      ↓
+3. Stitch exports → design/wireframe/ + design/final/  [c082057]
+      ↓
+4. Design analysis (Cursor — read-only, no code)
+      ↓
+5. Architecture specification (Cursor — read-only)
+      ↓
+6. Architecture guardrails acknowledged
+      ↓
+7. Cursor Agent phased implementation:
+      Phase 1: theme.json foundation [7f619f5]
+      Phase 2: header, footer, nav [c3b3d0e, 7f619f5]
+      Phase 4+: section patterns (Hero → Contact)
+      ↓
+8. Visual QA (cross-viewport audit)
+      ↓
+9. Responsive QA (DevTools; local browser)
+      ↓
+10. Refinement commits + uncommitted local fixes
+```
 
----
+### Reference File Roles
 
-## Phase 05 — WordPress / FSE Architecture
+| Source | Role |
+|--------|------|
+| `design/wireframe/` | **UX / IA / structure reference** |
+| `design/final/` | **Visual source of truth** |
+| `design/final/index.html` | Most precise color and type spec |
+| `design/final/DESIGN.md` | Design intent and rules (when not conflicting with HTML) |
 
-> **Status:** Planned  
-> **Goal:** Document theme structure, block patterns, template hierarchy, and plugin integration.
+### Cursor Agent Evidence
 
-### Planned contents
+- Phased prompt workflow with explicit "do not implement" audit turns before each build phase
+- Commit `eb312ae` (`feat(home): add contact section`) includes `Co-authored-by: Cursor <cursoragent@cursor.com>`
+- Section-by-section pattern creation: one pattern file per homepage section
+- Verification reports after major phases (documented in development session notes)
 
-- [ ] Template and pattern map
-- [ ] `theme.json` vs `style.css` responsibility split
-- [ ] Companion plugin (`project` CPT) integration
-- [ ] Enqueue and asset strategy
-- [ ] REST API routes (contact form)
+### Process Roles
 
----
+| Stage | Tool |
+|-------|------|
+| Design generation | Google Stitch |
+| IA / spec | Cursor (analysis mode) |
+| Architecture | Cursor (specification) |
+| Code generation | Cursor Agent |
+| Manual validation | Browser / Edge DevTools |
 
-## Phase 06 — Initial Implementation
+### Stitch MCP
 
-> **Status:** Planned  
-> **Goal:** Record homepage section build-out and pattern registration.
+**Stitch MCP usage is not verified from repository evidence.**
 
-### Planned contents
+Design exports exist as static files in `design/`. No MCP configuration or invocation records are present in the Git repository.
 
-- [ ] Hero, About, Projects, Stack, Testimonials, Contact patterns
-- [ ] Header and footer template parts
-- [ ] Global styles and foundation CSS
-- [ ] Initial responsive behavior
+### Requires Verification
 
----
-
-## Phase 07 — Navigation & Responsive Development
-
-> **Status:** Planned  
-> **Goal:** Document header, navigation, and responsive menu implementation.
-
-### Planned contents
-
-- [ ] Core Navigation block configuration
-- [ ] 768px breakpoint override
-- [ ] Glass header and scroll transparency
-- [ ] Hamburger overlay fix (backdrop-filter pseudo-element)
-- [ ] Hamburger ↔ X toggle
-- [ ] Mobile link sizing and centering
-- [ ] Hire Me desktop-only behavior
-
----
-
-## Phase 08 — Visual QA
-
-> **Status:** Planned  
-> **Goal:** Cross-viewport visual verification against Stitch reference.
-
-### Planned contents
-
-- [ ] Breakpoint test matrix (390, 768, 1024, 1280, 1440)
-- [ ] Deviation log (intentional vs regression)
-- [ ] Overflow, contrast, and alignment audit
-- [ ] Phase gate verdict
+- Complete archive of all Cursor prompts
+- Whether Puppeteer or other automation was used beyond local DevTools
 
 ---
 
-## Phase 09 — Real Project Integration
+## Phase 05 — WordPress / FSE / Gutenberg Architecture
 
-> **Status:** Planned  
-> **Goal:** Populate Work section with real project CPT content.
+**Status:** Complete
 
-### Planned contents
+### Theme Directory Map
 
-- [ ] Project post structure (title, excerpt, featured image, category)
-- [ ] Menu order and display rules
-- [ ] Image guidelines
-- [ ] Content entry workflow
+```
+nikolay-portfolio/
+├── theme.json              # Design tokens, global styles, block/element styles
+├── style.css               # Exception CSS + theme header
+├── functions.php           # Enqueue, REST contact, filters, pattern cache fix
+├── templates/
+│   ├── front-page.html     # Homepage pattern composition
+│   └── index.html          # Mandatory fallback
+├── parts/
+│   ├── header.html         # Fixed header + Navigation block
+│   └── footer.html
+├── patterns/               # Registered block patterns (PHP)
+│   ├── hero.php
+│   ├── about.php
+│   ├── projects.php
+│   ├── stack.php
+│   ├── testimonials.php
+│   └── contact.php
+├── assets/
+│   ├── fonts/              # Space Grotesk WOFF2
+│   ├── images/             # hero.jpg, about.jpg
+│   └── js/navigation.js    # Nav helper script
+└── design/                 # Stitch references (not loaded at runtime)
+```
 
----
+### Layer Responsibilities
 
-## Phase 10 — WORK Section Redesign
+| Layer | Responsibility | Why it exists |
+|-------|----------------|---------------|
+| **`theme.json`** | Colors, typography, spacing, shadows, gradients, global element/button styles, block overrides | FSE-native token system; editable in Site Editor |
+| **`style.css`** | Glass header, image filters, card hovers, grid overrides, pseudo-elements, responsive breakpoints | Effects Gutenberg blocks and theme.json cannot express |
+| **`functions.php`** | Enqueue stylesheet, contact REST route, contact inline JS, site title filter (uncommitted), PHP-FPM pattern stat cache | Block themes do not auto-load `style.css`; server-side logic |
+| **Templates** | Page structure composition | FSE template hierarchy |
+| **Template parts** | Reusable header/footer | Shared across templates |
+| **Patterns** | Homepage sections as registrable block patterns | Modular section build-out; editor-visible |
+| **`navigation.js`** | aria-expanded sync, overlay hash-link close, resize dismiss, scroll state (partially uncommitted) | WordPress 7.0.4 Navigation block gaps |
 
-> **Status:** Planned  
-> **Goal:** Redesign the `#work` / Projects section while preserving the NIKWEB.EU visual language.
+### Gutenberg Blocks in Use
 
-### Planned contents
+| Block | Use |
+|-------|-----|
+| **Navigation** | Primary nav + Hire Me button; mobile overlay |
+| **Query Loop / Post Template** | Work section project grid |
+| **Cover** | Hero background |
+| **Group, Heading, Paragraph, Buttons, Image, Quote** | Section composition |
+| **Post Featured Image, Post Title, Post Excerpt, Post Terms** | Project card fields |
 
-- [ ] Design audit and token reuse checklist
-- [ ] Layout and card pattern changes
-- [ ] Before/after comparison
-- [ ] Responsive behavior
-- [ ] QA sign-off
+### Project Content Model (Companion Plugin)
 
----
+**Plugin:** `nikolay-portfolio-projects` (separate Git repo)
 
-## Phase 11 — Single Project Case Study System
+| Entity | Details |
+|--------|---------|
+| CPT `project` | title, editor, excerpt, thumbnail, revisions, menu_order |
+| Taxonomy `project_category` | Non-hierarchical; default terms: Intelligence, Commerce, Interface |
+| Rewrite slug | `work` |
+| Archive | Disabled (`has_archive: false`) |
+| REST | Enabled (`show_in_rest: true`) |
 
-> **Status:** Planned  
-> **Goal:** Build single-project templates and case study content model.
+**Theme consumption:** Query Loop in `patterns/projects.php` — `postType: project`, `perPage: 3`, `orderBy: menu_order`, 3-column grid.
 
-### Planned contents
+**Single-project template:** **Does not exist.** No `single-project.html` or equivalent in `templates/`. Individual project URLs are not yet part of the theme presentation layer.
 
-- [ ] Single `project` template design
-- [ ] Case study block patterns
-- [ ] Navigation back to Work
-- [ ] SEO and social meta
+### Contact REST Endpoint
 
----
-
-## Phase 12 — Final QA
-
-> **Status:** Planned  
-> **Goal:** Production readiness audit across all sections and viewports.
-
-### Planned contents
-
-- [ ] Functional testing (forms, links, navigation)
-- [ ] Accessibility pass
-- [ ] Performance notes
-- [ ] Cross-browser smoke test
-- [ ] Release readiness verdict
-
----
-
-## Phase 13 — Deployment
-
-> **Status:** Planned  
-> **Goal:** Deploy theme to production hosting.
-
-### Planned contents
-
-- [ ] Hosting environment
-- [ ] Domain and SSL
-- [ ] Asset optimization
-- [ ] Cache and CDN
-- [ ] Post-deploy verification
-
----
-
-## Phase 14 — Lessons Learned
-
-> **Status:** Planned  
-> **Goal:** Capture what worked, what didn't, and recommendations for future projects.
-
-### Planned contents
-
-- [ ] FSE block theme lessons
-- [ ] Stitch → Cursor workflow retrospective
-- [ ] Navigation and CSS containing-block pitfalls
-- [ ] Tooling recommendations
+- Route: `POST /wp-json/nikolay-portfolio/v1/contact`
+- Security: nonce verification, honeypot field, rate limit (5 requests / 10 min per IP)
+- Delivery: `wp_mail` to admin email
+- Client: inline fetch script enqueued on front page only (`functions.php`)
 
 ---
 
-## Phase 15 — Future Improvements
+## Phase 06 — Initial Implementation & Visual QA
 
-> **Status:** Planned  
-> **Goal:** Backlog of enhancements beyond initial launch.
+**Status:** Complete
 
-### Planned contents
+### Implementation History (Git Commits)
 
-- [ ] CMS-managed navigation
-- [ ] Blog or writing section
-- [ ] Animation refinements
-- [ ] Additional case studies
-- [ ] Internationalization
-- [ ] Performance optimization (hero image compression, etc.)
+| Commit | Section / area |
+|--------|----------------|
+| `7f619f5` | FSE foundation: theme.json, fonts, header/footer shell, base CSS |
+| `c3b3d0e` | Responsive mobile navigation |
+| `4d9ef82` | Front page template shell |
+| `c00be7e` | Hero pattern |
+| `198aeb0` | About pattern |
+| `0716181` | Projects (WORK) pattern + card CSS |
+| `e47a757` | Hero, About, Projects, Stack refinements |
+| `f8d16f4` | **Stylesheet enqueue fix** + image treatments |
+| `8f61ffc` | Hero, About, Projects, Stack visual pass |
+| `3a6654f` | Testimonials pattern |
+| `eb312ae` | Contact pattern + REST endpoint |
+| `0315115` | Footer template part |
+| `a6c0a14` | Responsive visual alignment |
+| `53e66a1` | Hero heading layout fix |
+
+### Section Summaries
+
+**Hero** (`patterns/hero.php`): Full-bleed Cover, local `assets/images/hero.jpg`, status chip, display heading with gradient word, Initialize Project + View Matrix CTAs.
+
+**About** (`patterns/about.php`): Two-column biography, local `assets/images/about.jpg`, grayscale image treatment. Uncommitted: GitHub Repository button; experience stat badge removed.
+
+**WORK** (`patterns/projects.php`): Section `#work`, Query Loop, 3 project cards, status chip, section heading "Recent Neural Prototypes". Content is **placeholder/fictional** — not final portfolio content.
+
+**Stack** (`patterns/stack.php`): Technology grid — 5 columns desktop, 2 columns mobile.
+
+**Testimonials** (`patterns/testimonials.php`): Two-column quote grid.
+
+**Contact** (`patterns/contact.php`): REST-powered form, honeypot, styled inputs, submit button.
+
+**Footer** (`parts/footer.html`): Text links, copyright.
+
+**Header** (`parts/header.html`): Fixed glass bar, Navigation block, Hire Me CTA, hardcoded script tag for `navigation.js`.
+
+### WORK Section — Current Architecture
+
+| Property | Value |
+|----------|-------|
+| Pattern | `patterns/projects.php` |
+| Section id | `#work` |
+| Query | `project` CPT, 3 posts, `menu_order` ASC |
+| Grid | 3 columns ≥768px; 1 column ≤767px |
+| Card class | `np-project-card` |
+| Aspect ratio | 4/5 |
+| Overlay gradient | `project-fade` |
+| Image default | Grayscale + brightness(0.88) + contrast(110%) |
+| Image hover | grayscale(0.4) + brightness(0.94) + scale(1.05) |
+| Title hover | 2px underline bar, `primary-container` + glow |
+| Excerpt | Hidden on desktop until hover; always visible on mobile |
+
+### Visual QA (Verified from Development Sessions)
+
+Cross-viewport checks performed at 390, 767, 768, 820, 834, 1024, 1280, 1440px using browser DevTools. Phase 6D audit verdict: **MINOR** deviations, no structural failure, no broken navigation, no overflow regressions. Formal sign-off document not committed to repository.
+
+### Problems Encountered & Solutions
+
+| # | Problem | Committed solution | Uncommitted solution |
+|---|---------|-------------------|---------------------|
+| 1 | `style.css` not auto-loaded in block theme | `nikolay_portfolio_enqueue_styles()` in `functions.php` [`f8d16f4`] | — |
+| 2 | Mobile overlay opens but has zero height | — | Move glass effect from header to `::before` pseudo-element [`style.css`] |
+| 3 | `backdrop-filter` on header creates fixed containing block | — | Same `::before` refactor [`style.css`] |
+| 4 | Hamburger does not become X when menu open | — | Hide overlay close button; swap icon via CSS on `aria-expanded="true"`; JS capture-click to close [`style.css`, `navigation.js`] |
+| 5 | X does not restore to hamburger on close | — | Same toggle mechanism [`navigation.js`, CSS] |
+| 6 | Hire Me appears in mobile overlay | — | `display: none` on `.wp-block-buttons` in open overlay ≤767px [`style.css`] |
+| 7 | Mobile nav links too small (14px) | — | `calc(var(--wp--preset--font-size--small) * 2)` = 28px [`style.css`] |
+| 8 | Mobile nav links left-aligned | — | Center flex + `text-align: center` on overlay ≤767px [`style.css`] |
+| 9 | Scroll-transparent header | — | `is-scrolled` class via scroll listener; transparent `::before` [`navigation.js`, `style.css`] |
+| 10 | NIKWEB.EU branding | — | `render_block_core/site-title` filter [`functions.php`] |
+| 11 | Navigation order About/Work | Committed: Work / About / Stack / Contact [`53e66a1`] | Uncommitted: About / Work / Stack / Contact [`parts/header.html`] |
+| 12 | About section refinement | Committed: bio + image + stat badge [`198aeb0`] | Uncommitted: GitHub button added, stat badge removed [`patterns/about.php`] |
+| 13 | Image treatment refinements | Partial in `f8d16f4`, `8f61ffc` | Further brightness/opacity adjustments hero, about, projects [`style.css`] |
+
+**Important:** Rows with "Uncommitted solution" only are **not on GitHub**. They exist in the local working tree only.
+
+### Requires Verification
+
+- Which fictional projects exist in WordPress admin (e.g. Translation Agency)
+- Complete formal QA test matrix documentation
 
 ---
 
 ## Key Design Tokens Reference
 
-For WORK section and future phases, prefer these tokens over hard-coded values:
+Prefer these tokens over hard-coded values in future phases:
 
 ```css
 /* Colors */
 var(--wp--preset--color--background)          /* #030008 */
-var(--wp--preset--color--surface)
 var(--wp--preset--color--surface-container)
 var(--wp--preset--color--on-surface)
 var(--wp--preset--color--on-surface-variant)
@@ -399,9 +588,9 @@ var(--wp--preset--color--secondary)
 
 /* Typography */
 var(--wp--preset--font-family--space-grotesk)
-var(--wp--preset--font-size--eyebrow)        /* 12px */
-var(--wp--preset--font-size--small)          /* 14px */
-var(--wp--preset--font-size--card)           /* 24px */
+var(--wp--preset--font-size--eyebrow)         /* 12px */
+var(--wp--preset--font-size--small)           /* 14px */
+var(--wp--preset--font-size--card)            /* 24px */
 var(--wp--preset--font-size--section)         /* 36px */
 
 /* Spacing */
@@ -416,7 +605,41 @@ var(--wp--preset--gradient--project-fade)
 var(--wp--preset--shadow--button)
 ```
 
-**Primary responsive breakpoint:** `768px` (theme override; core Navigation default is 600px).
+**Primary responsive breakpoint:** `768px`
+
+---
+
+# Phase 07 — Real Projects & Case Study Architecture
+
+**Status:** NOT STARTED
+
+Phase 07 has not been implemented. Nothing in this section describes completed work.
+
+### Planned Objectives
+
+1. Remove fictional project content.
+2. Remove the Translation Agency project from the portfolio.
+3. Add real GitHub projects.
+4. Evaluate the strongest additional projects.
+5. Finalize six portfolio projects.
+6. Redesign the WORK section if necessary.
+7. Design the Single Project / Case Study page.
+8. Create the architecture for individual project pages.
+9. Connect project cards to their respective case studies.
+10. Perform responsive visual QA.
+
+### Initial Real Projects Planned for Phase 07
+
+- TablePress Responsive
+- PDF Carousel Footer WordPress Plugin
+- WooCommerce Field Remover Plugin
+- EcoWriter AI Agent
+
+Additional projects will be evaluated before implementation.
+
+### Phase 07 Starting Point
+
+Phase 07 continues from the **current local working tree** (committed baseline `53e66a1` + uncommitted refinements in five files — see [Repository State After Phase 06](#repository-state-after-phase-06)). The WORK section Query Loop, project CPT, and card styling are in place but display placeholder content. No single-project template exists yet.
 
 ---
 

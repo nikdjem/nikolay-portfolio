@@ -29,6 +29,26 @@ function nikolay_portfolio_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'nikolay_portfolio_enqueue_styles' );
 
 /**
+ * Render the public header brand in the core site-title block.
+ *
+ * @param string $block_content Rendered site title block HTML.
+ * @return string
+ */
+function nikolay_portfolio_site_title_brand( $block_content ) {
+	if ( is_admin() ) {
+		return $block_content;
+	}
+
+	return preg_replace(
+		'/(<a[^>]*>)(.*?)(<\/a>)/s',
+		'$1' . esc_html( 'NIKWEB.EU' ) . '$3',
+		$block_content,
+		1
+	);
+}
+add_filter( 'render_block_core/site-title', 'nikolay_portfolio_site_title_brand' );
+
+/**
  * Make newly added pattern files visible to long-lived PHP-FPM workers.
  *
  * WordPress registers theme patterns on init from a Version-keyed file list.
