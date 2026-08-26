@@ -32,13 +32,35 @@ This file is the long-form project record for the NIKWEB.EU portfolio website. I
 | **04** | [Stitch → Cursor Workflow](#phase-04--stitch--cursor-workflow) | **Complete — documented** |
 | **05** | [WordPress / FSE / Gutenberg Architecture](#phase-05--wordpress--fse--gutenberg-architecture) | **Complete — documented** |
 | **06** | [Initial Implementation & Visual QA](#phase-06--initial-implementation--visual-qa) | **Complete — documented** |
-| **07** | [Real Projects & Case Study Architecture](#phase-07--real-projects--case-study-architecture) | **NOT STARTED** |
+| **07** | [Real Projects & Case Study Architecture](#phase-07--real-projects--case-study-architecture) | **Complete — documented** |
+| **08** | [Real Project Content Implementation](#phase-08--real-project-content-implementation) | **Ready — implementation not started** |
+
+---
+
+## Repository State (Current)
+
+This section records the Git state after Phase 07 discovery documentation. **Phase 08 implementation has not started.**
+
+| Item | Value |
+|------|-------|
+| **Baseline commit** | `886bdcb` — `feat(home): complete phase 06 visual refinement` |
+| **Branch** | `main` |
+| **Working tree** | **Clean** (verified during Phase 08.1 preflight) |
+| **Sync with origin** | **Yes** — `main...origin/main` at preflight audit |
+| **Phase 07** | Discovery complete — documented |
+| **Phase 08** | Ready — implementation not started |
+
+Phase 06 uncommitted refinements (navigation, branding, About, CSS) were incorporated into commit `886bdcb`. The WORK section Query Loop, `project` CPT, and card styling remain in place but still display placeholder/fictional content until Phase 08.
+
+**[REQUIRES VERIFICATION]:** Current WordPress `project` post inventory — Local database was unavailable during Phase 08.1 preflight; existing posts must be verified when Local is running.
 
 ---
 
 ## Repository State After Phase 06
 
-This section records the Git state at the end of Phase 06 documentation. **Phase 07 will continue from the local working tree, not from the last code commit alone.**
+*Historical snapshot at Phase 06 documentation time. Current baseline: `886bdcb` — see [Repository State (Current)](#repository-state-current).*
+
+This section records the Git state at the end of Phase 06 documentation. **Phase 07 continued from the local working tree, not from the last code commit alone.**
 
 ### Remote / committed state (GitHub)
 
@@ -611,35 +633,270 @@ var(--wp--preset--shadow--button)
 
 # Phase 07 — Real Projects & Case Study Architecture
 
-**Status:** NOT STARTED
+**Status:** Complete — documented
 
-Phase 07 has not been implemented. Nothing in this section describes completed work.
+Phase 07 is a **discovery and architecture phase**. It defines the approved real-project portfolio, unified content model, and case-study specification. **No theme source files, WordPress database content, or project posts were modified during Phase 07.**
 
-### Planned Objectives
+Implementation of real project content is deferred to [Phase 08](#phase-08--real-project-content-implementation).
 
-1. Remove fictional project content.
-2. Remove the Translation Agency project from the portfolio.
-3. Add real GitHub projects.
-4. Evaluate the strongest additional projects.
-5. Finalize six portfolio projects.
-6. Redesign the WORK section if necessary.
-7. Design the Single Project / Case Study page.
-8. Create the architecture for individual project pages.
-9. Connect project cards to their respective case studies.
-10. Perform responsive visual QA.
+---
 
-### Initial Real Projects Planned for Phase 07
+### Phase 07.1 — Discovery & Project Selection
 
-- TablePress Responsive
-- PDF Carousel Footer WordPress Plugin
-- WooCommerce Field Remover Plugin
-- EcoWriter AI Agent
+**Status:** Complete — read-only discovery
 
-Additional projects will be evaluated before implementation.
+The portfolio moved from **fictional placeholder projects** to a **curated set of real projects** sourced from Nikolay's public GitHub repositories (15 public + 2 private repos audited).
 
-### Phase 07 Starting Point
+**Purpose:**
 
-Phase 07 continues from the **current local working tree** (committed baseline `53e66a1` + uncommitted refinements in five files — see [Repository State After Phase 06](#repository-state-after-phase-06)). The WORK section Query Loop, project CPT, and card styling are in place but display placeholder content. No single-project template exists yet.
+- Eliminate fictional portfolio projects
+- Demonstrate real technical work
+- Improve credibility
+- Show breadth across WordPress, WooCommerce, frontend, and AI
+- Retain a balanced six-project grid
+
+Discovery evaluated repository evidence (README, source structure, deployment context) and recommended a final six-project lineup. No code or database changes were made.
+
+---
+
+### Phase 07.2 — Project Selection Approval
+
+**Status:** Complete — **APPROVED**
+
+**Verdict:** APPROVED — READY FOR PHASE 08
+
+#### Approved final six projects (display order)
+
+| # | Project | Category | Status |
+|---|---------|----------|--------|
+| 1 | PDF Carousel Footer WordPress Plugin | interface | LIVE |
+| 2 | TablePress Responsive | interface | LIVE |
+| 3 | NIKWEB.EU Portfolio — FSE Block Theme | interface | STABLE |
+| 4 | WooCommerce Field Remover Plugin | commerce | STABLE |
+| 5 | Barcode Generator & Reader | interface | STABLE |
+| 6 | EcoWriter AI Agent | intelligence | **IN PROGRESS** |
+
+**Status label rules:**
+
+| Label | Use when |
+|-------|----------|
+| **LIVE** | Verified production URL — Projects 1–2 only |
+| **STABLE** | Complete work without verified live URL — Projects 3–5 |
+| **IN PROGRESS** | EcoWriter only — **never** substitute LIVE, COMPLETE, or PRODUCTION |
+
+**Verified live URLs (Phase 07.2):**
+
+| Project | Live URL | Evidence |
+|---------|----------|----------|
+| PDF Carousel Footer WordPress Plugin | https://metalenergy.bg/ | **Verified** |
+| TablePress Responsive | https://prevodi-bg.bg/ | **Verified** |
+| All others | — | **[REQUIRES VERIFICATION]** |
+
+**EcoWriter AI Agent — canonical status:** **IN PROGRESS**. This label must appear consistently on cards, excerpts, and all future case-study copy. EcoWriter must never be described as LIVE, COMPLETE, or PRODUCTION.
+
+---
+
+### Phase 07.3 — Project Content & Case Study Specification
+
+**Status:** Complete — read-only content architecture
+
+A **unified content model** was created for all six approved projects, covering WORK grid cards and reusable case-study pages.
+
+#### WORK card requirements
+
+| Field | Source | Notes |
+|-------|--------|-------|
+| Title | WP post title | Plain project name |
+| Category | `project_category` term | `intelligence` / `commerce` / `interface` |
+| Status | Editorial convention | LIVE · STABLE · IN PROGRESS |
+| Short excerpt | WP post excerpt | **25–45 words** |
+| Featured image | WP post thumbnail | 4:5 aspect; grayscale treatment in theme |
+| Display order | `menu_order` | 1–6 per approved order |
+
+#### Approved reusable case-study structure (14 sections)
+
+1. Hero
+2. Project Overview
+3. Problem
+4. Objective
+5. Solution
+6. Technical Architecture
+7. Key Decisions
+8. Challenges
+9. Implementation
+10. Outcome
+11. Technologies
+12. Screenshots
+13. Links
+14. Lessons Learned
+
+#### Content length guidelines
+
+| Section | Target length |
+|---------|---------------|
+| Card excerpt | 25–45 words |
+| Case study intro | 60–100 words |
+| Problem statement | 80–120 words |
+| Solution | 120–200 words |
+| Technical architecture | 100–180 words (+ diagram optional) |
+| Key decisions | 3–7 entries × 2–3 sentences each |
+| Challenges | 2–4 entries × 3–4 sentences each |
+| Outcome | 60–100 words |
+| Lessons learned | 2–4 bullets × 1 sentence |
+
+**Total case study target:** 800–1,400 words per project (EcoWriter may be shorter given IN PROGRESS scope).
+
+#### Claim-safety principle
+
+All portfolio copy must distinguish **verified facts** from **unverified or editorial claims**.
+
+**Verified (safe to publish):**
+
+- PDF Carousel live on metalenergy.bg (Phase 07.2 approved)
+- TablePress Responsive live on prevodi-bg.bg (Phase 07.2 approved)
+- Plugin/theme source architecture as evidenced in GitHub repositories
+- EcoWriter UI prototype exists; publishing history shows "coming soon" placeholder
+
+**Do not claim without verification:**
+
+- WooCommerce Field Remover deployed on a live store
+- NIKWEB.EU theme on a public production URL
+- Barcode Generator hosted demo URL
+- EcoWriter WordPress CMS publishing, scheduled publishing, or production deployment
+- EcoWriter README features beyond confirmed implementation (CMS integration, weekly scheduling, specific Gemini model version)
+- Any download, user, or revenue metrics
+
+EcoWriter case studies must include an **IMPLEMENTED / PLANNED** feature table and prominent **IN PROGRESS** status in the Hero section.
+
+Full per-project copy, screenshot requirements, and the claim-safety register were produced in the Phase 07.3 specification. Phase 08 content entry must follow that register before publication.
+
+---
+
+### Approved Project Removal
+
+The following **fictional/placeholder projects** are approved for removal during Phase 08:
+
+- Translation Agency
+- SynthPress Engine
+- Lumina Commerce
+- Neural Blocks
+
+**Important:** Their actual presence in the WordPress database must be verified before removal. **Do not assume they have already been deleted** — database verification was not possible during Phase 08.1 preflight (Local site unavailable).
+
+Translation Agency is replaced in the portfolio narrative by TablePress Responsive on prevodi-bg.bg; it should not remain as a portfolio project.
+
+---
+
+### WORK Query Loop — Current State & Planned Change
+
+**Current state (Verified — `patterns/projects.php` at `886bdcb`):**
+
+| Property | Value |
+|----------|-------|
+| Post type | `project` CPT |
+| `perPage` | **3** |
+| `orderBy` | `menu_order` |
+| `order` | ASC |
+| Desktop grid | 3 columns (≥768px) |
+| Mobile grid | 1 column (≤767px) |
+| Card aspect ratio | 4:5 |
+| Excerpt | 40 words (theme setting) |
+| Taxonomy | `project_category` available via companion plugin |
+| Section copy | Placeholder — "Recent Neural Prototypes" |
+
+**Planned change (Phase 08 — not implemented):**
+
+- `perPage`: **3 → 6**
+- Replace placeholder WORK section heading/copy with real-project language
+
+---
+
+### Case Study Architecture
+
+| Item | Status |
+|------|--------|
+| Individual project URLs | **Technically possible** — `project` CPT is `publicly_queryable` (companion plugin) |
+| `single-project.html` template | **Does not exist** — only `front-page.html` and `index.html` in theme |
+| Reusable case-study pattern | **Does not exist** |
+| Project metadata fields (GitHub, live URL, status) | **Do not exist** in CPT — status is editorial convention only |
+| Case-study page implementation | **Future Phase 08+ task** |
+
+**Not a blocker:** The absence of a single-project/case-study template does **not** block the initial six-project WORK grid. Phase 08 focuses on WordPress content, featured images, and Query Loop expansion first.
+
+---
+
+### Phase 08.1 — Content Implementation Preflight
+
+**Status:** COMPLETE — read-only audit
+
+A read-only preflight audit was performed before Phase 08 implementation. **No theme or database changes were made.**
+
+#### Findings
+
+| Item | Result |
+|------|--------|
+| Repository baseline | **Clean** at `886bdcb`; synced with `origin/main` |
+| WORK Query Loop `perPage` | **3** (plan: 6) |
+| Query Loop post type | `project` CPT |
+| Ordering | `menu_order` ASC |
+| Desktop grid | 3 columns |
+| Mobile grid | 1 column |
+| Card ratio | 4:5 |
+| `project_category` taxonomy | **Available** (companion plugin) |
+| `single-project.html` template | **Does not exist** |
+| Project featured images in repository | **None verified** — `assets/images/` contains only `hero.jpg`, `about.jpg` |
+| Local WordPress database | **Unavailable** during audit (WP-CLI connection failed — Local site likely stopped) |
+| WordPress project inventory | **[REQUIRES VERIFICATION]** when Local is running |
+| Theme/database modifications during preflight | **None** |
+
+**Related note (outside theme repo):** Companion plugin at `wp-content/plugins/nikolay-portfolio-projects` showed uncommitted modification to `nikolay-portfolio-projects.php` at HEAD `54c163e` — separate Git repository; not part of theme baseline `886bdcb`.
+
+**Verdict:** READY WITH HIGH-PRIORITY INPUTS — featured images, live/staging screenshots, EcoWriter scope verification, and running Local database required before Phase 08 implementation.
+
+---
+
+# Phase 08 — Real Project Content Implementation
+
+**Status:** READY — IMPLEMENTATION NOT STARTED
+
+Phase 08 will implement the approved real-project content defined in Phase 07. **Phase 08 discovery/preflight (Phase 08.1) is complete.** Phase 08 **implementation has not started** — no project posts created, no placeholders removed, no Query Loop changes committed.
+
+---
+
+### Planned Implementation Sequence
+
+1. Start Local / verify database
+2. Audit current project posts
+3. Identify fictional posts
+4. Remove/trash approved placeholders (Translation Agency, SynthPress Engine, Lumina Commerce, Neural Blocks — verify presence first)
+5. Create/update six real project posts
+6. Assign categories (`interface` ×4, `commerce` ×1, `intelligence` ×1)
+7. Set `menu_order` 1–6 per approved order
+8. Add approved excerpts (25–45 words each)
+9. Prepare/upload six featured images (4:5 aspect)
+10. Update Query Loop `perPage` 3 → 6 in `patterns/projects.php`
+11. Replace placeholder WORK section copy
+12. Visual QA (2×3 desktop grid, 6×1 mobile)
+13. Content QA (titles, excerpts, categories, menu_order)
+14. Claim-safety QA (no unverified live URLs or metrics; EcoWriter IN PROGRESS)
+15. Review Git diff
+16. Commit and push after approval
+
+---
+
+### Phase 08 Boundaries
+
+| Scope | Status |
+|-------|--------|
+| Phase 07 discovery (07.1–07.3) | **Complete — documented** |
+| Phase 08.1 preflight | **Complete — read-only audit** |
+| Phase 08 implementation | **NOT STARTED** |
+| WordPress project posts created/deleted | **NOT YET** |
+| Query Loop `perPage` change | **NOT YET** |
+| Featured images uploaded | **NOT YET** |
+| Case-study templates/patterns | **Future task** (not required for initial WORK grid) |
+
+**Publication gate:** Do not go live until HIGH-priority inputs (six featured images, live screenshots for Projects 1–2, EcoWriter scope audit, WooCommerce staging captures) are supplied and the claim-safety register is cleared.
 
 ---
 
