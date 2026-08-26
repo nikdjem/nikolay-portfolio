@@ -620,6 +620,7 @@ html {
 
 .np-project-card .wp-block-post-title {
 	margin: 0;
+	line-height: 1.2;
 }
 
 .np-project-card .wp-block-post-title::after {
@@ -647,12 +648,39 @@ html {
 		opacity: 0;
 		transform: translateY(16px);
 		transition: opacity 500ms ease, transform 500ms ease;
+		height: 0;
+		overflow: hidden;
+		margin-top: 0 !important;
 	}
 
 	.np-project-card:hover .wp-block-post-excerpt,
 	.np-project-card:focus-within .wp-block-post-excerpt {
 		opacity: 1;
 		transform: translateY(0);
+		height: auto;
+		overflow: visible;
+		margin-top: var(--wp--preset--spacing--16) !important;
+	}
+}
+
+@media (min-width: 941px) {
+	.np-project-card .wp-block-post-title {
+		/* Wide 3-column cards: longest titles wrap to two lines. */
+		min-height: calc(2.4em + var(--wp--preset--spacing--16) + 2px);
+	}
+}
+
+@media (min-width: 768px) and (max-width: 940px) {
+	.np-project-card .wp-block-post-title {
+		/* Narrower 3-column cards: reserve three title lines. */
+		min-height: calc(3.6em + var(--wp--preset--spacing--16) + 2px);
+	}
+}
+
+@media (min-width: 768px) and (max-width: 839px) {
+	.np-project-card .wp-block-post-title {
+		/* Narrowest 3-column cards (~251px): reserve four title lines. */
+		min-height: calc(4.8em + var(--wp--preset--spacing--16) + 2px);
 	}
 }
 
@@ -689,6 +717,9 @@ html {
 	.np-project-card .wp-block-post-excerpt {
 		opacity: 1;
 		transform: none;
+		height: auto;
+		overflow: visible;
+		margin-top: var(--wp--preset--spacing--16) !important;
 	}
 }
 
