@@ -16,11 +16,11 @@
 		<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained","justifyContent":"left"}} -->
 		<div class="wp-block-group">
 			<!-- wp:paragraph {"textColor":"primary","fontSize":"eyebrow","style":{"typography":{"fontWeight":"700","letterSpacing":"0.4em","textTransform":"uppercase"},"spacing":{"margin":{"bottom":"var:preset|spacing|16","top":"0"}}}} -->
-			<p class="has-primary-color has-text-color has-eyebrow-font-size" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--16);font-weight:700;letter-spacing:0.4em;text-transform:uppercase">Project Archive</p>
+			<p class="has-primary-color has-text-color has-eyebrow-font-size" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--16);font-weight:700;letter-spacing:0.4em;text-transform:uppercase">Selected Work</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:heading {"level":2,"fontSize":"section","style":{"typography":{"fontWeight":"700","lineHeight":"1","textTransform":"uppercase"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-			<h2 class="wp-block-heading has-section-font-size" style="margin-top:0;margin-bottom:0;font-weight:700;line-height:1;text-transform:uppercase">Recent Neural Prototypes</h2>
+			<h2 class="wp-block-heading has-section-font-size" style="margin-top:0;margin-bottom:0;font-weight:700;line-height:1;text-transform:uppercase">Production Systems</h2>
 			<!-- /wp:heading -->
 		</div>
 		<!-- /wp:group -->
@@ -28,7 +28,7 @@
 		<!-- wp:group {"className":"np-projects-chip","backgroundColor":"surface-container","style":{"border":{"radius":"0px"},"spacing":{"padding":{"top":"8px","bottom":"8px","left":"var:preset|spacing|16","right":"var:preset|spacing|16"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} -->
 		<div class="wp-block-group np-projects-chip has-surface-container-background-color has-background" style="border-radius:0px;padding-top:8px;padding-right:var(--wp--preset--spacing--16);padding-bottom:8px;padding-left:var(--wp--preset--spacing--16)">
 			<!-- wp:paragraph {"textColor":"on-surface-variant","fontSize":"small","style":{"typography":{"fontWeight":"500","letterSpacing":"0.2em","textTransform":"uppercase"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-			<p class="has-on-surface-variant-color has-text-color has-small-font-size" style="margin-top:0;margin-bottom:0;font-weight:500;letter-spacing:0.2em;text-transform:uppercase">STATUS: [STABLE_BUILD_V2.0]</p>
+			<p class="has-on-surface-variant-color has-text-color has-small-font-size" style="margin-top:0;margin-bottom:0;font-weight:500;letter-spacing:0.2em;text-transform:uppercase">6 BUILDS · 2 LIVE</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
