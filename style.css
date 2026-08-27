@@ -6,7 +6,7 @@ Description: Custom WordPress 7.0 Full Site Editing block theme. Dark amethyst p
 Requires at least: 7.0
 Tested up to: 7.0
 Requires PHP: 8.1
-Version: 0.1.3
+Version: 0.1.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: nikolay-portfolio
@@ -995,5 +995,67 @@ html {
 
 	.np-contact-form button[type="submit"]:active {
 		transform: none;
+	}
+}
+
+/*
+ * Single project navigation — scoped structural layout only.
+ */
+.np-single-project-nav__inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--24);
+}
+
+.np-single-project-nav__link {
+	color: var(--wp--preset--color--on-surface-variant);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.np-single-project-nav__link:hover,
+.np-single-project-nav__link:focus {
+	color: var(--wp--preset--color--primary-container);
+}
+
+.np-single-project-nav__link--next {
+	text-align: right;
+}
+
+.np-single-project-nav__label {
+	display: block;
+	font-size: var(--wp--preset--font-size--eyebrow);
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	margin-bottom: var(--wp--preset--spacing--8);
+}
+
+.np-single-project-nav__title {
+	display: block;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	line-height: 1.3;
+	text-transform: none;
+}
+
+@media (max-width: 767px) {
+	.np-single-project-nav__inner {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.np-single-project-nav__back {
+		order: -1;
+		text-align: center;
+	}
+
+	.np-single-project-nav__link--next {
+		text-align: left;
 	}
 }

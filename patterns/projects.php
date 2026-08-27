@@ -46,7 +46,7 @@
 				<div class="wp-block-group np-project-card__overlay has-project-fade-gradient-background has-background" style="border-radius:0px;padding-top:var(--wp--preset--spacing--32);padding-right:var(--wp--preset--spacing--32);padding-bottom:var(--wp--preset--spacing--32);padding-left:var(--wp--preset--spacing--32)">
 					<!-- wp:post-terms {"term":"project_category","textColor":"secondary","fontSize":"eyebrow","style":{"typography":{"fontWeight":"700","letterSpacing":"0.2em","textTransform":"uppercase"},"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|8"}}}} /-->
 
-					<!-- wp:post-title {"level":3,"isLink":false,"fontSize":"card","style":{"typography":{"fontWeight":"700"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} /-->
+					<!-- wp:post-title {"level":3,"isLink":true,"fontSize":"card","style":{"typography":{"fontWeight":"700"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} /-->
 
 					<!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"excerptLength":40,"textColor":"on-surface-variant","fontSize":"small","style":{"typography":{"lineHeight":"1.5"},"spacing":{"margin":{"top":"var:preset|spacing|16","bottom":"0"}}}} /-->
 				</div>
