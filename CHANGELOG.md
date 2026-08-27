@@ -9,28 +9,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Six real project portfolio content entries in WordPress (`project` CPT) — Phase 08.2.
+- Six Featured Images via WordPress Media Library (not in theme repository) — Phase 08.3.
 - Phase 07 discovery and project selection documentation in `PROJECT-DOCUMENTATION.md`.
 - Six-project content specification (Phase 07.3) — WORK card requirements, excerpts, categories, status labels.
 - Reusable 14-section case-study specification and content length guidelines.
-- Phase 08.1 content implementation preflight documentation (read-only audit findings).
-- Phase 08 section — planned implementation sequence and readiness boundaries.
+- Phase 08.1 content implementation preflight documentation.
 
 ### Changed
 
+- WORK Query Loop expanded from 3 to 6 projects (`831c870`).
+- WORK section copy replaced with production portfolio language (`4b6a02c`).
+- Responsive project card alignment refined for desktop and tablet 3-column layouts (`831c870`).
 - Project portfolio direction from fictional placeholders to six approved real GitHub projects.
-- Documentation phase index updated: Phase 07 complete; Phase 08 ready — implementation not started.
-- Phase 08 established as the next implementation phase.
-- Repository state documentation updated to baseline `886bdcb` (Phase 06 refinements committed).
+- Documentation phase index updated: Phase 08 WORK complete; Phase 09 not started.
+
+### Completed
+
+- Phase 08 WORK implementation — content, images, grid, alignment, copy, final QA.
+- Final WORK section QA — desktop, tablet, mobile validation (Phase 08.7 — PASS).
+- Claim-safety validation for all six project entries.
+
+### Next
+
+- Phase 09 — Single Project / Case Study Architecture (**not started**).
 
 ### Removed
 
-- No source or database content removed yet (placeholder project removal deferred to Phase 08).
-
-### Status
-
-- Phase 07: **COMPLETE** — discovery and architecture documented.
-- Phase 08.1: **COMPLETE** — read-only preflight audit.
-- Phase 08 implementation: **NOT STARTED**.
+- Fictional projects removed from published portfolio (SynthPress Engine, Lumina Commerce, Neural Blocks trashed; Translation Agency never present).
 
 ### Documentation (Phases 01–06)
 
@@ -79,4 +85,13 @@ Existing theme features at last code commit:
 
 ---
 
-[Unreleased]: https://github.com/nikdjem/nikolay-portfolio/compare/886bdcb...HEAD
+## Phase 08 WORK commits
+
+| Commit | Message |
+|--------|---------|
+| `831c870` | `feat(work): expand project grid to six` |
+| `4b6a02c` | `feat(work): update project section copy` |
+
+---
+
+[Unreleased]: https://github.com/nikdjem/nikolay-portfolio/compare/4b6a02c...HEAD
