@@ -999,6 +999,33 @@ html {
 }
 
 /*
+ * Single project case study — overflow containment for post content.
+ * Prevents page-level horizontal scroll from inline code and wide tables.
+ */
+.np-single-project .wp-block-post-content {
+	overflow-x: clip;
+	max-width: 100%;
+	min-width: 0;
+}
+
+.np-single-project .wp-block-post-content :not(pre) > code {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+.np-single-project .wp-block-post-content .wp-block-table {
+	display: block;
+	max-width: 100%;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.np-single-project .wp-block-post-content .wp-block-code {
+	max-width: 100%;
+	overflow-x: auto;
+}
+
+/*
  * Single project navigation — scoped structural layout only.
  */
 .np-single-project-nav__inner {
