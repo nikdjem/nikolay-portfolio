@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Project #4 **WooCommerce Checkout Simplifier** case study in WordPress (post ID 20) — Phase 09.6E.2H.
+- Phase 09.6E documentation in `PROJECT-DOCUMENTATION.md` — legacy Field Remover → Checkout Simplifier 2.0.0 evolution.
 - Six real project portfolio content entries in WordPress (`project` CPT) — Phase 08.2.
 - Six Featured Images via WordPress Media Library (not in theme repository) — Phase 08.3.
 - Phase 07 discovery and project selection documentation in `PROJECT-DOCUMENTATION.md`.
@@ -18,21 +20,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Documented Project #4 evolution from legacy **WooCommerce Field Remover** to native **Checkout Simplifier 2.0.0** architecture.
+- Documented Phase 09 case-study migration progress: Projects 1–4 complete; 5–6 pending.
+- Updated repository state and phase index: Phase 09 in progress (not Phase 08-only baseline).
 - WORK Query Loop expanded from 3 to 6 projects (`831c870`).
 - WORK section copy replaced with production portfolio language (`4b6a02c`).
 - Responsive project card alignment refined for desktop and tablet 3-column layouts (`831c870`).
 - Project portfolio direction from fictional placeholders to six approved real GitHub projects.
-- Documentation phase index updated: Phase 08 WORK complete; Phase 09 not started.
+
+### Verified
+
+- Block Checkout functional verification for Project #4 plugin (WooCommerce 11.0.1, `vibe-shoplocal.local`) — Phase 09.6E.2D.
+- Final visual QA for Project #4 portfolio case study — Phase 09.6E.2I **PASS**.
 
 ### Completed
 
+- Phase 09.6E — WooCommerce Checkout Simplifier (Project #4): plugin redesign, verification, release, portfolio migration, visual QA.
 - Phase 08 WORK implementation — content, images, grid, alignment, copy, final QA.
 - Final WORK section QA — desktop, tablet, mobile validation (Phase 08.7 — PASS).
 - Claim-safety validation for all six project entries.
 
 ### Next
 
-- Phase 09 — Single Project / Case Study Architecture (**not started**).
+- Phase 09 — Single Project / Case Study Architecture (**in progress**).
+- Project 5 — Barcode Generator & Reader case study (**not started**).
+- Project 6 — EcoWriter AI Agent case study (**not started**).
 
 ### Removed
 

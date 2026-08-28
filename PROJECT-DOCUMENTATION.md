@@ -5,7 +5,7 @@
 **Repository:** [nikdjem/nikolay-portfolio](https://github.com/nikdjem/nikolay-portfolio)  
 **Theme path:** `wp-content/themes/nikolay-portfolio`  
 **Theme version:** 0.1.3
-**Last updated:** August 2026
+**Last updated:** August 2026 (Phase 09.6E.3)
 
 ---
 
@@ -34,26 +34,39 @@ This file is the long-form project record for the NIKWEB.EU portfolio website. I
 | **06** | [Initial Implementation & Visual QA](#phase-06--initial-implementation--visual-qa) | **Complete — documented** |
 | **07** | [Real Projects & Case Study Architecture](#phase-07--real-projects--case-study-architecture) | **Complete — documented** |
 | **08** | [Real Project Content & WORK Implementation](#phase-08--real-project-content--work-implementation) | **Complete — WORK implementation** |
-| **09** | [Single Project / Case Study Architecture](#phase-09--single-project--case-study-architecture) | **Not started** |
+| **09** | [Single Project / Case Study Architecture](#phase-09--single-project--case-study-architecture) | **In progress — Projects 1–4 case studies complete** |
 
 ---
 
 ## Repository State (Current)
 
-This section records the Git state after Phase 08 WORK implementation.
+This section records the Git state after Phase 09.6E (Project #4 case study migration).
 
 | Item | Value |
 |------|-------|
-| **Latest WORK commits** | `4b6a02c` — copy · `831c870` — grid + alignment |
+| **Latest theme commit** | `683ec7b` — `feat(project): build single project architecture` |
+| **Latest docs commit** | `4a913a8` — `docs: document phase 08 completion` |
 | **Branch** | `main` |
-| **Working tree** | **Clean** (except known untracked `screenshot.png`) |
 | **Sync with origin** | **Yes** — `main...origin/main` |
 | **Phase 08 WORK** | **Complete** |
-| **Phase 09** | Not started |
+| **Phase 09 architecture** | **Complete** (09.2–09.5, commit `683ec7b`) |
+| **Phase 09.6 case-study migration** | **In progress — Projects 1–4 complete; 5–6 not started** |
+| **Phase 09.6E (Project #4)** | **Complete** |
+
+### Pre-existing uncommitted theme changes (do not conflate with Phase 09.6E.3)
+
+The following files were already modified locally **before** Phase 09.6E.3 documentation work and are **not** part of the documentation task:
+
+| File | Status |
+|------|--------|
+| `patterns/single-project-hero.php` | Modified (uncommitted) |
+| `patterns/single-project-nav.php` | Modified (uncommitted) |
+| `style.css` | Modified (uncommitted) |
+| `screenshot.png` | Untracked |
 
 Six published real `project` posts with Featured Images are live in the Local WordPress database. Featured Images are Media Library assets — **not** committed to the theme repository.
 
-**Case-study architecture:** Single-project template, case-study pages, and card links are **not** implemented — deferred to Phase 09.
+**Case-study architecture:** `templates/single-project.html`, reusable patterns, metadata-driven CTAs, WORK card links, and case-study content for **Projects 1–4** are implemented in the local WordPress database. Projects 5–6 remain without case-study content.
 
 ---
 
@@ -673,7 +686,7 @@ Discovery evaluated repository evidence (README, source structure, deployment co
 | 1 | PDF Carousel Footer WordPress Plugin | interface | LIVE |
 | 2 | TablePress Responsive | interface | LIVE |
 | 3 | NIKWEB.EU Portfolio — FSE Block Theme | interface | STABLE |
-| 4 | WooCommerce Field Remover Plugin | commerce | STABLE |
+| 4 | WooCommerce Checkout Simplifier | commerce | STABLE |
 | 5 | Barcode Generator & Reader | interface | STABLE |
 | 6 | EcoWriter AI Agent | intelligence | **IN PROGRESS** |
 
@@ -760,7 +773,7 @@ All portfolio copy must distinguish **verified facts** from **unverified or edit
 
 **Do not claim without verification:**
 
-- WooCommerce Field Remover deployed on a live store
+- WooCommerce Checkout Simplifier deployed on a live production store (verified locally only; no Live URL)
 - NIKWEB.EU theme on a public production URL
 - Barcode Generator hosted demo URL
 - EcoWriter WordPress CMS publishing, scheduled publishing, or production deployment
@@ -878,7 +891,7 @@ Six approved real projects are published in the Local WordPress database.
 | 1 | PDF Carousel Footer WordPress Plugin | interface | LIVE |
 | 2 | TablePress Responsive | interface | LIVE |
 | 3 | NIKWEB.EU Portfolio — FSE Block Theme | interface | STABLE |
-| 4 | WooCommerce Field Remover Plugin | commerce | STABLE |
+| 4 | WooCommerce Checkout Simplifier | commerce | STABLE |
 | 5 | Barcode Generator & Reader | interface | STABLE |
 | 6 | EcoWriter AI Agent | intelligence | **IN PROGRESS** |
 
@@ -1064,7 +1077,7 @@ Read-only QA performed after commits `831c870` and `4b6a02c`.
 | 1 | PDF Carousel Footer WordPress Plugin | LIVE |
 | 2 | TablePress Responsive | LIVE |
 | 3 | NIKWEB.EU Portfolio — FSE Block Theme | STABLE |
-| 4 | WooCommerce Field Remover Plugin | STABLE |
+| 4 | WooCommerce Checkout Simplifier | STABLE |
 | 5 | Barcode Generator & Reader | STABLE |
 | 6 | EcoWriter AI Agent | **IN PROGRESS** |
 
@@ -1091,34 +1104,197 @@ WordPress content and Featured Images were applied in the Local environment — 
 
 **Phase 08 WORK implementation: COMPLETE.**
 
-**Not implemented (Phase 09 scope):**
+**Not implemented at Phase 08 closure (Phase 09 scope — now partially complete):**
 
-- Single Project template (`single-project.html`)
-- Case Study page
-- Project card title links
-- GitHub / Live / Status custom metadata fields
-- Reusable case-study pattern
+- ~~Single Project template (`single-project.html`)~~ — **Implemented** (`683ec7b`)
+- Case Study page content — **Projects 1–4 complete; 5–6 pending**
+- ~~Project card title links~~ — **Implemented** (09.5)
+- ~~GitHub / Live / Status custom metadata fields~~ — **Implemented** (companion plugin 09.4)
+- Reusable case-study pattern — **In use** via Gutenberg `post_content`
 
-These are **not** Phase 08 completed features.
+See [Phase 09](#phase-09--single-project--case-study-architecture) for current status.
 
 ---
 
 # Phase 09 — Single Project / Case Study Architecture
 
-**Status:** NOT STARTED
+**Status:** IN PROGRESS
 
-Phase 09 is planning and architecture only. **No implementation has started.**
+Architecture checkpoint **complete** (commit `683ec7b`). Case-study content migration **in progress** — Projects **1–4** complete; Projects **5–6** not started.
 
-### Initial objectives
+### Architecture baseline (Verified — commit `683ec7b`)
 
-1. Design reusable single-project architecture.
-2. Determine whether to use `single-project.html`.
-3. Define project detail template hierarchy.
-4. Determine reusable case-study pattern structure (Phase 07.3 14-section model).
-5. Decide how project cards link to single projects.
-6. Decide how GitHub / Live / Status information should be represented.
-7. Preserve compatibility with the existing `project` CPT.
-8. Avoid unnecessary changes to the existing WORK grid.
+| Phase | Title | Status |
+|-------|-------|--------|
+| **09.2** | Single-project template skeleton | **Complete — PASS** |
+| **09.3** | Reusable single-project patterns | **Complete — PASS** |
+| **09.4** | Project metadata foundation (companion plugin) | **Complete — PASS** |
+| **09.5** | Metadata-driven rendering + WORK card links | **Complete — PASS** |
+
+**Template stack:**
+
+```
+templates/single-project.html
+    ↓
+single-project-hero (pattern)
+    ↓
+post-content (Gutenberg case study)
+    ↓
+single-project-links (pattern — GitHub / Live)
+    ↓
+single-project-nav (pattern — prev / back / next)
+```
+
+**Companion plugin checkpoint:** `125ee15` — metadata fields `_np_project_status`, `_np_project_github_url`, `_np_project_live_url`.
+
+---
+
+## Phase 09.6 — Case Study Content Migration
+
+**Status:** IN PROGRESS
+
+| Project | Post ID | Case study | Status |
+|---------|---------|------------|--------|
+| 1 — PDF Carousel Footer WordPress Plugin | 17 | Inserted | **Complete** |
+| 2 — TablePress Responsive | 18 | Inserted | **Complete** |
+| 3 — NIKWEB.EU Portfolio — FSE Block Theme | 19 | Inserted | **Complete** |
+| 4 — WooCommerce Checkout Simplifier | 20 | Inserted | **Complete** |
+| 5 — Barcode Generator & Reader | 21 | Not started | Pending |
+| 6 — EcoWriter AI Agent | 22 | Not started | Pending |
+
+**Phase 09.6A — Project metadata population:** **Complete — PASS** (all six posts populated; verified via REST).
+
+**Projects 1–3 migration:** Draft → insertion → visual QA completed in Phases 09.6B–09.6D (August 2026).
+
+---
+
+## Phase 09.6E — WooCommerce Checkout Simplifier (Project #4)
+
+**Status:** COMPLETE
+
+Project #4 underwent a full product and architecture redesign in the plugin repository before portfolio case-study migration. The portfolio documents the **engineering evolution**, not only the final v2.0.0 product.
+
+### Engineering evolution (historical record)
+
+```
+Legacy Field Remover (1.x)
+    ↓
+Initialization defect discovered (filter unregistered after refactor)
+    ↓
+Initialization fixed (1.0.x)
+    ↓
+Legacy checkout_fields behavior verified on classic checkout path
+    ↓
+Block Checkout incompatibility discovered
+    ↓
+WooCommerce native field visibility model researched (WC 9.6+)
+    ↓
+Checkout Simplifier 2.0.0 redesign
+    ↓
+Block Checkout functional verification
+    ↓
+Plugin release + Project #4 portfolio migration
+```
+
+### Phase 09.6E sub-phase record
+
+| Sub-phase | Title | Status |
+|-----------|-------|--------|
+| **09.6E.1** | Legacy compatibility investigation / case-study draft | **Complete** (superseded by redesign) |
+| **09.6E.1A** | Functional/source audit | **Complete — legacy path BROKEN** (init defect confirmed) |
+| **09.6E.1B** | Initialization fix | **Complete — PASS** |
+| **09.6E.1B.1** | Patch verification | **Complete — PASS** |
+| **09.6E.1C** | Legacy checkout functional verification | **Complete — PASS** (`vibe-shoplocal.local`, classic filter path) |
+| **09.6E.2A** | Block Checkout architecture audit | **Complete** |
+| **09.6E.2B** | Native visibility model audit | **Complete — READY FOR IMPLEMENTATION** |
+| **09.6E.2C** | Checkout Simplifier 2.0.0 implementation | **Complete — PASS** |
+| **09.6E.2D** | Block Checkout functional verification | **Complete — PASS** |
+| **09.6E.2D.1** | Clean-theme merchant override verification | **INCONCLUSIVE** (no clean test environment) |
+| **09.6E.2E** | Plugin README + CHANGELOG | **Complete — PASS** |
+| **09.6E.2F** | Plugin release commit + push | **Complete — `d45e4ce`** |
+| **09.6E.2G** | Project #4 case-study draft | **Complete — APPROVED** |
+| **09.6E.2H** | WordPress content migration | **Complete — PASS** |
+| **09.6E.2I** | Final visual QA | **Complete — PASS** |
+| **09.6E.3** | Portfolio documentation update | **Complete** (this section) |
+
+### Plugin repository checkpoint
+
+| Item | Value |
+|------|-------|
+| **Repository** | [github.com/nikdjem/woocommerce_field_remover_plugin](https://github.com/nikdjem/woocommerce_field_remover_plugin) |
+| **Release commit** | `d45e4ce` — `feat: redesign WooCommerce Checkout Simplifier` |
+| **Version** | **2.0.0** |
+| **Product name** | WooCommerce Checkout Simplifier |
+| **README** | Updated (Evolution section, Block Checkout scope) |
+| **CHANGELOG** | Created (2.0.0 + legacy 1.0.x history) |
+
+**Note:** Repository filename remains `woocommerce_field_remover_plugin` for migration compatibility. Portfolio slug unchanged.
+
+### v2.0.0 architecture (current product)
+
+PHP-only plugin using WooCommerce native global visibility options. **Activation-only defaults**; existing merchant settings preserved; **no runtime force override**.
+
+**Supported fields:**
+
+| Field | WooCommerce option | Default |
+|-------|-------------------|---------|
+| Company | `woocommerce_checkout_company_field` | `hidden` |
+| Address Line 2 | `woocommerce_checkout_address_2_field` | `optional` |
+| Phone | `woocommerce_checkout_phone_field` | `optional` |
+
+Allowed values: `required`, `optional`, `hidden`.
+
+**Protected fields (intentionally not configured in v2):** Country, Address Line 1, City, State, Postcode, First Name, Last Name, Email.
+
+**Not in v2 scope:** Legacy `woocommerce_checkout_fields` manipulation; State / Shipping State removal.
+
+### Functional verification (Verified)
+
+**Environment:** `vibe-shoplocal.local` — WordPress 7.1, WooCommerce 11.0.1, Block Checkout, theme `vibe-store`.
+
+| Check | Result |
+|-------|--------|
+| Plugin activation | Pass |
+| Existing stored options preserved on activation | Pass |
+| Company hidden when configured hidden | Pass |
+| Address Line 2 optional when configured optional | Pass |
+| Phone required when existing option required | Pass |
+| Protected fields untouched (State remains present) | Pass |
+| Block Checkout renders; no PHP fatal errors | Pass |
+| No runtime force override by plugin | Pass (source verified) |
+
+**Merchant override persistence (clean theme):** **INCONCLUSIVE** — Phase 09.6E.2D.1. The active `vibe-store` theme forces Company and Phone option values on every `init`. This is an **environment limitation**, not a Checkout Simplifier defect. Source review confirms the plugin performs `update_option()` only inside the activation flow.
+
+### Portfolio Project #4 — current state
+
+| Field | Value |
+|-------|-------|
+| **Post ID** | 20 |
+| **Title** | WooCommerce Checkout Simplifier |
+| **Previous title** | WooCommerce Field Remover Plugin |
+| **Slug** | `woocommerce-field-remover-plugin` (**unchanged**) |
+| **Category** | Commerce |
+| **Status metadata** | STABLE |
+| **GitHub** | https://github.com/nikdjem/woocommerce_field_remover_plugin |
+| **Live URL** | *(empty — no Live CTA rendered)* |
+| **menu_order** | 4 |
+| **Featured image** | Media ID 36 (**unchanged**) |
+| **post_content** | 15 H2 sections (14 major + Claim Safety); Evolution section included |
+| **Excerpt** | Updated to v2 Block Checkout description |
+
+**Visual QA (09.6E.2I):** **PASS** — hero, STABLE chip, GitHub CTA, no Live CTA, responsive behavior, tables, architecture code block, navigation, accessibility, claim safety, consistency with Projects 1–3.
+
+**Known LOW issues (non-blocking):**
+
+- Excerpt punctuation: em dashes normalized to hyphens by WordPress on save.
+- Claim Safety table may horizontal-scroll on narrow mobile (WordPress core table behavior; acceptable).
+
+### Phase 09 remaining work
+
+- **Project 5** — Barcode Generator & Reader (post 21): case-study content **not started**
+- **Project 6** — EcoWriter AI Agent (post 22): case-study content **not started**
+
+**Phase 09 overall:** **NOT COMPLETE** until Projects 5–6 case studies are migrated and final Phase 09 closure QA is performed.
 
 ---
 
