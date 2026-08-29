@@ -1023,6 +1023,38 @@ html {
 }
 
 /*
+ * Single project hero — compact case-study header.
+ * Desktop/tablet: 32/9 is half the height of 16/9 at the same width.
+ * Mobile: retain 16/9 for useful image visibility on narrow viewports.
+ */
+.np-single-project-hero .wp-block-post-featured-image {
+	overflow: hidden;
+}
+
+.np-single-project-hero .wp-block-post-featured-image img {
+	width: 100%;
+	object-fit: cover;
+}
+
+@media (min-width: 768px) {
+	.np-single-project-hero .wp-block-post-featured-image {
+		aspect-ratio: 32 / 9;
+	}
+
+	.np-single-project-hero .wp-block-post-featured-image img {
+		aspect-ratio: unset !important;
+		height: 100%;
+	}
+}
+
+@media (max-width: 767px) {
+	.np-single-project-hero .wp-block-post-featured-image img {
+		aspect-ratio: 16 / 9 !important;
+		height: auto;
+	}
+}
+
+/*
  * Homepage + single project — clear floating header footprint before content.
  */
 .np-front-main.alignfull,
@@ -1045,11 +1077,146 @@ html {
 	word-break: break-word;
 }
 
+/*
+ * Shared editorial content measure — architecture flow + tables (Phase 09.7.3E).
+ * Match paragraph/H2 constrained width from post-content layout.
+ */
+.np-single-project .wp-block-post-content .np-architecture-flow,
+.np-single-project .wp-block-post-content .wp-block-table {
+	width: 100%;
+	max-width: var(--wp--style--global--content-size, 100%);
+	box-sizing: border-box;
+	min-width: 0;
+	margin-left: 0;
+	margin-right: 0;
+}
+
 .np-single-project .wp-block-post-content .wp-block-table {
 	display: block;
-	max-width: 100%;
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
+}
+
+/*
+ * Case-study table presentation — fixed layout and column ratios.
+ * Wrapper scrolls internally; table cannot expand beyond the content measure.
+ */
+.np-single-project .wp-block-post-content .wp-block-table table {
+	table-layout: fixed;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	min-width: 0;
+}
+
+.np-single-project .wp-block-post-content .wp-block-table th,
+.np-single-project .wp-block-post-content .wp-block-table td {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+	box-sizing: border-box;
+	max-width: 0;
+	min-width: 0;
+}
+
+/* 3-column tables (Claim Safety). */
+.np-single-project .wp-block-post-content .wp-block-table:has(thead th:nth-child(3)) th:nth-child(1),
+.np-single-project .wp-block-post-content .wp-block-table:has(thead th:nth-child(3)) td:nth-child(1) {
+	width: 24%;
+}
+
+.np-single-project .wp-block-post-content .wp-block-table:has(thead th:nth-child(3)) th:nth-child(2),
+.np-single-project .wp-block-post-content .wp-block-table:has(thead th:nth-child(3)) td:nth-child(2) {
+	width: 16%;
+}
+
+.np-single-project .wp-block-post-content .wp-block-table:has(thead th:nth-child(3)) th:nth-child(3),
+.np-single-project .wp-block-post-content .wp-block-table:has(thead th:nth-child(3)) td:nth-child(3) {
+	width: 60%;
+}
+
+/* 2-column reference tables (field/default). */
+.np-single-project .wp-block-post-content .wp-block-table:has(thead th:nth-child(2):last-child) th:nth-child(1),
+.np-single-project .wp-block-post-content .wp-block-table:has(thead th:nth-child(2):last-child) td:nth-child(1) {
+	width: 35%;
+}
+
+.np-single-project .wp-block-post-content .wp-block-table:has(thead th:nth-child(2):last-child) th:nth-child(2),
+.np-single-project .wp-block-post-content .wp-block-table:has(thead th:nth-child(2):last-child) td:nth-child(2) {
+	width: 65%;
+}
+
+@media (max-width: 767px) {
+	.np-single-project .wp-block-post-content .wp-block-table th,
+	.np-single-project .wp-block-post-content .wp-block-table td {
+		padding: 0.5rem 0.625rem;
+	}
+}
+
+/*
+ * Case-study architecture flow — inline editorial diagram (Phase 09.7.3E).
+ * Linear flows wrap like body text; tree-heavy lists (12+ items) stay vertical.
+ */
+.np-single-project .wp-block-post-content .np-architecture-flow {
+	list-style: none;
+	margin: var(--wp--preset--spacing--16) 0 0;
+	padding: 0;
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+.np-single-project .wp-block-post-content .np-architecture-flow > li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: inline;
+	color: var(--wp--preset--color--on-surface);
+	font-size: inherit;
+	line-height: 1.6;
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+
+.np-single-project .wp-block-post-content .np-architecture-flow > li:not(:last-child)::after {
+	content: " → ";
+	color: var(--wp--preset--color--primary);
+	font-weight: 500;
+	white-space: pre;
+}
+
+/* Tree-heavy architecture (P3, P5): compact vertical on desktop. */
+@media (min-width: 768px) {
+	.np-single-project .wp-block-post-content .np-architecture-flow:has(> li:nth-child(12)) > li {
+		display: block;
+	}
+
+	.np-single-project .wp-block-post-content .np-architecture-flow:has(> li:nth-child(12)) > li:not(:last-child)::after {
+		content: none;
+	}
+}
+
+@media (max-width: 767px) {
+	/* Linear flows only — vertical stack with ↓ separators. */
+	.np-single-project .wp-block-post-content .np-architecture-flow:not(:has(> li:nth-child(12))) > li {
+		display: block;
+	}
+
+	.np-single-project .wp-block-post-content .np-architecture-flow:not(:has(> li:nth-child(12))) > li:not(:last-child)::after {
+		content: "↓";
+		display: block;
+		margin: 0.35rem 0 0;
+		line-height: 1;
+		font-weight: 500;
+		white-space: normal;
+	}
+
+	/* Tree flows — plain vertical, no arrow separators. */
+	.np-single-project .wp-block-post-content .np-architecture-flow:has(> li:nth-child(12)) > li {
+		display: block;
+	}
+
+	.np-single-project .wp-block-post-content .np-architecture-flow:has(> li:nth-child(12)) > li:not(:last-child)::after {
+		content: none;
+	}
 }
 
 .np-single-project .wp-block-post-content .wp-block-code {
@@ -1059,13 +1226,26 @@ html {
 
 /*
  * Single project navigation — scoped structural layout only.
+ * Three equal grid columns keep Back to Work centered when prev/next is absent.
  */
 .np-single-project-nav__inner {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 	align-items: center;
-	justify-content: space-between;
 	gap: var(--wp--preset--spacing--24);
+}
+
+.np-single-project-nav__previous {
+	justify-self: start;
+}
+
+.np-single-project-nav__back {
+	justify-self: center;
+	text-align: center;
+}
+
+.np-single-project-nav__next {
+	justify-self: end;
 }
 
 .np-single-project-nav__link {
@@ -1105,8 +1285,15 @@ html {
 
 @media (max-width: 767px) {
 	.np-single-project-nav__inner {
+		display: flex;
 		flex-direction: column;
 		align-items: stretch;
+	}
+
+	.np-single-project-nav__previous,
+	.np-single-project-nav__back,
+	.np-single-project-nav__next {
+		justify-self: auto;
 	}
 
 	.np-single-project-nav__back {

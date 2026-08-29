@@ -17,9 +17,9 @@ if ( $np_post_id && function_exists( 'np_projects_get_status_label' ) ) {
 	$np_status_label = np_projects_get_status_label( is_string( $np_status_value ) ? $np_status_value : '' );
 }
 ?>
-<!-- wp:group {"className":"np-single-project-hero","style":{"border":{"radius":"0px"},"spacing":{"blockGap":"var:preset|spacing|32","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1152px"}} -->
+<!-- wp:group {"className":"np-single-project-hero","style":{"border":{"radius":"0px"},"spacing":{"blockGap":"var:preset|spacing|24","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1152px"}} -->
 <div class="wp-block-group np-single-project-hero" style="border-radius:0px;margin-top:0;margin-bottom:0">
-	<!-- wp:post-featured-image {"aspectRatio":"16/9","scale":"cover","sizeSlug":"large","style":{"border":{"radius":"0px"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} /-->
+	<!-- wp:post-featured-image {"aspectRatio":"2/1","scale":"cover","sizeSlug":"large","style":{"border":{"radius":"0px"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} /-->
 
 	<!-- wp:group {"className":"np-single-project-hero__meta","style":{"spacing":{"blockGap":"var:preset|spacing|16","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
 	<div class="wp-block-group np-single-project-hero__meta" style="margin-top:0;margin-bottom:0">

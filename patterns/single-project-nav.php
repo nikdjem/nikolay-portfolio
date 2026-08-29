@@ -64,7 +64,7 @@ $np_back_work_url = home_url( '/#work' );
 ?>
 <!-- wp:group {"tagName":"nav","metadata":{"name":"Project Navigation"},"className":"np-single-project-nav","ariaLabel":"Project navigation","style":{"border":{"radius":"0px","top":{"color":"var:preset|color|outline-variant","width":"1px"}},"spacing":{"blockGap":"var:preset|spacing|24","padding":{"top":"var:preset|spacing|48","bottom":"0"},"margin":{"top":"var:preset|spacing|64","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1152px"}} -->
 <nav aria-label="Project navigation" class="wp-block-group np-single-project-nav" style="border-radius:0px;border-top-color:var(--wp--preset--color--outline-variant);border-top-width:1px;margin-top:var(--wp--preset--spacing--64);margin-bottom:0;padding-top:var(--wp--preset--spacing--48)">
-	<!-- wp:group {"className":"np-single-project-nav__inner","style":{"spacing":{"blockGap":"var:preset|spacing|24","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
+	<!-- wp:group {"className":"np-single-project-nav__inner","style":{"spacing":{"blockGap":"var:preset|spacing|24","margin":{"top":"0","bottom":"0"}}},"layout":{"type":"default"}} -->
 	<div class="wp-block-group np-single-project-nav__inner" style="margin-top:0;margin-bottom:0">
 		<div class="np-single-project-nav__previous">
 			<?php if ( $np_prev_project instanceof WP_Post ) : ?>
