@@ -19,7 +19,9 @@ Tags: full-site-editing, block-themes, custom-colors, custom-menu, featured-imag
  */
 
 :root {
+	--np-header-top: 35px;
 	--np-header-height: var(--wp--custom--header--height);
+	--np-header-offset: calc(var(--np-header-top) + var(--np-header-height));
 }
 
 ::selection {
@@ -29,7 +31,7 @@ Tags: full-site-editing, block-themes, custom-colors, custom-menu, featured-imag
 
 html {
 	scroll-behavior: smooth;
-	scroll-padding-top: var(--np-header-height);
+	scroll-padding-top: var(--np-header-offset);
 }
 
 .wp-element-button,
@@ -68,7 +70,7 @@ html {
  */
 .np-site-header {
 	position: fixed;
-	top: 35px;
+	top: var(--np-header-top);
 	right: 0;
 	left: 0;
 	z-index: 50;
@@ -996,6 +998,14 @@ html {
 	.np-contact-form button[type="submit"]:active {
 		transform: none;
 	}
+}
+
+/*
+ * Single project case study — clear fixed header footprint before content.
+ * Header sits at --np-header-top with --np-header-height; main must offset both.
+ */
+.np-single-project.alignfull {
+	padding-top: var(--np-header-offset) !important;
 }
 
 /*
