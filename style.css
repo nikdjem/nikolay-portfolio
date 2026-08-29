@@ -19,9 +19,24 @@ Tags: full-site-editing, block-themes, custom-colors, custom-menu, featured-imag
  */
 
 :root {
-	--np-header-top: 35px;
+	--np-header-inset-x: var(--wp--preset--spacing--24);
+	--np-header-inset-top: var(--wp--preset--spacing--24);
+	--np-header-radius: 12px;
+	--np-header-top: var(--np-header-inset-top);
 	--np-header-height: var(--wp--custom--header--height);
-	--np-header-offset: calc(var(--np-header-top) + var(--np-header-height));
+	--np-header-offset: calc(var(--np-header-inset-top) + var(--np-header-height));
+	--np-header-max-width: calc(var(--wp--style--global--content-size, 1152px) + (2 * var(--wp--preset--spacing--32)));
+	--np-header-glass-fill: color-mix(in srgb, var(--wp--preset--color--surface-container-high) 38%, transparent);
+	--np-header-glass-border: color-mix(in srgb, var(--wp--preset--color--outline-variant) 72%, transparent);
+	--np-header-glass-highlight: color-mix(in srgb, var(--wp--preset--color--surface-tint) 10%, transparent);
+}
+
+@media (max-width: 767px) {
+	:root {
+		--np-header-inset-x: 12px;
+		--np-header-inset-top: 12px;
+		--np-header-radius: 10px;
+	}
 }
 
 ::selection {
@@ -64,52 +79,59 @@ html {
 }
 
 /*
- * Header template part.
- * Fixed glass bar, wordmark glow, and nav hover/active cannot be expressed in theme.json.
- * Overlay behavior is left to core Navigation (Phase 2D).
+ * Header template part — floating glass navigation panel (Phase 09.7.5B).
+ * Inset from viewport edges; glass on ::before keeps mobile overlay unclipped.
  */
 .np-site-header {
 	position: fixed;
-	top: var(--np-header-top);
-	right: 0;
-	left: 0;
+	top: var(--np-header-inset-top);
+	right: max(var(--np-header-inset-x), calc((100% - var(--np-header-max-width)) / 2));
+	left: max(var(--np-header-inset-x), calc((100% - var(--np-header-max-width)) / 2));
 	z-index: 50;
-	width: 100%;
-	height: var(--wp--custom--header--height);
+	width: auto;
+	height: var(--np-header-height);
 	box-sizing: border-box;
-	border-radius: 0;
+	border-radius: var(--np-header-radius) !important;
 	background-color: transparent;
+	overflow: visible;
 }
 
-/*
- * Glass bar on a pseudo-element so fixed mobile nav overlay is not trapped
- * inside the header box (backdrop-filter creates a fixed containing block).
- */
 .np-site-header::before {
 	content: "";
 	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
+	inset: 0;
 	z-index: 0;
-	height: var(--wp--custom--header--height);
-	border-radius: 0;
-	background-color: color-mix(in srgb, var(--wp--preset--color--background) 80%, transparent);
-	backdrop-filter: blur(24px);
-	-webkit-backdrop-filter: blur(24px);
-	transition: background-color 150ms ease, backdrop-filter 150ms ease, -webkit-backdrop-filter 150ms ease;
+	border-radius: inherit;
+	border: 1px solid var(--np-header-glass-border);
+	background-color: var(--np-header-glass-fill);
+	background-image: linear-gradient(
+		180deg,
+		var(--np-header-glass-highlight) 0%,
+		transparent 58%
+	);
+	backdrop-filter: blur(18px) saturate(1.3);
+	-webkit-backdrop-filter: blur(18px) saturate(1.3);
+	box-shadow:
+		0 8px 32px color-mix(in srgb, var(--wp--preset--color--background) 42%, transparent),
+		inset 0 1px 0 color-mix(in srgb, var(--wp--preset--color--on-surface) 7%, transparent);
+	transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
 	pointer-events: none;
 }
 
 .np-site-header > .wp-block-group {
 	position: relative;
 	z-index: 1;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding-inline: var(--wp--preset--spacing--32);
+	box-sizing: border-box;
 }
 
 .np-site-header.is-scrolled::before {
-	background-color: transparent;
-	backdrop-filter: none;
-	-webkit-backdrop-filter: none;
+	background-color: color-mix(in srgb, var(--wp--preset--color--surface-container-high) 48%, transparent);
+	backdrop-filter: blur(18px) saturate(1.3);
+	-webkit-backdrop-filter: blur(18px) saturate(1.3);
 }
 
 .np-site-header .wp-block-site-title a {
@@ -217,11 +239,11 @@ html {
 
 .np-site-header .wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open:not(.disable-default-overlay),
 .np-site-header .wp-block-navigation__responsive-container.is-menu-open {
-	top: var(--wp--custom--header--height);
-	border-radius: 0;
-	background-color: color-mix(in srgb, var(--wp--preset--color--background) 80%, transparent);
-	backdrop-filter: blur(24px);
-	-webkit-backdrop-filter: blur(24px);
+	top: var(--np-header-height);
+	border-radius: 0 0 var(--np-header-radius) var(--np-header-radius);
+	background-color: color-mix(in srgb, var(--wp--preset--color--surface-container-high) 52%, transparent);
+	backdrop-filter: blur(18px) saturate(1.3);
+	-webkit-backdrop-filter: blur(18px) saturate(1.3);
 	color: var(--wp--preset--color--on-surface-variant);
 }
 
@@ -331,7 +353,7 @@ html {
 .np-hero {
 	overflow: hidden;
 	border-radius: 0;
-	min-height: calc(100svh - var(--wp--custom--header--height));
+	min-height: calc(100svh - var(--np-header-offset));
 }
 
 .np-hero.has-custom-content-position .wp-block-cover__inner-container {
@@ -1001,9 +1023,9 @@ html {
 }
 
 /*
- * Single project case study — clear fixed header footprint before content.
- * Header sits at --np-header-top with --np-header-height; main must offset both.
+ * Homepage + single project — clear floating header footprint before content.
  */
+.np-front-main.alignfull,
 .np-single-project.alignfull {
 	padding-top: var(--np-header-offset) !important;
 }
