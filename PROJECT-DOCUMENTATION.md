@@ -5,7 +5,7 @@
 **Repository:** [nikdjem/nikolay-portfolio](https://github.com/nikdjem/nikolay-portfolio)  
 **Theme path:** `wp-content/themes/nikolay-portfolio`  
 **Theme version:** 0.1.3
-**Last updated:** August 2026 (Phase 09.6E.3)
+**Last updated:** August 2026 (Phase 09.9)
 
 ---
 
@@ -34,39 +34,42 @@ This file is the long-form project record for the NIKWEB.EU portfolio website. I
 | **06** | [Initial Implementation & Visual QA](#phase-06--initial-implementation--visual-qa) | **Complete — documented** |
 | **07** | [Real Projects & Case Study Architecture](#phase-07--real-projects--case-study-architecture) | **Complete — documented** |
 | **08** | [Real Project Content & WORK Implementation](#phase-08--real-project-content--work-implementation) | **Complete — WORK implementation** |
-| **09** | [Single Project / Case Study Architecture](#phase-09--single-project--case-study-architecture) | **In progress — Projects 1–4 case studies complete** |
+| **09** | [Single Project / Case Study Architecture](#phase-09--single-project--case-study-architecture) | **Complete — Single Project / Case Study Architecture** |
 
 ---
 
 ## Repository State (Current)
 
-This section records the Git state after Phase 09.6E (Project #4 case study migration).
+This section records the Git state after Phase 09.9 documentation sync (August 2026).
 
 | Item | Value |
 |------|-------|
-| **Latest theme commit** | `683ec7b` — `feat(project): build single project architecture` |
-| **Latest docs commit** | `4a913a8` — `docs: document phase 08 completion` |
+| **Latest theme commit** | `71eff80` — `feat(single-project): finalize project page presentation` |
+| **Latest docs commit** | *(pending — Phase 09.9 documentation staged locally, not yet committed)* |
 | **Branch** | `main` |
 | **Sync with origin** | **Yes** — `main...origin/main` |
 | **Phase 08 WORK** | **Complete** |
-| **Phase 09 architecture** | **Complete** (09.2–09.5, commit `683ec7b`) |
-| **Phase 09.6 case-study migration** | **In progress — Projects 1–4 complete; 5–6 not started** |
-| **Phase 09.6E (Project #4)** | **Complete** |
+| **Phase 09** | **Complete — Single Project / Case Study Architecture** |
 
-### Pre-existing uncommitted theme changes (do not conflate with Phase 09.6E.3)
+### Important Phase 09 theme commits (Verified)
 
-The following files were already modified locally **before** Phase 09.6E.3 documentation work and are **not** part of the documentation task:
+| Commit | Message |
+|--------|---------|
+| `683ec7b` | `feat(project): build single project architecture` |
+| `8368dad` | `fix(single-project): prevent mobile content overflow` |
+| `1a61664` | `fix(single-project): align content below fixed header` |
+| `e5016f3` | `fix(header): add floating glass nav and project-safe anchors` |
+| `71eff80` | `feat(single-project): finalize project page presentation` |
+
+### Untracked local file
 
 | File | Status |
 |------|--------|
-| `patterns/single-project-hero.php` | Modified (uncommitted) |
-| `patterns/single-project-nav.php` | Modified (uncommitted) |
-| `style.css` | Modified (uncommitted) |
-| `screenshot.png` | Untracked |
+| `screenshot.png` | Untracked — not part of theme repository |
 
 Six published real `project` posts with Featured Images are live in the Local WordPress database. Featured Images are Media Library assets — **not** committed to the theme repository.
 
-**Case-study architecture:** `templates/single-project.html`, reusable patterns, metadata-driven CTAs, WORK card links, and case-study content for **Projects 1–4** are implemented in the local WordPress database. Projects 5–6 remain without case-study content.
+**Case-study architecture:** All six project case studies are implemented in the Local WordPress database with metadata-driven UI, reusable patterns, and final presentation refinements committed in `71eff80` and `e5016f3`.
 
 ---
 
@@ -1104,32 +1107,59 @@ WordPress content and Featured Images were applied in the Local environment — 
 
 **Phase 08 WORK implementation: COMPLETE.**
 
-**Not implemented at Phase 08 closure (Phase 09 scope — now partially complete):**
+**Not implemented at Phase 08 closure (Phase 09 scope — now complete):**
 
 - ~~Single Project template (`single-project.html`)~~ — **Implemented** (`683ec7b`)
-- Case Study page content — **Projects 1–4 complete; 5–6 pending**
+- ~~Case Study page content~~ — **All six projects complete**
 - ~~Project card title links~~ — **Implemented** (09.5)
 - ~~GitHub / Live / Status custom metadata fields~~ — **Implemented** (companion plugin 09.4)
 - Reusable case-study pattern — **In use** via Gutenberg `post_content`
 
-See [Phase 09](#phase-09--single-project--case-study-architecture) for current status.
+See [Phase 09](#phase-09--single-project--case-study-architecture) for final status.
 
 ---
 
 # Phase 09 — Single Project / Case Study Architecture
 
-**Status:** IN PROGRESS
+**Status:** **COMPLETE — Single Project / Case Study Architecture**
 
-Architecture checkpoint **complete** (commit `683ec7b`). Case-study content migration **in progress** — Projects **1–4** complete; Projects **5–6** not started.
+Phase 09 delivered the full single-project template stack, metadata-driven UI, six case-study pages, final presentation refinements, floating glass header, and responsive QA across all projects.
 
-### Architecture baseline (Verified — commit `683ec7b`)
+### Phase 09 sub-phase index
 
-| Phase | Title | Status |
-|-------|-------|--------|
-| **09.2** | Single-project template skeleton | **Complete — PASS** |
-| **09.3** | Reusable single-project patterns | **Complete — PASS** |
-| **09.4** | Project metadata foundation (companion plugin) | **Complete — PASS** |
-| **09.5** | Metadata-driven rendering + WORK card links | **Complete — PASS** |
+| Sub-phase | Title | Status |
+|-----------|-------|--------|
+| **09.2** | Single-project template skeleton | **Complete** |
+| **09.3** | Reusable single-project patterns | **Complete** |
+| **09.4** | Project metadata foundation (companion plugin) | **Complete** |
+| **09.4.1** | Status meta REST fix | **Complete** |
+| **09.5** | Metadata-driven UI + project linking | **Complete** |
+| **09.6A** | Project metadata migration | **Complete** |
+| **09.6B** | Project 1 case study | **Complete** |
+| **09.6C** | Project 2 case study | **Complete** |
+| **09.6D** | Project 3 case study | **Complete** |
+| **09.6E** | Project 4 / Checkout Simplifier | **Complete** |
+| **09.6F** | Project 5 / Barcode Generator | **Complete** |
+| **09.6G** | Project 6 / EcoWriter | **Complete** |
+| **09.7** | Final single-project presentation QA | **Complete** |
+| **09.7.x** | Visual refinements (hero, tables, architecture flow, header) | **Complete** |
+| **09.8** | Final single-project implementation commit | **Complete** — `71eff80` |
+| **09.9** | Documentation sync | **Current** |
+
+### Final project matrix
+
+| # | Project | Category | Status | Case Study |
+|---|---------|----------|--------|------------|
+| 1 | PDF Carousel Footer WordPress Plugin | Interface | LIVE | **Complete** |
+| 2 | TablePress Responsive | Interface | LIVE | **Complete** |
+| 3 | NIKWEB.EU Portfolio — FSE Block Theme | Interface | STABLE | **Complete** |
+| 4 | WooCommerce Checkout Simplifier | Commerce | STABLE | **Complete** |
+| 5 | Barcode Generator & Reader | Interface | STABLE | **Complete** |
+| 6 | EcoWriter AI Agent | Intelligence | **IN PROGRESS** | **Complete** |
+
+**Important:** **Case Study Complete** does **not** mean **Project Complete**. EcoWriter remains **IN PROGRESS** as the product/editorial status label. Do not describe EcoWriter as LIVE, COMPLETE, or PRODUCTION.
+
+### Final single-project architecture (Verified — commit `683ec7b`, refined in `71eff80`)
 
 **Template stack:**
 
@@ -1145,13 +1175,86 @@ single-project-links (pattern — GitHub / Live)
 single-project-nav (pattern — prev / back / next)
 ```
 
+**Metadata-driven behavior:**
+
+| Feature | Source |
+|---------|--------|
+| Status chip | `_np_project_status` via companion plugin |
+| GitHub CTA | `_np_project_github_url` |
+| Live CTA | `_np_project_live_url` |
+| Claim-safe CTA logic | Empty/missing URLs suppress Live CTA rendering |
+
+**Navigation:**
+
+| Control | Behavior |
+|---------|----------|
+| Previous Project | Adjacent `project` by `menu_order` |
+| Back to Work | Homepage `/#work` |
+| Next Project | Adjacent `project` by `menu_order` |
+
+Ordering uses WordPress **`menu_order`** on the `project` CPT.
+
 **Companion plugin checkpoint:** `125ee15` — metadata fields `_np_project_status`, `_np_project_github_url`, `_np_project_live_url`.
+
+### Final presentation features (Verified — commits `71eff80`, `e5016f3`)
+
+| Feature | Description |
+|---------|-------------|
+| **Compact project hero** | Desktop/tablet **32/9** aspect ratio; mobile **16/9**; reduced hero spacing |
+| **Mobile overflow prevention** | Page-level horizontal overflow eliminated at 390px (`8368dad`) |
+| **Table presentation** | Shared content measure; fixed layout; Claim Safety **24/16/60**; two-column **35/65**; mobile containment |
+| **Architecture flow** | Lightweight editorial inline flow; normal body typography; natural wrapping; tree-heavy lists vertical; mobile ↓ separators |
+| **Floating glass header** | Inset floating panel; translucent glass layer with blur; rounded container; responsive inset |
+| **Project-safe navigation anchors** | Header links use `/#about`, `/#work`, `/#stack`, `/#contact` from any page |
+
+### Final floating header (Verified — commit `e5016f3`)
+
+| Aspect | Implementation |
+|--------|----------------|
+| Container | Fixed, inset from viewport edges; max-width aligned to content composition |
+| Glass layer | Semi-transparent `::before` with `backdrop-filter: blur()` and design-token fill |
+| Content clearance | `--np-header-offset` on homepage and single-project main; `scroll-padding-top` for anchor targets |
+| Navigation | Site-root fragment URLs (`/#section`) so header links resolve from project pages |
+| Mobile menu | Glass overlay extends from floating header capsule; links use same anchor scheme |
+
+Do **not** describe the header as a solid black full-width bar — the approved implementation is a **floating translucent glass panel**.
+
+### Mobile overflow fix (Verified — commit `8368dad`)
+
+Project pages tested at **390px** width with **zero page-level horizontal overflow** after overflow containment rules for post content, tables, and inline code.
+
+### Final QA summary
+
+Validated through browser-based visual/structural QA at:
+
+| Viewport | Size |
+|----------|------|
+| Desktop | 1280 × 900 |
+| Tablet | 834 × 1024 |
+| Mobile | 390 × 844 |
+
+**All six project pages:**
+
+- HTTP 200
+- One H1 per page
+- Correct hero, metadata, and CTA logic
+- Correct prev / back / next navigation
+- No page-level horizontal overflow
+- Consistent design system
+
+**Homepage:**
+
+- Six projects in correct `menu_order`
+- Working project card links
+- No page-level horizontal overflow
+
+Structural QA does not claim pixel-perfect validation of every visual element unless explicitly verified in a sub-phase report.
 
 ---
 
 ## Phase 09.6 — Case Study Content Migration
 
-**Status:** IN PROGRESS
+**Status:** **COMPLETE**
 
 | Project | Post ID | Case study | Status |
 |---------|---------|------------|--------|
@@ -1159,12 +1262,14 @@ single-project-nav (pattern — prev / back / next)
 | 2 — TablePress Responsive | 18 | Inserted | **Complete** |
 | 3 — NIKWEB.EU Portfolio — FSE Block Theme | 19 | Inserted | **Complete** |
 | 4 — WooCommerce Checkout Simplifier | 20 | Inserted | **Complete** |
-| 5 — Barcode Generator & Reader | 21 | Not started | Pending |
-| 6 — EcoWriter AI Agent | 22 | Not started | Pending |
+| 5 — Barcode Generator & Reader | 21 | Inserted | **Complete** |
+| 6 — EcoWriter AI Agent | 22 | Inserted | **Complete** |
 
 **Phase 09.6A — Project metadata population:** **Complete — PASS** (all six posts populated; verified via REST).
 
 **Projects 1–3 migration:** Draft → insertion → visual QA completed in Phases 09.6B–09.6D (August 2026).
+
+**Projects 5–6 migration:** Completed in Phases 09.6F–09.6G (August 2026).
 
 ---
 
@@ -1289,12 +1394,11 @@ Allowed values: `required`, `optional`, `hidden`.
 - Excerpt punctuation: em dashes normalized to hyphens by WordPress on save.
 - Claim Safety table may horizontal-scroll on narrow mobile (WordPress core table behavior; acceptable).
 
-### Phase 09 remaining work
+### Phase 09 closure
 
-- **Project 5** — Barcode Generator & Reader (post 21): case-study content **not started**
-- **Project 6** — EcoWriter AI Agent (post 22): case-study content **not started**
+**Phase 09 overall:** **COMPLETE** — single-project architecture, all six case studies, final presentation refinements, floating glass header, and responsive QA are finished.
 
-**Phase 09 overall:** **NOT COMPLETE** until Projects 5–6 case studies are migrated and final Phase 09 closure QA is performed.
+**Documentation:** Phase 09.9 synchronizes `PROJECT-DOCUMENTATION.md` and `CHANGELOG.md` with the final implementation state. Documentation changes are staged locally and not yet committed at Phase 09.9 closure.
 
 ---
 
