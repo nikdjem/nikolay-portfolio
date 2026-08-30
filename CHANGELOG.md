@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Phase 10 — Homepage & Portfolio Refinement
+
+**Status: COMPLETE — Homepage frozen (Phase 10.7)**
+
+Scope: Hero → About → Work → Stack → Build Focus → Contact → Footer
+
+#### Added
+
+- **Build Focus** homepage section — eyebrow Build Scope, H2 BUILDING FOR THE WEB, four label-only tiles (WordPress Plugins, WooCommerce Extensions, FSE Block Themes, AI Automations), and approved summary line (`patterns/build-focus.php`).
+- Build Focus CSS — scoped `.np-build-focus` grid and Stack-matched card chrome in `style.css`.
+- Stack **Exploring** line — `Exploring: n8n · Claude · Vibe Coding` (exploratory/future direction; not production service claims).
+- About third paragraph documenting future exploratory direction (AI, Vibe Coding, n8n, Claude applied to WordPress/WooCommerce workflows).
+
+#### Changed
+
+- Hero chip — PHP · GUTENBERG · WOOCOMMERCE (replacing Pre-Phase 10 sci-fi chip).
+- Hero body — grounded WordPress engineering copy; AI-assisted drafting noted as side prototype.
+- Hero CTAs — **Start a Project** (`#contact`) and **View My Work** (`#work`).
+- About copy — 5+ years experience, AI-assisted workflows, user-centric workflows (no legacy/neural-processing framing).
+- Stack main tiles — WordPress / PHP, Gutenberg / FSE, WooCommerce, JavaScript, AI Automations (Phase 10.6.3).
+- Footer social links — real GitHub and LinkedIn URLs only.
+
+#### Removed
+
+- Fictional **Testimonials** section — fake quotes, companies, and metrics (Phase 10.6.4).
+- Obsolete testimonial CSS — `.np-testimonials`, `.np-testimonial-card`, `.np-testimonial-initials`, and related rules.
+- Footer placeholder links — Layers, Dribbble, and all `href="#"` social placeholders (Phase 10.7.1).
+- Screenshot gallery system from case studies (Phase 10.3 — cancelled Phase 10.2 ingestion; no screenshot galleries remain).
+
+#### Renamed
+
+- `patterns/testimonials.php` → `patterns/build-focus.php` (Phase 10.7.2).
+- Pattern slug `nikolay-portfolio/testimonials` → `nikolay-portfolio/build-focus`.
+- Section class `np-testimonials` → `np-build-focus` only.
+
+#### Verified
+
+- Homepage responsive QA — 1280 × 900, 834 × 1024, 390 × 844; no page-level horizontal overflow after Build Focus work.
+- Six project case studies — no regression from homepage changes (repository audit; WordPress content unchanged by Phase 10 theme diff).
+- Frozen homepage state — Phase 10.7 final UX/visual audit **PASS**; homepage not in progress.
+- Phase 10.8A final repository integrity audit — all theme diffs approved; documentation sync required (Phase 10.8B).
+
+*Phase 10 source changes are prepared locally and pending final commit.*
+
+---
+
 ### Added
 
 - Complete single-project architecture for all six projects (`683ec7b`).
@@ -103,7 +149,7 @@ Validated through browser-based visual/structural QA; structural checks do not c
 Existing theme features at last code commit:
 
 - WordPress 7.0 FSE block theme with Amethyst Monolith design system
-- Homepage patterns: Hero, About, Projects, Stack, Testimonials, Contact
+- Homepage patterns: Hero, About, Projects, Stack, Testimonials, Contact *(superseded in [Unreleased] Phase 10 — Build Focus replaces Testimonials)*
 - Fixed glass header with responsive Navigation block (768px breakpoint)
 - Query Loop project cards (`project` CPT via companion plugin)
 - Contact form REST endpoint with nonce, honeypot, and rate limiting

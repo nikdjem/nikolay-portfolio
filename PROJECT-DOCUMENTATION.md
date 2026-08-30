@@ -5,7 +5,7 @@
 **Repository:** [nikdjem/nikolay-portfolio](https://github.com/nikdjem/nikolay-portfolio)  
 **Theme path:** `wp-content/themes/nikolay-portfolio`  
 **Theme version:** 0.1.3
-**Last updated:** August 2026 (Phase 09.9)
+**Last updated:** August 2026 (Phase 10.8B)
 
 ---
 
@@ -35,21 +35,23 @@ This file is the long-form project record for the NIKWEB.EU portfolio website. I
 | **07** | [Real Projects & Case Study Architecture](#phase-07--real-projects--case-study-architecture) | **Complete — documented** |
 | **08** | [Real Project Content & WORK Implementation](#phase-08--real-project-content--work-implementation) | **Complete — WORK implementation** |
 | **09** | [Single Project / Case Study Architecture](#phase-09--single-project--case-study-architecture) | **Complete — Single Project / Case Study Architecture** |
+| **10** | [Homepage & Portfolio Refinement](#phase-10--homepage--portfolio-refinement) | **Complete — Homepage frozen (Phase 10.7)** |
 
 ---
 
 ## Repository State (Current)
 
-This section records the Git state after Phase 09.9 documentation sync (August 2026).
+This section records the Git state after Phase 10.8B documentation sync (August 2026).
 
 | Item | Value |
 |------|-------|
-| **Latest theme commit** | `71eff80` — `feat(single-project): finalize project page presentation` |
-| **Latest docs commit** | *(pending — Phase 09.9 documentation staged locally, not yet committed)* |
-| **Branch** | `main` |
-| **Sync with origin** | **Yes** — `main...origin/main` |
+| **Latest committed theme code** | `71eff80` — `feat(single-project): finalize project page presentation` |
+| **Phase 10 homepage/source changes** | **Prepared locally — pending final commit** (Hero, About, Stack, Build Focus, footer, pattern rename, CSS) |
+| **Phase 10 documentation sync** | **Complete locally** (Phase 10.8B — this file and `CHANGELOG.md`; pending commit with theme changes) |
+| **Branch** | `main` (tracks `origin/main`; no unpushed commits ahead of remote at last Phase 10.8A audit) |
 | **Phase 08 WORK** | **Complete** |
 | **Phase 09** | **Complete — Single Project / Case Study Architecture** |
+| **Phase 10** | **Complete — Homepage frozen after Phase 10.7** |
 
 ### Important Phase 09 theme commits (Verified)
 
@@ -182,7 +184,7 @@ These uncommitted refinements represent the **current local development state** 
 
 **Status:** Complete
 
-### Verified — Implemented Homepage Structure
+### Verified — Current Homepage Structure (Phase 10)
 
 Single-page portfolio composed in `templates/front-page.html`:
 
@@ -192,23 +194,27 @@ Single-page portfolio composed in `templates/front-page.html`:
 | 2 | About | `#about` | `nikolay-portfolio/about` |
 | 3 | Work (Projects) | `#work` | `nikolay-portfolio/projects` |
 | 4 | Stack | `#stack` | `nikolay-portfolio/stack` |
-| 5 | Testimonials | _(none)_ | `nikolay-portfolio/testimonials` |
+| 5 | Build Focus | _(none)_ | `nikolay-portfolio/build-focus` |
 | 6 | Contact | `#contact` | `nikolay-portfolio/contact` |
 
 Header and footer are template parts (`parts/header.html`, `parts/footer.html`).
 
-**CTA hierarchy:**
+**Homepage status:** **FROZEN** after Phase 10.7 final UX/visual audit. Do not treat homepage content or visual design as in progress.
+
+**CTA hierarchy (current):**
 
 | CTA | Location | Target |
 |-----|----------|--------|
 | Hire Me | Header (desktop nav) | `#contact` |
-| Initialize Project | Hero primary button | `#contact` |
-| View Matrix | Hero secondary button | `#work` |
-| GitHub Repository | About section | `https://github.com/nikdjem` (uncommitted) |
+| Start a Project | Hero primary button | `#contact` |
+| View My Work | Hero secondary button | `#work` |
+| GitHub Repository | About section | `https://github.com/nikdjem` |
+
+*Historical (Pre-Phase 10): Hero CTAs were **Initialize Project** and **View Matrix**; section 5 was **Testimonials** (`nikolay-portfolio/testimonials`).*
 
 **Mobile navigation:** Core Navigation block with `overlayMenu: mobile`, hamburger toggle, overlay below header. Theme overrides core 600px breakpoint to **768px** in CSS.
 
-**Work ↔ project CPT:** Section id `#work`; Query Loop queries `project` post type; companion plugin rewrite slug is `work`. **No single-project theme template exists** — only `front-page.html` and `index.html` are in `templates/`. Plugin sets `publicly_queryable: true` but theme does not yet render individual case studies.
+**Work ↔ project CPT:** Section id `#work`; Query Loop queries `project` post type (six projects); companion plugin rewrite slug is `work`. Single-project case-study pages are implemented in Phase 09 (`templates/single-project.html`).
 
 **No "Services" section** — the fourth nav item is **Stack**, not Services.
 
@@ -216,7 +222,7 @@ Header and footer are template parts (`parts/header.html`, `parts/footer.html`).
 
 Source: `design/wireframe/index.html`, `design/wireframe/DESIGN.md`
 
-**Section order:** Hero → Bio → Project Archive → Capabilities → Testimonials → Contact
+**Section order (Historical — wireframe):** Hero → Bio → Project Archive → Capabilities → Testimonials → Contact
 
 **Navigation labels:** Hero / Philosophy / Projects / Stack (placeholder `#` hrefs; no Contact in desktop nav)
 
@@ -230,7 +236,7 @@ Wireframe uses 1px section dividers — **not implemented** in final theme (alig
 
 Source: `design/final/index.html`
 
-**Section order:** Hero → About → Work (projects) → Stack → Testimonials → Contact
+**Section order (Historical — Stitch final):** Hero → About → Work (projects) → Stack → Testimonials → Contact
 
 **Navigation:** Work / About / Stack / Contact + Hire Me
 
@@ -468,7 +474,7 @@ nikolay-portfolio/
 │   ├── about.php
 │   ├── projects.php
 │   ├── stack.php
-│   ├── testimonials.php
+│   ├── build-focus.php
 │   └── contact.php
 ├── assets/
 │   ├── fonts/              # Space Grotesk WOFF2
@@ -511,9 +517,11 @@ nikolay-portfolio/
 | Archive | Disabled (`has_archive: false`) |
 | REST | Enabled (`show_in_rest: true`) |
 
-**Theme consumption:** Query Loop in `patterns/projects.php` — `postType: project`, `perPage: 3`, `orderBy: menu_order`, 3-column grid.
+**Theme consumption:** Query Loop in `patterns/projects.php` — `postType: project`, `perPage: 6`, `orderBy: menu_order`, 3-column grid.
 
-**Single-project template:** **Does not exist.** No `single-project.html` or equivalent in `templates/`. Individual project URLs are not yet part of the theme presentation layer.
+**Single-project template:** Implemented in Phase 09 — `templates/single-project.html` and companion patterns.
+
+*Historical (Pre-Phase 08/09): Query Loop used `perPage: 3`; no single-project template existed.*
 
 ### Contact REST Endpoint
 
@@ -541,27 +549,27 @@ nikolay-portfolio/
 | `e47a757` | Hero, About, Projects, Stack refinements |
 | `f8d16f4` | **Stylesheet enqueue fix** + image treatments |
 | `8f61ffc` | Hero, About, Projects, Stack visual pass |
-| `3a6654f` | Testimonials pattern |
+| `3a6654f` | Testimonials pattern *(superseded — removed Phase 10.6.4)* |
 | `eb312ae` | Contact pattern + REST endpoint |
 | `0315115` | Footer template part |
 | `a6c0a14` | Responsive visual alignment |
 | `53e66a1` | Hero heading layout fix |
 
-### Section Summaries
+### Section Summaries *(Historical — Phase 06 baseline; superseded for current homepage by [Phase 10](#phase-10--homepage--portfolio-refinement))*
 
-**Hero** (`patterns/hero.php`): Full-bleed Cover, local `assets/images/hero.jpg`, status chip, display heading with gradient word, Initialize Project + View Matrix CTAs.
+**Hero** (`patterns/hero.php`): Full-bleed Cover, local `assets/images/hero.jpg`, status chip, display heading with gradient word. *Pre-Phase 10 CTAs: Initialize Project + View Matrix.*
 
-**About** (`patterns/about.php`): Two-column biography, local `assets/images/about.jpg`, grayscale image treatment. Uncommitted: GitHub Repository button; experience stat badge removed.
+**About** (`patterns/about.php`): Two-column biography, local `assets/images/about.jpg`, grayscale image treatment. GitHub Repository button; experience stat badge removed.
 
-**WORK** (`patterns/projects.php`): Section `#work`, Query Loop, 3 project cards, status chip, section heading "Recent Neural Prototypes". Content is **placeholder/fictional** — not final portfolio content.
+**WORK** (`patterns/projects.php`): Section `#work`, Query Loop. *At Phase 06: 3 project cards, placeholder copy — superseded by Phase 08 six-project implementation.*
 
-**Stack** (`patterns/stack.php`): Technology grid — 5 columns desktop, 2 columns mobile.
+**Stack** (`patterns/stack.php`): Technology grid — 5 columns desktop, 2 columns mobile. *Labels superseded in Phase 10.6.3.*
 
-**Testimonials** (`patterns/testimonials.php`): Two-column quote grid.
+**Testimonials** (`patterns/testimonials.php`): Two-column quote grid. *Removed Phase 10.6.4 — replaced by Build Focus (`patterns/build-focus.php`).*
 
 **Contact** (`patterns/contact.php`): REST-powered form, honeypot, styled inputs, submit button.
 
-**Footer** (`parts/footer.html`): Text links, copyright.
+**Footer** (`parts/footer.html`): Text links, copyright. *Pre-Phase 10.7.1: placeholder `#` social links including Layers and Dribbble.*
 
 **Header** (`parts/header.html`): Fixed glass bar, Navigation block, Hire Me CTA, hardcoded script tag for `navigation.js`.
 
@@ -1144,7 +1152,7 @@ Phase 09 delivered the full single-project template stack, metadata-driven UI, s
 | **09.7** | Final single-project presentation QA | **Complete** |
 | **09.7.x** | Visual refinements (hero, tables, architecture flow, header) | **Complete** |
 | **09.8** | Final single-project implementation commit | **Complete** — `71eff80` |
-| **09.9** | Documentation sync | **Current** |
+| **09.9** | Documentation sync | **Complete** |
 
 ### Final project matrix
 
@@ -1398,7 +1406,177 @@ Allowed values: `required`, `optional`, `hidden`.
 
 **Phase 09 overall:** **COMPLETE** — single-project architecture, all six case studies, final presentation refinements, floating glass header, and responsive QA are finished.
 
-**Documentation:** Phase 09.9 synchronizes `PROJECT-DOCUMENTATION.md` and `CHANGELOG.md` with the final implementation state. Documentation changes are staged locally and not yet committed at Phase 09.9 closure.
+**Documentation:** Phase 09.9 synchronized `PROJECT-DOCUMENTATION.md` and `CHANGELOG.md` with the Phase 09 implementation state. Phase 10 documentation sync completed in Phase 10.8B.
+
+---
+
+# Phase 10 — Homepage & Portfolio Refinement
+
+**Status:** **COMPLETE — Homepage frozen (Phase 10.7)**
+
+Phase 10 refined homepage positioning, copy, and section structure after Phase 09 case-study architecture was complete. The homepage is **not in progress** — it was frozen after Phase 10.7 final UX/visual audit.
+
+**Scope:** Hero → About → Work → Stack → Build Focus → Contact → Footer
+
+### Phase 10 sub-phase index
+
+| Sub-phase | Title | Status |
+|-----------|-------|--------|
+| **10.2** | P1/P2 screenshot capture + ingestion | **Cancelled** |
+| **10.3** | Screenshot system removed from case studies | **Complete** |
+| **10.5** | P3/P4/P5 public case-study editorial refinement | **Complete** |
+| **10.6.1** | Hero copy finalized | **Complete** |
+| **10.6.2** | About copy finalized | **Complete** |
+| **10.6.3** | Stack content finalized | **Complete** |
+| **10.6.4** | Testimonials removed → Build Focus | **Complete** |
+| **10.7** | Homepage final UX/visual audit → **FREEZE HOMEPAGE** | **Complete** |
+| **10.7.1** | Footer real links + placeholder cleanup | **Complete** |
+| **10.7.2** | Build Focus pattern rename + dead testimonial CSS cleanup | **Complete** |
+| **10.8A** | Final repository integrity audit | **Complete** |
+| **10.8B** | Documentation synchronization | **Complete** |
+
+### Key outcomes
+
+- Grounded Hero copy and CTAs aligned with WordPress engineering positioning
+- About editorial refinement — 5+ years, AI-assisted workflows, future exploratory direction
+- Evidence-based Stack labels and Exploring line
+- Fictional Testimonials removed; Build Focus introduced
+- Footer placeholder links removed; real GitHub and LinkedIn URLs only
+- Homepage visually and UX **frozen**
+
+### Current homepage composition
+
+Source: `templates/front-page.html`
+
+```
+Header (template part)
+  → Hero
+  → About
+  → Work (projects)
+  → Stack
+  → Build Focus
+  → Contact
+Footer (template part)
+```
+
+### Hero *(frozen)*
+
+| Element | Current value |
+|---------|---------------|
+| **H1** | **ARCHITECTING INTELLIGENT WORDPRESS ECOSYSTEMS** *(permanently frozen — do not change)* |
+| Chip | PHP · GUTENBERG · WOOCOMMERCE |
+| Body | Grounded WordPress plugin/theme/store copy; mentions AI-assisted drafting as a side prototype |
+| Primary CTA | Start a Project → `#contact` |
+| Secondary CTA | View My Work → `#work` |
+
+*Historical (Pre-Phase 10): sci-fi chip **System Protocol: Active**; CTAs **Initialize Project** / **View Matrix**.*
+
+### About *(frozen)*
+
+- **5+ years** of WordPress ecosystem experience (not “a decade” or “legacy” framing)
+- **AI-assisted workflows** — not “neural processing” or “data flows”
+- **Future direction (exploratory):** AI, Vibe Coding, n8n, and Claude applied to practical WordPress and WooCommerce solutions — documented as emerging portfolio direction, not production service claims
+- GitHub Repository CTA → `https://github.com/nikdjem`
+
+### Work *(frozen)*
+
+Six case studies (WordPress `project` CPT — content in database, not theme repo):
+
+| # | Project |
+|---|---------|
+| 1 | PDF Carousel Footer WordPress Plugin |
+| 2 | TablePress Responsive |
+| 3 | NIKWEB.EU Portfolio — FSE Block Theme |
+| 4 | WooCommerce Checkout Simplifier |
+| 5 | Barcode Generator & Reader |
+| 6 | EcoWriter AI Agent |
+
+Pattern: `patterns/projects.php` — Query Loop, six projects, `menu_order` ASC.
+
+### Stack *(frozen)*
+
+**Main tiles (in order):**
+
+1. WordPress / PHP
+2. Gutenberg / FSE
+3. WooCommerce
+4. JavaScript
+5. AI Automations
+
+**Exploring:** `Exploring: n8n · Claude · Vibe Coding`
+
+Pattern: `patterns/stack.php`
+
+*Historical (Pre-Phase 10): PHP / WP, React / JS, AI Prompting, REST API, Gutenberg — superseded in Phase 10.6.3.*
+
+### Build Focus *(frozen)*
+
+Replaced the former Testimonials section in Phase 10.6.4.
+
+| Property | Value |
+|----------|-------|
+| Pattern file | `patterns/build-focus.php` |
+| Slug | `nikolay-portfolio/build-focus` |
+| Section class | `np-build-focus` |
+| Eyebrow | Build Scope |
+| H2 | BUILDING FOR THE WEB |
+
+**Tiles:** WordPress Plugins · WooCommerce Extensions · FSE Block Themes · AI Automations
+
+**Summary:** Practical WordPress and WooCommerce builds in PHP and JavaScript — modern block architecture, with emerging AI automation workflows.
+
+CSS: scoped `.np-build-focus` grid/card rules in `style.css` (Stack-matched label-only cards).
+
+### Testimonials — removal *(historical decision)*
+
+The former `patterns/testimonials.php` section contained **fictional/unsupported social proof** (fake companies, quotes, and metrics). It was **removed in Phase 10.6.4** and replaced by **Build Focus**.
+
+| Item | Pre-Phase 10 | Current |
+|------|--------------|---------|
+| Pattern file | `patterns/testimonials.php` | **Removed** |
+| Pattern slug | `nikolay-portfolio/testimonials` | `nikolay-portfolio/build-focus` |
+| CSS classes | `np-testimonials`, `np-testimonial-*` | **Removed** — `.np-build-focus` only |
+
+Pattern rename formalized in Phase 10.7.2 (`testimonials.php` → `build-focus.php`).
+
+*Historical design reference only:* `design/final/index.html` still contains Pre-Phase 10 Testimonials markup — not loaded at runtime.
+
+### Footer *(current)*
+
+| Link | URL |
+|------|-----|
+| GitHub | https://github.com/nikdjem |
+| LinkedIn | https://www.linkedin.com/in/nikolaidjemerenovv/ |
+
+**Removed:** Layers, Dribbble, and all placeholder `href="#"` footer links (Phase 10.7.1).
+
+### Screenshot system *(cancelled)*
+
+- Phase 10.2 P1/P2 screenshot capture and ingestion work was **cancelled**
+- Phase 10.3 removed screenshot galleries from case-study architecture — **no screenshot galleries remain**
+- `screenshot.png` in the theme directory is **untracked** and **not part of the final tracked repository** — not required portfolio content
+- Case studies do not depend on theme-committed screenshots; Featured Images remain in the WordPress Media Library
+
+### Phase 10 local source changes *(pending commit)*
+
+The following theme files contain Phase 10 homepage changes prepared locally and **not yet committed** at Phase 10.8B closure:
+
+| File | Change |
+|------|--------|
+| `patterns/hero.php` | Final Hero chip, body, CTAs |
+| `patterns/about.php` | Final About copy |
+| `patterns/stack.php` | Final Stack labels + Exploring line |
+| `patterns/build-focus.php` | New Build Focus pattern |
+| `patterns/testimonials.php` | Deleted |
+| `templates/front-page.html` | Build Focus slug reference |
+| `style.css` | Build Focus CSS; testimonial CSS removed |
+| `parts/footer.html` | Real social links |
+
+Do not invent a commit hash until the final Phase 10 commit is created.
+
+### Phase 10 closure
+
+**Phase 10 overall:** **COMPLETE** — homepage content, Build Focus, footer links, and visual/UX freeze are finished. Documentation synchronized in Phase 10.8B.
 
 ---
 
