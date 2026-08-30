@@ -905,8 +905,31 @@ html {
 
 .np-contact-form input::placeholder,
 .np-contact-form textarea::placeholder {
-	color: var(--wp--preset--color--outline-variant);
+	color: var(--wp--preset--color--on-surface-variant);
 	opacity: 1;
+}
+
+.np-contact-form label .np-contact-required {
+	color: var(--wp--preset--color--primary-container);
+	margin-left: 0.15em;
+}
+
+.np-contact-field-error {
+	display: block;
+	margin: var(--wp--preset--spacing--8) 0 0;
+	font-size: var(--wp--preset--font-size--meta);
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--error);
+}
+
+.np-contact-field-error:empty {
+	display: none;
+}
+
+.np-contact-form [aria-invalid="true"] {
+	border-color: var(--wp--preset--color--error);
 }
 
 .np-contact-form .np-contact-field input[type="text"]:focus,

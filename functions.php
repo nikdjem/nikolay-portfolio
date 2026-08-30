@@ -9,6 +9,115 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once get_template_directory() . '/includes/seo.php';
+
+/**
+ * Register landscape project-hero image sizes for single-project pages.
+ *
+ * Hard-crop dimensions only. Per-attachment crop origins are defined in
+ * nikolay_portfolio_project_hero_crops() and applied during generation
+ * in Phase 11.6C.3C — not via add_image_size() center crop.
+ *
+ * @return void
+ */
+function nikolay_portfolio_register_project_hero_image_sizes() {
+	add_image_size( 'project-hero', 1152, 324, true );
+	add_image_size( 'project-hero-2x', 2304, 648, true );
+	add_image_size( 'project-hero-mobile', 780, 438, true );
+}
+add_action( 'after_setup_theme', 'nikolay_portfolio_register_project_hero_image_sizes' );
+
+/**
+ * Audited crop origins for project featured images (1122 x 1402 source).
+ *
+ * Keys are attachment IDs. Desktop crops 1122 x 316 (32:9). Mobile crops
+ * 1122 x 631 (16:9). Coordinates approved in Phase 11.6C.3A — do not alter
+ * without a new audit.
+ *
+ * @return array<int, array{desktop: array{x: int, y: int}, mobile: array{x: int, y: int}}>
+ */
+function nikolay_portfolio_project_hero_crops() {
+	return array(
+		36 => array(
+			'desktop' => array(
+				'x' => 0,
+				'y' => 510,
+			),
+			'mobile'  => array(
+				'x' => 0,
+				'y' => 280,
+			),
+		),
+		37 => array(
+			'desktop' => array(
+				'x' => 0,
+				'y' => 442,
+			),
+			'mobile'  => array(
+				'x' => 0,
+				'y' => 350,
+			),
+		),
+		38 => array(
+			'desktop' => array(
+				'x' => 0,
+				'y' => 430,
+			),
+			'mobile'  => array(
+				'x' => 0,
+				'y' => 320,
+			),
+		),
+		39 => array(
+			'desktop' => array(
+				'x' => 0,
+				'y' => 422,
+			),
+			'mobile'  => array(
+				'x' => 0,
+				'y' => 360,
+			),
+		),
+		40 => array(
+			'desktop' => array(
+				'x' => 0,
+				'y' => 400,
+			),
+			'mobile'  => array(
+				'x' => 0,
+				'y' => 270,
+			),
+		),
+		41 => array(
+			'desktop' => array(
+				'x' => 0,
+				'y' => 470,
+			),
+			'mobile'  => array(
+				'x' => 0,
+				'y' => 260,
+			),
+		),
+	);
+}
+
+/**
+ * Return audited project-hero crop origins for one attachment.
+ *
+ * @param int $attachment_id Featured-image attachment ID.
+ * @return array{desktop: array{x: int, y: int}, mobile: array{x: int, y: int}}|null
+ */
+function nikolay_portfolio_get_project_hero_crop( $attachment_id ) {
+	$crops = nikolay_portfolio_project_hero_crops();
+	$attachment_id = (int) $attachment_id;
+
+	if ( $attachment_id <= 0 || ! isset( $crops[ $attachment_id ] ) ) {
+		return null;
+	}
+
+	return $crops[ $attachment_id ];
+}
+
 /**
  * Enqueue the theme stylesheet on the frontend.
  *
@@ -47,6 +156,37 @@ function nikolay_portfolio_site_title_brand( $block_content ) {
 	);
 }
 add_filter( 'render_block_core/site-title', 'nikolay_portfolio_site_title_brand' );
+
+/**
+ * Render the footer copyright year from the site timezone.
+ *
+ * @param string               $block_content Rendered paragraph block HTML.
+ * @param array<string, mixed> $block         Parsed block data.
+ * @return string
+ */
+function nikolay_portfolio_footer_copyright( $block_content, $block ) {
+	if ( is_admin() ) {
+		return $block_content;
+	}
+
+	if ( ! is_array( $block ) ) {
+		return $block_content;
+	}
+
+	$class_name = $block['attrs']['className'] ?? '';
+	if ( false === strpos( (string) $class_name, 'np-site-footer__copyright' ) ) {
+		return $block_content;
+	}
+
+	if ( false === strpos( $block_content, 'YEAR' ) ) {
+		return $block_content;
+	}
+
+	$year = wp_date( 'Y' );
+
+	return str_replace( 'YEAR', esc_html( (string) $year ), $block_content );
+}
+add_filter( 'render_block_core/paragraph', 'nikolay_portfolio_footer_copyright', 10, 2 );
 
 /**
  * Make newly added pattern files visible to long-lived PHP-FPM workers.

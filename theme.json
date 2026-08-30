@@ -683,7 +683,7 @@
 			},
 			"core/site-title": {
 				"color": {
-					"text": "var(--wp--preset--color--primary-container)"
+					"text": "var(--wp--preset--color--primary)"
 				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--space-grotesk)",
@@ -695,11 +695,11 @@
 				"elements": {
 					"link": {
 						"color": {
-							"text": "var(--wp--preset--color--primary-container)"
+							"text": "var(--wp--preset--color--primary)"
 						},
 						":hover": {
 							"color": {
-								"text": "var(--wp--preset--color--primary)"
+								"text": "var(--wp--preset--color--on-surface)"
 							}
 						}
 					}

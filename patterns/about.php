@@ -57,7 +57,7 @@ $np_github_repo = esc_url( 'https://github.com/nikdjem' );
 			<!-- wp:group {"className":"np-about-media","style":{"border":{"radius":"0px"}},"layout":{"type":"default"}} -->
 			<div class="wp-block-group np-about-media" style="border-radius:0px">
 				<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"np-about-image","style":{"border":{"radius":"0px"}}} -->
-				<figure class="wp-block-image size-full np-about-image" style="border-radius:0px"><img src="<?php echo $np_about_image; ?>" alt="Futuristic high-tech computer hardware components glowing with violet light and intricate circuitry details" style="border-radius:0px"/></figure>
+				<figure class="wp-block-image size-full np-about-image" style="border-radius:0px"><img src="<?php echo $np_about_image; ?>" alt="Futuristic high-tech computer hardware components glowing with violet light and intricate circuitry details" width="960" height="1707" loading="lazy" decoding="async" style="border-radius:0px"/></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:group -->
