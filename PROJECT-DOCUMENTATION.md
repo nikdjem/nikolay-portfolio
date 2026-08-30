@@ -41,14 +41,14 @@ This file is the long-form project record for the NIKWEB.EU portfolio website. I
 
 ## Repository State (Current)
 
-This section records the Git state after Phase 10.8B documentation sync (August 2026).
+This section records the Git state after Phase 10.8E documentation commit (August 2026).
 
 | Item | Value |
 |------|-------|
-| **Latest committed theme code** | `71eff80` — `feat(single-project): finalize project page presentation` |
-| **Phase 10 homepage/source changes** | **Prepared locally — pending final commit** (Hero, About, Stack, Build Focus, footer, pattern rename, CSS) |
-| **Phase 10 documentation sync** | **Complete locally** (Phase 10.8B — this file and `CHANGELOG.md`; pending commit with theme changes) |
-| **Branch** | `main` (tracks `origin/main`; no unpushed commits ahead of remote at last Phase 10.8A audit) |
+| **Latest committed theme code** | `88bc077` — `Finalize homepage: Hero, About, Stack, Build Focus, footer links` |
+| **Latest documentation commit** | `0e1098d` — `docs: sync Phase 10 homepage finalization` |
+| **Phase 10 repository state** | Phase 10 theme changes were committed in `88bc077` and Phase 10 documentation changes were committed in `0e1098d`. The main branch is synchronized with origin/main. |
+| **Branch** | `main` (synchronized with `origin/main`) |
 | **Phase 08 WORK** | **Complete** |
 | **Phase 09** | **Complete — Single Project / Case Study Architecture** |
 | **Phase 10** | **Complete — Homepage frozen after Phase 10.7** |
@@ -1557,9 +1557,9 @@ Pattern rename formalized in Phase 10.7.2 (`testimonials.php` → `build-focus.p
 - `screenshot.png` in the theme directory is **untracked** and **not part of the final tracked repository** — not required portfolio content
 - Case studies do not depend on theme-committed screenshots; Featured Images remain in the WordPress Media Library
 
-### Phase 10 local source changes *(pending commit)*
+### Phase 10 theme commit *(committed — `88bc077`)*
 
-The following theme files contain Phase 10 homepage changes prepared locally and **not yet committed** at Phase 10.8B closure:
+At Phase 10.8B closure, the following theme changes were prepared locally and pending commit. They were committed in `88bc077` — `Finalize homepage: Hero, About, Stack, Build Focus, footer links`:
 
 | File | Change |
 |------|--------|
@@ -1572,11 +1572,9 @@ The following theme files contain Phase 10 homepage changes prepared locally and
 | `style.css` | Build Focus CSS; testimonial CSS removed |
 | `parts/footer.html` | Real social links |
 
-Do not invent a commit hash until the final Phase 10 commit is created.
-
 ### Phase 10 closure
 
-**Phase 10 overall:** **COMPLETE** — homepage content, Build Focus, footer links, and visual/UX freeze are finished. Documentation synchronized in Phase 10.8B.
+**Phase 10 overall:** **COMPLETE** — homepage content, Build Focus, footer links, and visual/UX freeze are finished. Documentation synchronized in Phase 10.8B and committed in `0e1098d`.
 
 ---
 
