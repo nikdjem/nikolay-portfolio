@@ -29,11 +29,15 @@ $np_github_repo = esc_url( 'https://github.com/nikdjem' );
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|24"}},"layout":{"type":"constrained","justifyContent":"left"}} -->
 			<div class="wp-block-group">
 				<!-- wp:paragraph {"textColor":"on-surface-variant","style":{"typography":{"lineHeight":"1.625"}}} -->
-				<p class="has-on-surface-variant-color has-text-color" style="line-height:1.625">Specializing in the convergence of legacy WordPress architecture and cutting-edge Artificial Intelligence. My methodology prioritizes algorithmic efficiency and user-centric data flows.</p>
+				<p class="has-on-surface-variant-color has-text-color" style="line-height:1.625">Specializing in the convergence of WordPress architecture and cutting-edge Artificial Intelligence. My methodology prioritizes algorithmic efficiency and user-centric workflows.</p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:paragraph {"textColor":"on-surface-variant","style":{"typography":{"lineHeight":"1.625"}}} -->
-				<p class="has-on-surface-variant-color has-text-color" style="line-height:1.625">With a decade of experience in the WordPress ecosystem, I now leverage LLMs and neural processing to automate content strategies, optimize performance metrics, and create dynamic interfaces that evolve with user behavior.</p>
+				<p class="has-on-surface-variant-color has-text-color" style="line-height:1.625">With 5+ years of experience in the WordPress ecosystem, I use LLMs and AI-assisted workflows to explore new ways of improving content processes, building dynamic interfaces, and extending WordPress-based solutions.</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph {"textColor":"on-surface-variant","style":{"typography":{"lineHeight":"1.625"}}} -->
+				<p class="has-on-surface-variant-color has-text-color" style="line-height:1.625">Going forward, my portfolio will increasingly explore AI, Vibe Coding, and AI automation with n8n and Claude, applied to practical WordPress and WooCommerce solutions. These areas will become a growing part of how I experiment, build, and extend WordPress-based workflows.</p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:buttons {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"},"style":{"spacing":{"blockGap":"16px"}}} -->

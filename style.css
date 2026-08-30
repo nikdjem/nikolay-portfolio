@@ -794,71 +794,44 @@ html {
 }
 
 /*
- * Homepage Testimonials.
- * 768px two-column grid, card chrome, quote reset, and initials tile
- * cannot be expressed through core Quote/Group attributes or theme.json.
+ * Homepage Build Focus.
+ * Four-column desktop / two-column mobile grid and Stack-matched card
+ * chrome scoped under .np-build-focus.
  */
-.np-testimonials .np-testimonials-grid {
-	grid-template-columns: 1fr !important;
-	gap: var(--wp--preset--spacing--48) !important;
-}
-
-@media (min-width: 768px) {
-	.np-testimonials .np-testimonials-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-	}
-}
-
-.np-testimonials .np-testimonial-card {
-	box-sizing: border-box;
-	min-width: 0;
-	height: 100%;
-	border-radius: 0;
-	border-left: 4px solid var(--wp--preset--color--primary-container);
-	box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-}
-
-.np-testimonials h2 {
+.np-build-focus h2 {
 	letter-spacing: 0;
 }
 
-.np-testimonials .np-testimonial-card > svg {
-	display: block;
-	width: 36px;
-	height: 36px;
-	margin: 0 0 var(--wp--preset--spacing--24);
-	color: var(--wp--preset--color--primary-container);
-	opacity: 0.6;
+.np-build-focus .np-stack-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	gap: var(--wp--preset--spacing--16) !important;
 }
 
-.np-testimonials .wp-block-quote {
-	margin: 0 0 var(--wp--preset--spacing--32);
-	padding: 0;
-	border: 0;
-	box-shadow: none;
+@media (min-width: 768px) {
+	.np-build-focus .np-stack-grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+		gap: var(--wp--preset--spacing--32) !important;
+	}
 }
 
-.np-testimonials .wp-block-quote p {
-	margin: 0;
-	font-size: var(--wp--preset--font-size--quote);
-	font-weight: 300;
-	font-style: italic;
-	line-height: 1.625;
-	color: var(--wp--preset--color--on-surface);
-}
-
-.np-testimonials .np-testimonial-initials {
-	flex-shrink: 0;
+.np-build-focus .np-stack-card {
+	min-width: 0;
 	box-sizing: border-box;
-	width: 40px;
-	height: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	border-radius: 0;
-	background-color: var(--wp--preset--color--primary-container);
-	color: var(--wp--preset--color--on-primary-container);
-	box-shadow: var(--wp--preset--shadow--initials);
+	outline: 1px solid color-mix(in srgb, var(--wp--preset--color--outline-variant) 10%, transparent);
+	transition: background-color 300ms ease, outline-color 300ms ease;
+}
+
+.np-build-focus .np-stack-card:hover,
+.np-build-focus .np-stack-card:focus-within {
+	background-color: var(--wp--preset--color--surface-bright) !important;
+	outline-color: color-mix(in srgb, var(--wp--preset--color--primary) 40%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.np-build-focus .np-stack-card {
+		transition: none;
+	}
 }
 
 /*

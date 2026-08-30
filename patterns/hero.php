@@ -25,7 +25,7 @@ $np_hero_image = esc_url( get_theme_file_uri( 'assets/images/hero.jpg' ) );
 				<!-- /wp:html -->
 
 				<!-- wp:paragraph {"textColor":"on-surface-variant","fontSize":"meta","style":{"typography":{"fontWeight":"700","letterSpacing":"0.2em","textTransform":"uppercase"}}} -->
-				<p class="has-on-surface-variant-color has-text-color has-meta-font-size" style="font-weight:700;letter-spacing:0.2em;text-transform:uppercase">System Protocol: Active</p>
+				<p class="has-on-surface-variant-color has-text-color has-meta-font-size" style="font-weight:700;letter-spacing:0.2em;text-transform:uppercase">PHP · GUTENBERG · WOOCOMMERCE</p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -35,17 +35,17 @@ $np_hero_image = esc_url( get_theme_file_uri( 'assets/images/hero.jpg' ) );
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"className":"np-hero-body","textColor":"on-surface-variant","fontSize":"large","style":{"typography":{"fontWeight":"300","lineHeight":"1.625"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-			<p class="np-hero-body has-on-surface-variant-color has-text-color has-large-font-size" style="margin-bottom:var(--wp--preset--spacing--40);font-weight:300;line-height:1.625">Deploying high-performance neural integrations within the WordPress framework. We don't just build sites; we engineer sentient digital infrastructures.</p>
+			<p class="np-hero-body has-on-surface-variant-color has-text-color has-large-font-size" style="margin-bottom:var(--wp--preset--spacing--40);font-weight:300;line-height:1.625">I'm Nikolay — I design and ship WordPress plugins, block themes, and store customizations from the ground up. Stable builds cover FSE theming, checkout UX, and browser tools. Exploring AI-assisted drafting as a side prototype.</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons {"className":"np-hero-ctas","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"},"style":{"spacing":{"blockGap":"16px"}}} -->
 			<div class="wp-block-buttons np-hero-ctas">
 				<!-- wp:button -->
-				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#contact">Initialize Project</a></div>
+				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#contact">Start a Project</a></div>
 				<!-- /wp:button -->
 
 				<!-- wp:button {"className":"is-style-outline"} -->
-				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#work">View Matrix</a></div>
+				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#work">View My Work</a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
