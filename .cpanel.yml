@@ -1,0 +1,13 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/nikwebeu/public_html/wp-content/themes/nikolay-portfolio/
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp -R includes $DEPLOYPATH
+    - /bin/cp -R parts $DEPLOYPATH
+    - /bin/cp -R patterns $DEPLOYPATH
+    - /bin/cp -R templates $DEPLOYPATH
+    - /bin/cp functions.php $DEPLOYPATH
+    - /bin/cp style.css $DEPLOYPATH
+    - /bin/cp theme.json $DEPLOYPATH
