@@ -7,6 +7,75 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Phase 12 — Production Deployment
+
+**Status: COMPLETE** (September 2026)
+
+Scope: production WordPress provisioning, Git-based theme and companion plugin deployment, LocalWP → production project migration, database and media restoration, and production visual verification.
+
+#### Completed (verified)
+
+- Production WordPress provisioned and operational at [https://nikweb.eu](https://nikweb.eu)
+- Theme cPanel deployment configuration added (`.cpanel.yml`, commit `327ffec`)
+- Theme deployed to production through cPanel Git from `/home/nikwebeu/git/nikolay-portfolio` → `/home/nikwebeu/public_html/wp-content/themes/nikolay-portfolio/`
+- Theme **ACTIVE** on production
+- Companion plugin (`nikolay-portfolio-projects` v1.0.2) deployed separately from [nikdjem/nikolay-portfolio-projects](https://github.com/nikdjem/nikolay-portfolio-projects) to `/home/nikwebeu/public_html/wp-content/plugins/nikolay-portfolio-projects/`
+- Companion plugin **ACTIVE** on production
+- Project CPT **VERIFIED** on production
+- Custom selective migration package tested and executed successfully (six projects, featured attachments, hand-audited WebP derivatives)
+- Database and media migration completed — final restoration via **All-in-One WP Migration (AIOWM)**
+- Six published portfolio projects live on production with metadata, categories, and case-study content
+- Production visual verification **PASS** — Work grid and single-project pages render correctly
+
+#### Production workflow documented
+
+- **Code:** LocalWP → Git commit → GitHub → cPanel Git → Production
+- **Content:** WordPress Admin → Production Database
+- **Media:** WordPress Media Library → Production uploads
+- **AIOWM:** backup / migration / restore utility only — not the normal code deployment mechanism and not required for day-to-day project or theme updates
+
+*Phase 12 is complete. Future code changes use Git; future project content changes use WordPress Admin.*
+
+---
+
+## 2026-09-18 — Production migration and deployment milestone
+
+Documentation update recording the completed LocalWP → production migration and the finalized production deployment workflow.
+
+### Documented
+
+- Successful production migration and AIOWM database/media restoration
+- GitHub → cPanel Git → Production code deployment architecture for theme and companion plugin
+- WordPress Admin → Production Database workflow for project and content management
+- All-in-One WP Migration positioned as backup/migration/restore utility, not normal deployment
+- Six published `project` CPT entries available on production
+- Phase 12 marked **COMPLETE** in project documentation
+
+---
+
+### Phase 11 — SEO, Accessibility, and Performance Foundation
+
+**Status: COMPLETE** (committed `28953e3`, August 2026)
+
+#### Added
+
+- Native SEO module (`includes/seo.php`) — titles, meta descriptions, Open Graph, canonical URLs, JSON-LD
+- Project-hero image sizes and audited crop origins for single-project pages
+- Footer dynamic copyright year via `wp_date('Y')`
+- Contact form accessibility and client-side validation improvements
+- Lazy loading and explicit dimensions on homepage imagery
+
+#### Changed
+
+- Footer micro copy — brand and copyright line
+- Homepage hero/about image assets optimized for production weight
+
+#### Verified
+
+- Local SEO, accessibility, and performance audit baseline — Phase 11 closure commit `28953e3`
+
+---
+
 ### Phase 10 — Homepage & Portfolio Refinement
 
 **Status: COMPLETE — Homepage frozen (Phase 10.7)**

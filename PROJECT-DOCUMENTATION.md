@@ -4,8 +4,8 @@
 **Brand:** NIKWEB.EU  
 **Repository:** [nikdjem/nikolay-portfolio](https://github.com/nikdjem/nikolay-portfolio)  
 **Theme path:** `wp-content/themes/nikolay-portfolio`  
-**Theme version:** 0.1.3
-**Last updated:** August 2026 (Phase 10.8B)
+**Theme version:** 0.1.5
+**Last updated:** September 2026 (Phase 12 — production migration complete)
 
 ---
 
@@ -36,22 +36,27 @@ This file is the long-form project record for the NIKWEB.EU portfolio website. I
 | **08** | [Real Project Content & WORK Implementation](#phase-08--real-project-content--work-implementation) | **Complete — WORK implementation** |
 | **09** | [Single Project / Case Study Architecture](#phase-09--single-project--case-study-architecture) | **Complete — Single Project / Case Study Architecture** |
 | **10** | [Homepage & Portfolio Refinement](#phase-10--homepage--portfolio-refinement) | **Complete — Homepage frozen (Phase 10.7)** |
+| **11** | [SEO, Accessibility, and Performance Foundation](#phase-11--seo-accessibility-and-performance-foundation) | **Complete — committed `28953e3`** |
+| **12** | [Production Deployment](#phase-12--production-deployment) | **Complete — code deployed; content and media migrated** |
 
 ---
 
 ## Repository State (Current)
 
-This section records the Git state after Phase 10.8E documentation commit (August 2026).
+This section records the Git and production state after Phase 12 production migration completion (September 2026).
 
 | Item | Value |
 |------|-------|
-| **Latest committed theme code** | `88bc077` — `Finalize homepage: Hero, About, Stack, Build Focus, footer links` |
-| **Latest documentation commit** | `0e1098d` — `docs: sync Phase 10 homepage finalization` |
-| **Phase 10 repository state** | Phase 10 theme changes were committed in `88bc077` and Phase 10 documentation changes were committed in `0e1098d`. The main branch is synchronized with origin/main. |
+| **Latest committed theme code** | `327ffec` — `chore: add cPanel deployment configuration` |
+| **Phase 11 theme commit** | `28953e3` — `feat: finalize Phase 11 SEO, accessibility, and performance foundation` |
 | **Branch** | `main` (synchronized with `origin/main`) |
+| **Production URL** | [https://nikweb.eu](https://nikweb.eu) — **ACTIVE** |
 | **Phase 08 WORK** | **Complete** |
 | **Phase 09** | **Complete — Single Project / Case Study Architecture** |
 | **Phase 10** | **Complete — Homepage frozen after Phase 10.7** |
+| **Phase 11** | **Complete — SEO, accessibility, performance foundation** |
+| **Phase 12** | **Complete — production deployment and migration** |
+| **Production projects** | **6 published** `project` posts with Featured Images, metadata, and case-study content |
 
 ### Important Phase 09 theme commits (Verified)
 
@@ -69,7 +74,7 @@ This section records the Git state after Phase 10.8E documentation commit (Augus
 |------|--------|
 | `screenshot.png` | Untracked — not part of theme repository |
 
-Six published real `project` posts with Featured Images are live in the Local WordPress database. Featured Images are Media Library assets — **not** committed to the theme repository.
+Six published real `project` posts with Featured Images are live on production at [https://nikweb.eu](https://nikweb.eu). Featured Images are Media Library assets in the production `wp-content/uploads/` directory — **not** committed to the theme repository.
 
 **Case-study architecture:** All six project case studies are implemented in the Local WordPress database with metadata-driven UI, reusable patterns, and final presentation refinements committed in `71eff80` and `e5016f3`.
 
@@ -145,7 +150,7 @@ These uncommitted refinements represent the **current local development state** 
 | **PHP 8.1+** | Theme runtime (`style.css` header) |
 | **Local WP** | Local development [REQUIRES VERIFICATION for exact site configuration] |
 
-**Companion plugin:** Separate repository `https://github.com/nikdjem/nikolay-portfolio-projects.git`, commit `54c163e` — registers `project` CPT and `project_category` taxonomy for the Work section Query Loop.
+**Companion plugin:** Separate repository [nikdjem/nikolay-portfolio-projects](https://github.com/nikdjem/nikolay-portfolio-projects) — v1.0.2 — registers `project` CPT, `project_category` taxonomy, and project metadata for the Work section Query Loop. Deployed and **ACTIVE** on production; six portfolio projects migrated and published.
 
 **Original scope (implemented through Phase 06):**
 
@@ -168,7 +173,7 @@ These uncommitted refinements represent the **current local development state** 
 - Exact Local WP site name and configuration beyond workspace path pattern
 - Original audience/brief before Stitch export
 - Whether NIKWEB.EU was the intended brand from project inception (brand filter is uncommitted; committed code uses core Site Title block)
-- Production hosting and domain plan
+- Production hosting operational details beyond verified cPanel paths (Phase 12)
 - Exact WordPress patch version (7.0.4 cited in development notes, not stored in Git)
 
 ### Known Documentation Gaps
@@ -1575,6 +1580,185 @@ At Phase 10.8B closure, the following theme changes were prepared locally and pe
 ### Phase 10 closure
 
 **Phase 10 overall:** **COMPLETE** — homepage content, Build Focus, footer links, and visual/UX freeze are finished. Documentation synchronized in Phase 10.8B and committed in `0e1098d`.
+
+---
+
+# Phase 11 — SEO, Accessibility, and Performance Foundation
+
+**Status:** **COMPLETE** — committed `28953e3` (August 2026)
+
+Phase 11 delivered the native SEO module, accessibility refinements, performance-oriented image handling, and footer copyright behavior without adding third-party SEO plugins.
+
+### Verified deliverables
+
+| Area | Implementation |
+|------|----------------|
+| SEO | `includes/seo.php` — titles, meta descriptions, Open Graph, canonical URLs, JSON-LD |
+| Images | Project-hero sizes and audited crop origins in `functions.php`; optimized hero/about assets |
+| Accessibility | Contact form ARIA and validation script; image lazy loading and dimensions |
+| Footer | Dynamic copyright year via `wp_date('Y')` in `functions.php` / `parts/footer.html` |
+
+Local baseline verified before Phase 12 production work.
+
+---
+
+# Phase 12 — Production Deployment
+
+**Status:** **COMPLETE** — production WordPress setup, code deployment, content migration, media migration, restoration, and visual verification **COMPLETE**
+
+Phase 12 delivered production hosting at [https://nikweb.eu](https://nikweb.eu), Git-based theme and plugin deployment, LocalWP → production project migration, and final database/media restoration. The portfolio is **operational on production** — six published projects render on the homepage Work grid and on single-project case-study pages.
+
+### Production architecture (ongoing workflows)
+
+Phase 12 established two separate paths. **Do not conflate them.**
+
+#### Code / development
+
+Applies to: WordPress theme, companion plugin, PHP, CSS, JavaScript, templates, parts, patterns, `theme.json`, plugin functionality, and all future code changes.
+
+```
+LocalWP
+   ↓
+Git commit
+   ↓
+GitHub
+   ↓
+cPanel Git
+   ↓
+Production
+```
+
+#### Content / database
+
+Applies to: Projects, project content, project categories, project meta, pages, normal WordPress content, and settings intentionally managed in WordPress Admin.
+
+```
+WordPress Admin
+   ↓
+Production Database
+```
+
+#### Media
+
+Applies to: Featured images, attachment files, and uploads added through the Media Library.
+
+```
+WordPress Media Library
+   ↓
+Production uploads
+```
+
+**Normal future content changes do not require GitHub deployment.** Adding, editing, or removing a project is done in WordPress Admin on production.
+
+### Two repositories (code deployment)
+
+| Repository | Role | Production path |
+|------------|------|-----------------|
+| [nikdjem/nikolay-portfolio](https://github.com/nikdjem/nikolay-portfolio) | Theme | `/home/nikwebeu/public_html/wp-content/themes/nikolay-portfolio/` |
+| [nikdjem/nikolay-portfolio-projects](https://github.com/nikdjem/nikolay-portfolio-projects) | Companion plugin v1.0.2 | `/home/nikwebeu/public_html/wp-content/plugins/nikolay-portfolio-projects/` |
+
+### cPanel Git deployment (theme)
+
+| Item | Value |
+|------|-------|
+| cPanel clone path | `/home/nikwebeu/git/nikolay-portfolio` |
+| Deployment config | `.cpanel.yml` (commit `327ffec`) |
+| Deploy method | cPanel Git — explicit copy of runtime theme paths only |
+| Deploy target | `/home/nikwebeu/public_html/wp-content/themes/nikolay-portfolio/` |
+
+The companion plugin uses its own repository and `.cpanel.yml` (plugin repo commit `8283411`). It is **not** deployed from the theme repository.
+
+### Production migration (September 2026)
+
+The LocalWP → production content migration used a **custom selective migration package** (six published `project` CPT entries, featured attachments, and hand-audited WebP derivatives). The package was preflight-tested and executed successfully on production.
+
+Final database and media restoration was completed using **All-in-One WP Migration (AIOWM)**. The AIOWM restore completed successfully. Production now visibly renders the portfolio projects correctly.
+
+| Migration step | Status |
+|----------------|--------|
+| Production WordPress installation | **COMPLETE** |
+| Custom migration package dry-run / execute | **COMPLETE** |
+| Six project posts on production | **COMPLETE** |
+| Project metadata and categories | **COMPLETE** |
+| Featured images and attachment media | **COMPLETE** |
+| AIOWM database + media restoration | **COMPLETE** |
+| Production visual verification | **COMPLETE** |
+
+**Important distinction:** AIOWM was used for **migration/restoration of the database and media**. Theme and plugin **files were not intended to be maintained through AIOWM**. Theme and plugin code remain **Git-based** (GitHub → cPanel Git → Production).
+
+### All-in-One WP Migration — role and limits
+
+**AIOWM is not part of the normal daily development or deployment workflow.**
+
+| Use case | Normal workflow | AIOWM required? |
+|----------|-----------------|-----------------|
+| Theme / plugin code change | GitHub → cPanel Git → Production | **No** |
+| CSS / JS / PHP change | GitHub → cPanel Git → Production | **No** |
+| Add a new project | WordPress Admin → Production DB | **No** |
+| Edit or remove a project | WordPress Admin → Production DB | **No** |
+| Upload a featured image | WordPress Media Library → Production uploads | **No** |
+| Full-site backup | AIOWM export | Optional utility |
+| Disaster recovery / site restore | AIOWM import | Optional utility |
+| Initial LocalWP → production migration | Custom package + AIOWM restore | **Completed (one-time)** |
+
+Do **not** state that AIOWM is mandatory for future content updates.
+
+### Project management workflow (production)
+
+#### Adding a new project
+
+```
+WordPress Admin → Projects → Add New
+→ enter content / meta / category / featured image → Publish
+```
+
+No AIOWM required. No GitHub commit required.
+
+#### Removing an old project
+
+```
+WordPress Admin → Projects → Trash → Delete Permanently (if required)
+```
+
+No AIOWM required. No GitHub commit required.
+
+#### Changing project functionality or structure
+
+Examples: project template, Work cards, Project CPT logic, metadata fields, filtering, PHP, CSS, JavaScript.
+
+```
+LocalWP → code change → Git commit → GitHub → cPanel Git → Production
+```
+
+### Production status matrix (final)
+
+| Area | Status | Notes |
+|------|--------|-------|
+| WordPress on nikweb.eu | **COMPLETE** | Provisioned and operational |
+| Theme code deployment | **COMPLETE** | cPanel Git, commit `327ffec` |
+| Theme activation | **COMPLETE** | `nikolay-portfolio` active |
+| Companion plugin code deployment | **COMPLETE** | Separate repo; v1.0.2 |
+| Companion plugin activation | **COMPLETE** | Plugin active |
+| Project CPT availability | **COMPLETE** | Registered on production |
+| Project content on production | **COMPLETE** | Six published projects |
+| Database migration | **COMPLETE** | Custom migration package + AIOWM restore |
+| Uploads / media migration | **COMPLETE** | Featured images and derivatives |
+| Production visual verification | **COMPLETE** | Work grid and case-study pages render correctly |
+
+### Production project inventory
+
+The six LocalWP projects are published on production with the same slugs, metadata, and case-study content established in Phases 08–09:
+
+| # | Project | Category | Editorial status |
+|---|---------|----------|------------------|
+| 1 | PDF Carousel Footer WordPress Plugin | interface | LIVE |
+| 2 | TablePress Responsive | interface | LIVE |
+| 3 | NIKWEB.EU Portfolio — FSE Block Theme | interface | STABLE |
+| 4 | WooCommerce Checkout Simplifier | commerce | STABLE |
+| 5 | Barcode Generator & Reader | interface | STABLE |
+| 6 | EcoWriter AI Agent | intelligence | **IN PROGRESS** |
+
+EcoWriter remains **IN PROGRESS** as the product/editorial status label on production. Do not describe EcoWriter as LIVE, COMPLETE, or PRODUCTION.
 
 ---
 

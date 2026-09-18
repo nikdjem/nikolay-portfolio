@@ -14,12 +14,13 @@ Single-page portfolio homepage with anchored sections:
 | About | `#about` | Bio, image, GitHub link |
 | Work | `#work` | Project Query Loop (3-column cards) |
 | Stack | `#stack` | Technology grid |
-| Testimonials | — | Client quotes |
+| Build Focus | — | Build scope tiles (replaced Testimonials in Phase 10) |
 | Contact | `#contact` | REST-powered contact form |
 
 **Brand:** NIKWEB.EU  
 **Primary CTA:** Hire Me  
-**Theme version:** 0.1.3
+**Theme version:** 0.1.5
+**Production URL:** [https://nikweb.eu](https://nikweb.eu) — theme, companion plugin, and six portfolio projects **ACTIVE**
 
 ## Tech Stack
 
@@ -27,7 +28,45 @@ Single-page portfolio homepage with anchored sections:
 - PHP 8.1+
 - Block patterns + `theme.json` design tokens
 - Space Grotesk (self-hosted)
-- Companion plugin: `nikolay-portfolio-projects` (`project` CPT)
+- Companion plugin: [`nikolay-portfolio-projects`](https://github.com/nikdjem/nikolay-portfolio-projects) v1.0.2 (`project` CPT) — separate repository
+
+## Production Status
+
+| Item | Status |
+|------|--------|
+| WordPress at [nikweb.eu](https://nikweb.eu) | **ACTIVE** |
+| Theme code deployment (cPanel Git) | **COMPLETE** (`327ffec`) |
+| Companion plugin deployment | **COMPLETE** (separate repo) |
+| Project CPT on production | **VERIFIED** |
+| Six portfolio projects on production | **COMPLETE** |
+| Database / media migration | **COMPLETE** (custom migration package + AIOWM restore) |
+| Production visual verification | **COMPLETE** |
+
+## Production Deployment Workflow
+
+**Code** (theme, companion plugin, PHP, CSS, JS, templates, patterns):
+
+```
+LocalWP → Git commit → GitHub → cPanel Git → Production
+```
+
+**Content** (projects, pages, categories, meta, settings managed in admin):
+
+```
+WordPress Admin → Production Database
+```
+
+**Media** (featured images, uploads):
+
+```
+WordPress Media Library → Production uploads
+```
+
+**All-in-One WP Migration (AIOWM):** backup / migration / restore utility only — not part of the normal code deployment workflow and not required for day-to-day project or theme updates.
+
+Normal content changes (add, edit, or remove a project) are made in **WordPress Admin** on production. They do **not** require a GitHub commit or an AIOWM export/import.
+
+See [PROJECT-DOCUMENTATION.md](./PROJECT-DOCUMENTATION.md) Phase 12 for the full production architecture and project-management workflow.
 
 ## Repository Structure
 
@@ -48,6 +87,8 @@ Single-page portfolio homepage with anchored sections:
 2. Activate the theme in WordPress.
 3. Install and activate the `nikolay-portfolio-projects` companion plugin for Work section content.
 4. Set a static front page using the `front-page` template (or let WordPress use `front-page.html` automatically).
+
+Production theme files deploy through cPanel Git using `.cpanel.yml` (see [PROJECT-DOCUMENTATION.md](./PROJECT-DOCUMENTATION.md) Phase 12). Project content and media are managed on production through WordPress Admin after the completed LocalWP → production migration.
 
 ## Documentation
 
