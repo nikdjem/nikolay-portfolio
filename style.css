@@ -313,7 +313,8 @@ html {
 	box-sizing: border-box;
 	width: 100%;
 	max-width: none;
-	border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--outline) 10%, transparent);
+	/* Phase 13 deployment test */
+	border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--outline) 12%, transparent);
 	border-radius: 0;
 }
 
