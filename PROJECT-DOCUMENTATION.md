@@ -5,7 +5,7 @@
 **Repository:** [nikdjem/nikolay-portfolio](https://github.com/nikdjem/nikolay-portfolio)  
 **Theme path:** `wp-content/themes/nikolay-portfolio`  
 **Theme version:** 0.1.5
-**Last updated:** September 2026 (Phase 12 — production migration complete)
+**Last updated:** September 2026 (Phase 13 — deployment workflow verified)
 
 ---
 
@@ -38,16 +38,18 @@ This file is the long-form project record for the NIKWEB.EU portfolio website. I
 | **10** | [Homepage & Portfolio Refinement](#phase-10--homepage--portfolio-refinement) | **Complete — Homepage frozen (Phase 10.7)** |
 | **11** | [SEO, Accessibility, and Performance Foundation](#phase-11--seo-accessibility-and-performance-foundation) | **Complete — committed `28953e3`** |
 | **12** | [Production Deployment](#phase-12--production-deployment) | **Complete — code deployed; content and media migrated** |
+| **13** | [Production Finalization & Deployment Workflow](#phase-13--production-finalization--deployment-workflow) | **Complete — GitHub → cPanel → Production verified** |
 
 ---
 
 ## Repository State (Current)
 
-This section records the Git and production state after Phase 12 production migration completion (September 2026).
+This section records the Git and production state after Phase 13 deployment workflow verification (September 2026).
 
 | Item | Value |
 |------|-------|
-| **Latest committed theme code** | `327ffec` — `chore: add cPanel deployment configuration` |
+| **Latest committed theme code** | `0dcb5be` — `revert: remove Phase 13 deployment test` |
+| **Phase 13 deployment test** | `648d19e` — forward deploy verified; `0dcb5be` — revert deploy verified |
 | **Phase 11 theme commit** | `28953e3` — `feat: finalize Phase 11 SEO, accessibility, and performance foundation` |
 | **Branch** | `main` (synchronized with `origin/main`) |
 | **Production URL** | [https://nikweb.eu](https://nikweb.eu) — **ACTIVE** |
@@ -56,6 +58,7 @@ This section records the Git and production state after Phase 12 production migr
 | **Phase 10** | **Complete — Homepage frozen after Phase 10.7** |
 | **Phase 11** | **Complete — SEO, accessibility, performance foundation** |
 | **Phase 12** | **Complete — production deployment and migration** |
+| **Phase 13** | **Complete — end-to-end Git deployment workflow verified** |
 | **Production projects** | **6 published** `project` posts with Featured Images, metadata, and case-study content |
 
 ### Important Phase 09 theme commits (Verified)
@@ -1759,6 +1762,123 @@ The six LocalWP projects are published on production with the same slugs, metada
 | 6 | EcoWriter AI Agent | intelligence | **IN PROGRESS** |
 
 EcoWriter remains **IN PROGRESS** as the product/editorial status label on production. Do not describe EcoWriter as LIVE, COMPLETE, or PRODUCTION.
+
+---
+
+# Phase 13 — Production Finalization & Deployment Workflow
+
+**Status:** **COMPLETE**
+**Date:** 2026-09-19
+
+Phase 13 verified the end-to-end **code deployment workflow** on production. Phase 12 completed migration and initial deployment; Phase 13 confirmed that ongoing theme code changes deploy correctly through GitHub and cPanel Git — including forward deployment and revert deployment.
+
+### Verified code deployment workflow
+
+```
+LocalWP
+   ↓
+Git commit
+   ↓
+GitHub
+   ↓
+cPanel Pull / Update from Remote
+   ↓
+cPanel Deploy HEAD Commit
+   ↓
+Production
+```
+
+This workflow was successfully tested end-to-end on 2026-09-19.
+
+### Forward deployment test (Verified)
+
+| Item | Value |
+|------|-------|
+| **Commit** | `648d19e` — `test: verify GitHub to cPanel deployment` |
+| **File** | `style.css` |
+| **Selector** | `.np-site-footer` |
+| **Change** | Footer border opacity `10%` → `12%` in `color-mix(...)` |
+| **Comment** | `/* Phase 13 deployment test */` |
+
+The commit was pushed to GitHub. cPanel successfully pulled the commit and deployed the HEAD commit to production. Production was checked and the deployed change was confirmed on the live site.
+
+### Revert deployment test (Verified)
+
+| Item | Value |
+|------|-------|
+| **Commit** | `0dcb5be` — `revert: remove Phase 13 deployment test` |
+| **Restored** | Footer border opacity `12%` → `10%`; temporary comment removed |
+
+The revert commit was pushed to GitHub. cPanel successfully pulled the new HEAD and deployed the revert to production. Production was checked again and confirmed operational after the revert.
+
+**Result:** Both **forward deployment** and **rollback/revert deployment** were successfully verified.
+
+### Final code deployment model
+
+#### Code
+
+Applies to: theme code, companion plugin code, PHP, CSS, JavaScript, templates, parts, patterns, `theme.json`, and future functionality changes.
+
+```
+LocalWP → Git commit → GitHub → cPanel Git → Production
+```
+
+#### Content
+
+Applies to normal content management, including Projects.
+
+```
+WordPress Admin → Production Database
+```
+
+#### Media
+
+```
+WordPress Media Library → Production uploads
+```
+
+#### AIOWM
+
+Backup / migration / restore utility only. **Not** part of the normal daily code deployment workflow. **Not** required for normal Project management.
+
+### Project management rules (production)
+
+**Adding a project:**
+
+```
+WordPress Admin → Projects → Add New
+→ enter project content / meta / category / featured image → Publish
+```
+
+No GitHub deployment required. No AIOWM required.
+
+**Removing a project:**
+
+```
+WordPress Admin → Projects → Trash → Delete Permanently (when appropriate)
+```
+
+No GitHub deployment required. No AIOWM required.
+
+**Changing project functionality or structure:**
+
+Examples: project template changes, Work card changes, CPT logic, project metadata functionality, filtering, PHP, CSS, JavaScript.
+
+```
+LocalWP → code change → Git commit → GitHub → cPanel → Production
+```
+
+### Phase 13 closure
+
+| Area | Status |
+|------|--------|
+| GitHub → cPanel pull | **VERIFIED** |
+| cPanel HEAD deploy to production | **VERIFIED** |
+| Forward code deployment | **VERIFIED** (`648d19e`) |
+| Revert / rollback deployment | **VERIFIED** (`0dcb5be`) |
+| Production operational after revert | **VERIFIED** |
+
+Phase 12 remains **COMPLETE** for production migration and initial deployment. Phase 13 adds **verified** ongoing Git-based code deployment on top of that completed foundation.
 
 ---
 

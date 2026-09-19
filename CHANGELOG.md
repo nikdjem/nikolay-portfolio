@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Phase 13 — Production Finalization & Deployment Workflow
+
+**Status: COMPLETE** (2026-09-19)
+
+Scope: end-to-end verification of the GitHub → cPanel → Production code deployment workflow, including forward deployment and revert deployment.
+
+#### Verified
+
+- End-to-end workflow: LocalWP → Git commit → GitHub → cPanel Pull / Update from Remote → cPanel Deploy HEAD Commit → Production
+- Forward deployment verified with commit `648d19e` (`test: verify GitHub to cPanel deployment`) — minimal CSS test in `style.css` (`.np-site-footer` border opacity `10%` → `12%`)
+- Revert deployment verified with commit `0dcb5be` (`revert: remove Phase 13 deployment test`) — footer rule restored to `10%`; temporary comment removed
+- Production confirmed operational after both deploy and revert
+- Normal production code workflow is **Git-based**
+- AIOWM is **not** part of the daily code deployment workflow
+
+*Phase 13 is complete. Ongoing code changes use Git; ongoing project content changes use WordPress Admin.*
+
+---
+
 ### Phase 12 — Production Deployment
 
 **Status: COMPLETE** (September 2026)
@@ -35,6 +54,20 @@ Scope: production WordPress provisioning, Git-based theme and companion plugin d
 - **AIOWM:** backup / migration / restore utility only — not the normal code deployment mechanism and not required for day-to-day project or theme updates
 
 *Phase 12 is complete. Future code changes use Git; future project content changes use WordPress Admin.*
+
+---
+
+## 2026-09-19 — Phase 13 deployment workflow verification
+
+Documentation update recording the completed end-to-end Git deployment verification.
+
+### Documented
+
+- Phase 13 marked **COMPLETE**
+- Forward deployment verified (`648d19e`)
+- Revert deployment verified (`0dcb5be`)
+- GitHub → cPanel → Production workflow documented as the normal code deployment path
+- AIOWM remains backup/migration/restore utility only — not required for Project management or code updates
 
 ---
 

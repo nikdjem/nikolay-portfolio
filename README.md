@@ -41,6 +41,7 @@ Single-page portfolio homepage with anchored sections:
 | Six portfolio projects on production | **COMPLETE** |
 | Database / media migration | **COMPLETE** (custom migration package + AIOWM restore) |
 | Production visual verification | **COMPLETE** |
+| GitHub → cPanel → Production code deploy | **VERIFIED** (Phase 13, 2026-09-19) |
 
 ## Production Deployment Workflow
 
@@ -66,7 +67,7 @@ WordPress Media Library → Production uploads
 
 Normal content changes (add, edit, or remove a project) are made in **WordPress Admin** on production. They do **not** require a GitHub commit or an AIOWM export/import.
 
-See [PROJECT-DOCUMENTATION.md](./PROJECT-DOCUMENTATION.md) Phase 12 for the full production architecture and project-management workflow.
+See [PROJECT-DOCUMENTATION.md](./PROJECT-DOCUMENTATION.md) Phases 12–13 for the full production architecture, migration record, and verified deployment workflow.
 
 ## Repository Structure
 
@@ -88,7 +89,7 @@ See [PROJECT-DOCUMENTATION.md](./PROJECT-DOCUMENTATION.md) Phase 12 for the full
 3. Install and activate the `nikolay-portfolio-projects` companion plugin for Work section content.
 4. Set a static front page using the `front-page` template (or let WordPress use `front-page.html` automatically).
 
-Production theme files deploy through cPanel Git using `.cpanel.yml` (see [PROJECT-DOCUMENTATION.md](./PROJECT-DOCUMENTATION.md) Phase 12). Project content and media are managed on production through WordPress Admin after the completed LocalWP → production migration.
+Production theme files deploy through cPanel Git using `.cpanel.yml` (see [PROJECT-DOCUMENTATION.md](./PROJECT-DOCUMENTATION.md) Phases 12–13). Project content and media are managed on production through WordPress Admin.
 
 ## Documentation
 
