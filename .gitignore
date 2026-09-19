@@ -1,0 +1,2 @@
+# Local backup exports (database dumps, migration artifacts) — not version-controlled
+backup/
