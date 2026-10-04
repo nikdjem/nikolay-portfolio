@@ -5,7 +5,7 @@
 **Repository:** [nikdjem/nikolay-portfolio](https://github.com/nikdjem/nikolay-portfolio)  
 **Theme path:** `wp-content/themes/nikolay-portfolio`  
 **Theme version:** 0.1.5
-**Last updated:** September 2026 (Phase 13 — deployment workflow verified)
+**Last updated:** October 2026 (Phase 13 — deployment workflow and production performance verified)
 
 ---
 
@@ -1813,6 +1813,18 @@ The revert commit was pushed to GitHub. cPanel successfully pulled the new HEAD 
 
 **Result:** Both **forward deployment** and **rollback/revert deployment** were successfully verified.
 
+### Phase 13 / Performance Verification
+
+Verified production performance on [https://nikweb.eu](https://nikweb.eu) after resolving the server response issue:
+
+| Metric | Initial | Verified |
+|--------|---------|----------|
+| TTFB | ~4.08 s | ~110 ms |
+| HTML request | ~4.73 s | ~144 ms |
+| **Status** | — | **PASS** |
+
+Production performance verification showed a major reduction in server response time and HTML request time after the performance issue was resolved.
+
 ### Final code deployment model
 
 #### Code
@@ -1877,6 +1889,7 @@ LocalWP → code change → Git commit → GitHub → cPanel → Production
 | Forward code deployment | **VERIFIED** (`648d19e`) |
 | Revert / rollback deployment | **VERIFIED** (`0dcb5be`) |
 | Production operational after revert | **VERIFIED** |
+| Production performance (TTFB / HTML request) | **PASS** (initial ~4.08 s / ~4.73 s → verified ~110 ms / ~144 ms) |
 
 Phase 12 remains **COMPLETE** for production migration and initial deployment. Phase 13 adds **verified** ongoing Git-based code deployment on top of that completed foundation.
 

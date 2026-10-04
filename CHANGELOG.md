@@ -21,6 +21,7 @@ Scope: end-to-end verification of the GitHub → cPanel → Production code depl
 - Production confirmed operational after both deploy and revert
 - Normal production code workflow is **Git-based**
 - AIOWM is **not** part of the daily code deployment workflow
+- Production performance verification on nikweb.eu **PASS** — TTFB ~4.08 s → ~110 ms; HTML request ~4.73 s → ~144 ms
 
 *Phase 13 is complete. Ongoing code changes use Git; ongoing project content changes use WordPress Admin.*
 
@@ -54,6 +55,16 @@ Scope: production WordPress provisioning, Git-based theme and companion plugin d
 - **AIOWM:** backup / migration / restore utility only — not the normal code deployment mechanism and not required for day-to-day project or theme updates
 
 *Phase 12 is complete. Future code changes use Git; future project content changes use WordPress Admin.*
+
+---
+
+## 2026-10-04 — Phase 13 production performance verification
+
+Documentation update recording verified production response times on nikweb.eu.
+
+### Documented
+
+- Phase 13 performance verification **PASS** (TTFB and HTML request times before and after issue resolution)
 
 ---
 
