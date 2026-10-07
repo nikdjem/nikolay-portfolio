@@ -79,6 +79,20 @@ html {
 }
 
 /*
+ * Back-to-top fragment target — in-flow anchor at the document start.
+ * Must not live on the fixed header; fragment navigation targets fixed elements poorly.
+ */
+.np-top-anchor {
+	display: block;
+	width: 1px;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+/*
  * Header template part — floating glass navigation panel (Phase 09.7.5B).
  * Inset from viewport edges; glass on ::before keeps mobile overlay unclipped.
  */
