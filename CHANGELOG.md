@@ -58,6 +58,25 @@ Scope: production WordPress provisioning, Git-based theme and companion plugin d
 
 ---
 
+## 2026-10-07 — Back to Top footer control
+
+Footer control to return visitors to the top of the page; native anchor implementation with accessibility support; navigation fix verified locally and on production.
+
+### Added
+
+- Back to Top footer control — `href="#top"`, `aria-label="Back to top"`, visible `↑` arrow; CSS smooth scrolling with reduced-motion respected; no JavaScript required for navigation
+
+### Fixed
+
+- Fragment target moved to an in-flow `#top` anchor before the fixed header (`83741b1` — `fix: repair back to top navigation`); initial implementation `503752c` did not scroll reliably because `#top` was on the fixed header
+
+### Verified
+
+- LocalWP: mouse and keyboard (Tab → Enter); page returns to top
+- Production: deployed via normal Git workflow; **PASS** on [https://nikweb.eu](https://nikweb.eu); no AIOWM or database/content changes
+
+---
+
 ## 2026-10-04 — Phase 13 production performance verification
 
 Documentation update recording verified production response times on nikweb.eu.

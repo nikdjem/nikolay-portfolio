@@ -5,7 +5,7 @@
 **Repository:** [nikdjem/nikolay-portfolio](https://github.com/nikdjem/nikolay-portfolio)  
 **Theme path:** `wp-content/themes/nikolay-portfolio`  
 **Theme version:** 0.1.5
-**Last updated:** October 2026 (Phase 13 — deployment workflow and production performance verified)
+**Last updated:** October 2026 (Phase 13 complete; Back to Top footer control verified on production)
 
 ---
 
@@ -44,11 +44,11 @@ This file is the long-form project record for the NIKWEB.EU portfolio website. I
 
 ## Repository State (Current)
 
-This section records the Git and production state after Phase 13 deployment workflow verification (September 2026).
+This section records the Git and production state after Phase 13 deployment workflow verification and subsequent theme enhancements (October 2026).
 
 | Item | Value |
 |------|-------|
-| **Latest committed theme code** | `0dcb5be` — `revert: remove Phase 13 deployment test` |
+| **Latest committed theme code** | `83741b1` — `fix: repair back to top navigation` |
 | **Phase 13 deployment test** | `648d19e` — forward deploy verified; `0dcb5be` — revert deploy verified |
 | **Phase 11 theme commit** | `28953e3` — `feat: finalize Phase 11 SEO, accessibility, and performance foundation` |
 | **Branch** | `main` (synchronized with `origin/main`) |
@@ -59,6 +59,7 @@ This section records the Git and production state after Phase 13 deployment work
 | **Phase 11** | **Complete — SEO, accessibility, performance foundation** |
 | **Phase 12** | **Complete — production deployment and migration** |
 | **Phase 13** | **Complete — end-to-end Git deployment workflow verified** |
+| **Back to Top footer control** | **Complete — local and production verified** (`83741b1`) |
 | **Production projects** | **6 published** `project` posts with Featured Images, metadata, and case-study content |
 
 ### Important Phase 09 theme commits (Verified)
@@ -1892,6 +1893,46 @@ LocalWP → code change → Git commit → GitHub → cPanel → Production
 | Production performance (TTFB / HTML request) | **PASS** (initial ~4.08 s / ~4.73 s → verified ~110 ms / ~144 ms) |
 
 Phase 12 remains **COMPLETE** for production migration and initial deployment. Phase 13 adds **verified** ongoing Git-based code deployment on top of that completed foundation.
+
+### Back to Top footer control
+
+**Status:** **COMPLETE** (2026-10-07)
+**Production verified:** [https://nikweb.eu](https://nikweb.eu)
+
+Small post–Phase 13 theme enhancement: a footer control that returns the visitor to the top of the page using native in-page navigation (no JavaScript).
+
+#### Implementation
+
+| Item | Detail |
+|------|--------|
+| **Control** | Native anchor link in the site footer — visible `↑` arrow |
+| **Link** | `href="#top"` with `aria-label="Back to top"` |
+| **Scrolling** | CSS `scroll-behavior: smooth` on `html`; `prefers-reduced-motion: reduce` disables forced smooth scrolling |
+| **JavaScript** | **Not required** for navigation |
+
+#### Architecture
+
+The `#top` fragment target is an **in-flow** anchor (`<span id="top" class="np-top-anchor">`) placed **before** the fixed `.np-site-header` in the header template part. The fixed header itself is **not** the fragment target.
+
+#### Git history and fix
+
+| Commit | Role |
+|--------|------|
+| `503752c` — `feat: add back to top footer control` | Initial footer link and first `#top` placement |
+| `83741b1` — `fix: repair back to top navigation` | **Final functional implementation** |
+
+**Bug (LocalWP QA):** After `503752c`, the control was visible but clicking did not return the page to the top.
+
+**Root cause:** `id="top"` was on the **fixed** site header (`position: fixed`). Native fragment navigation does not reliably scroll the document when the target is fixed.
+
+**Fix:** Move `#top` to the in-flow anchor before the fixed header (`83741b1`).
+
+#### Verification
+
+| Environment | Result |
+|-------------|--------|
+| **LocalWP** | **PASS** — mouse click and keyboard Tab → Enter; page returns to top; shared header/footer behavior confirmed on homepage and single-project templates as applicable |
+| **Production** | **PASS** — deployed through normal Git workflow (GitHub → cPanel); Back to Top works on nikweb.eu; no AIOWM; no database or content changes |
 
 ---
 
