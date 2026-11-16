@@ -31,18 +31,18 @@ if ( $np_post_id && function_exists( 'np_projects_get_status_label' ) ) {
 			$np_srcset = array();
 
 			if ( $np_hero_mobile ) {
-				$np_srcset[] = esc_url( $np_hero_mobile[0] ) . ' 780w';
+				$np_srcset[] = $np_hero_mobile[0] . ' 780w';
 			}
 
-			$np_srcset[] = esc_url( $np_hero[0] ) . ' 1152w';
+			$np_srcset[] = $np_hero[0] . ' 1152w';
 
 			if ( $np_hero_2x ) {
-				$np_srcset[] = esc_url( $np_hero_2x[0] ) . ' 2304w';
+				$np_srcset[] = $np_hero_2x[0] . ' 2304w';
 			}
 
 			$np_image_attr = array(
 				'class'         => 'attachment-project-hero size-project-hero wp-post-image',
-				'src'           => esc_url( $np_hero[0] ),
+				'src'           => $np_hero[0],
 				'width'         => (string) $np_hero[1],
 				'height'        => (string) $np_hero[2],
 				'srcset'        => implode( ', ', $np_srcset ),

@@ -9,8 +9,7 @@
  * @package Nikolay_Portfolio
  */
 
-$np_about_image = esc_url( get_theme_file_uri( 'assets/images/about.jpg' ) );
-$np_github_repo = esc_url( 'https://github.com/nikdjem' );
+$np_about_image = get_theme_file_uri( 'assets/images/about.jpg' );
 ?>
 <!-- wp:group {"tagName":"section","anchor":"about","align":"full","className":"np-about","backgroundColor":"surface-container-lowest","style":{"border":{"radius":"0px"},"spacing":{"padding":{"top":"var:preset|spacing|96","bottom":"var:preset|spacing|96","left":"var:preset|spacing|32","right":"var:preset|spacing|32"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1152px"}} -->
 <section class="wp-block-group alignfull np-about has-surface-container-lowest-background-color has-background" id="about" style="border-radius:0px;margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--96);padding-right:var(--wp--preset--spacing--32);padding-bottom:var(--wp--preset--spacing--96);padding-left:var(--wp--preset--spacing--32)">
@@ -43,7 +42,7 @@ $np_github_repo = esc_url( 'https://github.com/nikdjem' );
 				<!-- wp:buttons {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"},"style":{"spacing":{"blockGap":"16px"}}} -->
 				<div class="wp-block-buttons">
 					<!-- wp:button -->
-					<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo $np_github_repo; ?>" target="_blank" rel="noopener noreferrer">GitHub Repository</a></div>
+					<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://github.com/nikdjem" target="_blank" rel="noopener noreferrer">GitHub Repository</a></div>
 					<!-- /wp:button -->
 				</div>
 				<!-- /wp:buttons -->
@@ -57,7 +56,7 @@ $np_github_repo = esc_url( 'https://github.com/nikdjem' );
 			<!-- wp:group {"className":"np-about-media","style":{"border":{"radius":"0px"}},"layout":{"type":"default"}} -->
 			<div class="wp-block-group np-about-media" style="border-radius:0px">
 				<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"np-about-image","style":{"border":{"radius":"0px"}}} -->
-				<figure class="wp-block-image size-full has-custom-border np-about-image"><img src="<?php echo $np_about_image; ?>" alt="Futuristic high-tech computer hardware components glowing with violet light and intricate circuitry details" style="border-radius:0px"/></figure>
+				<figure class="wp-block-image size-full has-custom-border np-about-image"><img src="<?php echo esc_url( $np_about_image ); ?>" alt="Futuristic high-tech computer hardware components glowing with violet light and intricate circuitry details" style="border-radius:0px"/></figure>
 				<!-- /wp:image -->
 			</div>
 			<!-- /wp:group -->

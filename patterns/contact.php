@@ -9,8 +9,8 @@
  * @package Nikolay_Portfolio
  */
 
-$np_contact_action = esc_url( rest_url( 'nikolay-portfolio/v1/contact' ) );
-$np_contact_nonce  = esc_attr( wp_create_nonce( 'np_contact' ) );
+$np_contact_action = rest_url( 'nikolay-portfolio/v1/contact' );
+$np_contact_nonce  = wp_create_nonce( 'np_contact' );
 ?>
 <!-- wp:group {"tagName":"section","anchor":"contact","align":"full","className":"np-contact","backgroundColor":"surface-container-lowest","style":{"border":{"radius":"0px"},"spacing":{"padding":{"top":"var:preset|spacing|96","bottom":"var:preset|spacing|96","left":"var:preset|spacing|32","right":"var:preset|spacing|32"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"896px"}} -->
 <section class="wp-block-group alignfull np-contact has-surface-container-lowest-background-color has-background" id="contact" style="border-radius:0px;margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--96);padding-right:var(--wp--preset--spacing--32);padding-bottom:var(--wp--preset--spacing--96);padding-left:var(--wp--preset--spacing--32)">
@@ -29,8 +29,8 @@ $np_contact_nonce  = esc_attr( wp_create_nonce( 'np_contact' ) );
 		<!-- /wp:group -->
 
 		<!-- wp:html -->
-		<form class="np-contact-form" action="<?php echo $np_contact_action; ?>" method="post">
-			<input type="hidden" name="_wpnonce" value="<?php echo $np_contact_nonce; ?>" />
+		<form class="np-contact-form" action="<?php echo esc_url( $np_contact_action ); ?>" method="post">
+			<input type="hidden" name="_wpnonce" value="<?php echo esc_attr( $np_contact_nonce ); ?>" />
 			<div class="np-contact-honeypot" aria-hidden="true">
 				<label for="np-contact-website">Website</label>
 				<input id="np-contact-website" type="text" name="np_hp" tabindex="-1" autocomplete="off" />

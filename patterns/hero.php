@@ -9,11 +9,11 @@
  * @package Nikolay_Portfolio
  */
 
-$np_hero_image = esc_url( get_theme_file_uri( 'assets/images/hero.jpg' ) );
+$np_hero_image = get_theme_file_uri( 'assets/images/hero.jpg' );
 ?>
-<!-- wp:cover {"url":"<?php echo $np_hero_image; ?>","alt":"","dimRatio":0,"isUserOverlayColor":true,"contentPosition":"center center","isDark":true,"tagName":"section","align":"full","className":"np-hero","style":{"border":{"radius":"0px"},"spacing":{"padding":{"top":"var:preset|spacing|48","bottom":"var:preset|spacing|48","left":"var:preset|spacing|32","right":"var:preset|spacing|32"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1152px","justifyContent":"center"}} -->
+<!-- wp:cover {"url":"<?php echo esc_url( $np_hero_image ); ?>","alt":"","dimRatio":0,"isUserOverlayColor":true,"contentPosition":"center center","isDark":true,"tagName":"section","align":"full","className":"np-hero","style":{"border":{"radius":"0px"},"spacing":{"padding":{"top":"var:preset|spacing|48","bottom":"var:preset|spacing|48","left":"var:preset|spacing|32","right":"var:preset|spacing|32"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","contentSize":"1152px","justifyContent":"center"}} -->
 <section class="wp-block-cover alignfull has-custom-content-position is-position-center-center np-hero" style="border-radius:0px;margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--48);padding-right:var(--wp--preset--spacing--32);padding-bottom:var(--wp--preset--spacing--48);padding-left:var(--wp--preset--spacing--32)">
-	<img class="wp-block-cover__image-background" alt="" src="<?php echo $np_hero_image; ?>" data-object-fit="cover"/>
+	<img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( $np_hero_image ); ?>" data-object-fit="cover"/>
 	<span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span>
 	<div class="wp-block-cover__inner-container">
 		<!-- wp:group {"className":"np-hero__content","layout":{"type":"constrained","justifyContent":"left","contentSize":"1152px"}} -->
