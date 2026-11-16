@@ -602,3 +602,42 @@ function nikolay_portfolio_seo_hero_cover_fetchpriority( $block_content, $block 
 	);
 }
 add_filter( 'render_block', 'nikolay_portfolio_seo_hero_cover_fetchpriority', 10, 2 );
+
+/**
+ * Add intrinsic dimensions and lazy loading to the About section image.
+ *
+ * The core/image block does not save width/height HTML attributes, so the
+ * pattern markup stays editor-valid and these are added at render time.
+ *
+ * @param string $block_content Rendered block HTML.
+ * @param array  $block         Block data.
+ * @return string
+ */
+function nikolay_portfolio_seo_about_image_attributes( $block_content, $block ) {
+	$class_name = $block['attrs']['className'] ?? '';
+	if ( ! is_string( $class_name ) || false === strpos( $class_name, 'np-about-image' ) ) {
+		return $block_content;
+	}
+
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $processor->next_tag( 'img' ) ) {
+		return $block_content;
+	}
+
+	if ( null === $processor->get_attribute( 'width' ) ) {
+		$size = wp_getimagesize( get_theme_file_path( 'assets/images/about.jpg' ) );
+		if ( is_array( $size ) ) {
+			$processor->set_attribute( 'width', (string) $size[0] );
+			$processor->set_attribute( 'height', (string) $size[1] );
+		}
+	}
+
+	foreach ( array( 'loading' => 'lazy', 'decoding' => 'async' ) as $name => $value ) {
+		if ( null === $processor->get_attribute( $name ) ) {
+			$processor->set_attribute( $name, $value );
+		}
+	}
+
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_core/image', 'nikolay_portfolio_seo_about_image_attributes', 10, 2 );
