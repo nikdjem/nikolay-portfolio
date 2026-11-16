@@ -1,2 +1,5 @@
 # Local backup exports (database dumps, migration artifacts) — not version-controlled
 backup/
+
+# Local audit reports and scratch output — not version-controlled
+/temp/
