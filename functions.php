@@ -244,6 +244,31 @@ function nikolay_portfolio_enqueue_contact_script() {
 add_action( 'wp_enqueue_scripts', 'nikolay_portfolio_enqueue_contact_script' );
 
 /**
+ * Enqueue the contact form field validation script on the homepage.
+ *
+ * Kept as an external file: inline scripts in block template markup pass
+ * through wptexturize(), which corrupts JavaScript operators such as `&&`.
+ *
+ * @return void
+ */
+function nikolay_portfolio_enqueue_contact_validation_script() {
+	if ( ! is_front_page() ) {
+		return;
+	}
+
+	$script_path = get_theme_file_path( 'assets/js/contact.js' );
+
+	wp_enqueue_script(
+		'nikolay-portfolio-contact-validation',
+		get_theme_file_uri( 'assets/js/contact.js' ),
+		array(),
+		filemtime( $script_path ),
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'nikolay_portfolio_enqueue_contact_validation_script' );
+
+/**
  * Handle Contact form submissions.
  *
  * @param WP_REST_Request $request Request.
